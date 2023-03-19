@@ -7,7 +7,7 @@
  * @brief    CMSIS HeaderFile
  * @version  1.0
  * @note     Generated from https://github.com/raspberrypi/pico-sdk
- *           hardware_regs/rp2040.svd @ 0f3b7951
+ *           hardware_regs/rp2040.svd @ f396d05f
  */
 
 
@@ -87,7 +87,7 @@ typedef enum {
 #define __CM0PLUS_REV                 0x0001U   /*!< CM0PLUS Core Revision                                                     */
 #define __NVIC_PRIO_BITS               2        /*!< Number of Bits used for Priority Levels                                   */
 #define __Vendor_SysTickConfig         0        /*!< Set to 1 if different SysTick Config is used                              */
-#define __VTOR_PRESENT                 0        /*!< Set to 1 if CPU supports Vector Table Offset Register                     */
+#define __VTOR_PRESENT                 1        /*!< Set to 1 if CPU supports Vector Table Offset Register                     */
 #define __MPU_PRESENT                  1        /*!< MPU present                                                               */
 #define __FPU_PRESENT                  0        /*!< FPU present                                                               */
 
@@ -128,31 +128,30 @@ typedef enum {
   * @brief QSPI flash execute-in-place block (XIP_CTRL)
   */
 
-typedef struct {                                /*!< (@ 0x14000000) XIP_CTRL Structure                                         */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x00000000) Cache control                                              */
-  __IOM uint32_t  FLUSH;                        /*!< (@ 0x00000004) Cache Flush control                                        */
-  __IOM uint32_t  STAT;                         /*!< (@ 0x00000008) Cache Status                                               */
-  __IOM uint32_t  CTR_HIT;                      /*!< (@ 0x0000000C) Cache Hit counter
-                                                                    A 32 bit saturating counter that increments
-                                                                    upon each cache hit,
-                                                                    i.e. when an XIP access is serviced directly
-                                                                    from cached data.
-                                                                    Write any value to clear.                                  */
-  __IOM uint32_t  CTR_ACC;                      /*!< (@ 0x00000010) Cache Access counter
-                                                                    A 32 bit saturating counter that increments
-                                                                    upon each XIP access,
-                                                                    whether the cache is hit or not. This includes
-                                                                    noncacheable accesses.
-                                                                    Write any value to clear.                                  */
-  __IOM uint32_t  STREAM_ADDR;                  /*!< (@ 0x00000014) FIFO stream address                                        */
-  __IOM uint32_t  STREAM_CTR;                   /*!< (@ 0x00000018) FIFO stream control                                        */
-  __IM  uint32_t  STREAM_FIFO;                  /*!< (@ 0x0000001C) FIFO stream data
-                                                                    Streamed data is buffered here, for retrieval
-                                                                    by the system DMA.
-                                                                    This FIFO can also be accessed via the XIP_AUX
-                                                                    slave, to avoid exposing
-                                                                    the DMA to bus stalls caused by other XIP
-                                                                    traffic.                                                   */
+typedef struct {                                /*!< XIP_CTRL Structure                                                        */
+  __IOM uint32_t  CTRL;                         /*!< Cache control                                                             */
+  __IOM uint32_t  FLUSH;                        /*!< Cache Flush control                                                       */
+  __IOM uint32_t  STAT;                         /*!< Cache Status                                                              */
+  __IOM uint32_t  CTR_HIT;                      /*!< Cache Hit counter
+                                                     A 32 bit saturating counter that increments upon each cache
+                                                     hit,
+                                                     i.e. when an XIP access is serviced directly from cached
+                                                     data.
+                                                     Write any value to clear.                                                 */
+  __IOM uint32_t  CTR_ACC;                      /*!< Cache Access counter
+                                                     A 32 bit saturating counter that increments upon each XIP
+                                                     access,
+                                                     whether the cache is hit or not. This includes noncacheable
+                                                     accesses.
+                                                     Write any value to clear.                                                 */
+  __IOM uint32_t  STREAM_ADDR;                  /*!< FIFO stream address                                                       */
+  __IOM uint32_t  STREAM_CTR;                   /*!< FIFO stream control                                                       */
+  __IM  uint32_t  STREAM_FIFO;                  /*!< FIFO stream data
+                                                     Streamed data is buffered here, for retrieval by the system
+                                                     DMA.
+                                                     This FIFO can also be accessed via the XIP_AUX slave, to
+                                                     avoid exposing
+                                                     the DMA to bus stalls caused by other XIP traffic.                        */
 } XIP_CTRL_Type;                                /*!< Size = 32 (0x20)                                                          */
 
 
@@ -191,36 +190,36 @@ typedef struct {                                /*!< (@ 0x14000000) XIP_CTRL Str
         - Serial clock phase – capture on first edge of serial-clock directly after reset. (XIP_SSI)
   */
 
-typedef struct {                                /*!< (@ 0x18000000) XIP_SSI Structure                                          */
-  __IOM uint32_t  CTRLR0;                       /*!< (@ 0x00000000) Control register 0                                         */
-  __IOM uint32_t  CTRLR1;                       /*!< (@ 0x00000004) Master Control register 1                                  */
-  __IOM uint32_t  SSIENR;                       /*!< (@ 0x00000008) SSI Enable                                                 */
-  __IOM uint32_t  MWCR;                         /*!< (@ 0x0000000C) Microwire Control                                          */
-  __IOM uint32_t  SER;                          /*!< (@ 0x00000010) Slave enable                                               */
-  __IOM uint32_t  BAUDR;                        /*!< (@ 0x00000014) Baud rate                                                  */
-  __IOM uint32_t  TXFTLR;                       /*!< (@ 0x00000018) TX FIFO threshold level                                    */
-  __IOM uint32_t  RXFTLR;                       /*!< (@ 0x0000001C) RX FIFO threshold level                                    */
-  __IOM uint32_t  TXFLR;                        /*!< (@ 0x00000020) TX FIFO level                                              */
-  __IOM uint32_t  RXFLR;                        /*!< (@ 0x00000024) RX FIFO level                                              */
-  __IOM uint32_t  SR;                           /*!< (@ 0x00000028) Status register                                            */
-  __IOM uint32_t  IMR;                          /*!< (@ 0x0000002C) Interrupt mask                                             */
-  __IOM uint32_t  ISR;                          /*!< (@ 0x00000030) Interrupt status                                           */
-  __IOM uint32_t  RISR;                         /*!< (@ 0x00000034) Raw interrupt status                                       */
-  __IOM uint32_t  TXOICR;                       /*!< (@ 0x00000038) TX FIFO overflow interrupt clear                           */
-  __IOM uint32_t  RXOICR;                       /*!< (@ 0x0000003C) RX FIFO overflow interrupt clear                           */
-  __IOM uint32_t  RXUICR;                       /*!< (@ 0x00000040) RX FIFO underflow interrupt clear                          */
-  __IOM uint32_t  MSTICR;                       /*!< (@ 0x00000044) Multi-master interrupt clear                               */
-  __IOM uint32_t  ICR;                          /*!< (@ 0x00000048) Interrupt clear                                            */
-  __IOM uint32_t  DMACR;                        /*!< (@ 0x0000004C) DMA control                                                */
-  __IOM uint32_t  DMATDLR;                      /*!< (@ 0x00000050) DMA TX data level                                          */
-  __IOM uint32_t  DMARDLR;                      /*!< (@ 0x00000054) DMA RX data level                                          */
-  __IOM uint32_t  IDR;                          /*!< (@ 0x00000058) Identification register                                    */
-  __IOM uint32_t  SSI_VERSION_ID;               /*!< (@ 0x0000005C) Version ID                                                 */
-  __IOM uint32_t  DR0;                          /*!< (@ 0x00000060) Data Register 0 (of 36)                                    */
+typedef struct {                                /*!< XIP_SSI Structure                                                         */
+  __IOM uint32_t  CTRLR0;                       /*!< Control register 0                                                        */
+  __IOM uint32_t  CTRLR1;                       /*!< Master Control register 1                                                 */
+  __IOM uint32_t  SSIENR;                       /*!< SSI Enable                                                                */
+  __IOM uint32_t  MWCR;                         /*!< Microwire Control                                                         */
+  __IOM uint32_t  SER;                          /*!< Slave enable                                                              */
+  __IOM uint32_t  BAUDR;                        /*!< Baud rate                                                                 */
+  __IOM uint32_t  TXFTLR;                       /*!< TX FIFO threshold level                                                   */
+  __IOM uint32_t  RXFTLR;                       /*!< RX FIFO threshold level                                                   */
+  __IOM uint32_t  TXFLR;                        /*!< TX FIFO level                                                             */
+  __IOM uint32_t  RXFLR;                        /*!< RX FIFO level                                                             */
+  __IOM uint32_t  SR;                           /*!< Status register                                                           */
+  __IOM uint32_t  IMR;                          /*!< Interrupt mask                                                            */
+  __IOM uint32_t  ISR;                          /*!< Interrupt status                                                          */
+  __IOM uint32_t  RISR;                         /*!< Raw interrupt status                                                      */
+  __IOM uint32_t  TXOICR;                       /*!< TX FIFO overflow interrupt clear                                          */
+  __IOM uint32_t  RXOICR;                       /*!< RX FIFO overflow interrupt clear                                          */
+  __IOM uint32_t  RXUICR;                       /*!< RX FIFO underflow interrupt clear                                         */
+  __IOM uint32_t  MSTICR;                       /*!< Multi-master interrupt clear                                              */
+  __IOM uint32_t  ICR;                          /*!< Interrupt clear                                                           */
+  __IOM uint32_t  DMACR;                        /*!< DMA control                                                               */
+  __IOM uint32_t  DMATDLR;                      /*!< DMA TX data level                                                         */
+  __IOM uint32_t  DMARDLR;                      /*!< DMA RX data level                                                         */
+  __IOM uint32_t  IDR;                          /*!< Identification register                                                   */
+  __IOM uint32_t  SSI_VERSION_ID;               /*!< Version ID                                                                */
+  __IOM uint32_t  DR0;                          /*!< Data Register 0 (of 36)                                                   */
   __IM  uint32_t  RESERVED[35];
-  __IOM uint32_t  RX_SAMPLE_DLY;                /*!< (@ 0x000000F0) RX sample delay                                            */
-  __IOM uint32_t  SPI_CTRLR0;                   /*!< (@ 0x000000F4) SPI control                                                */
-  __IOM uint32_t  TXD_DRIVE_EDGE;               /*!< (@ 0x000000F8) TX drive edge                                              */
+  __IOM uint32_t  RX_SAMPLE_DLY;                /*!< RX sample delay                                                           */
+  __IOM uint32_t  SPI_CTRLR0;                   /*!< SPI control                                                               */
+  __IOM uint32_t  TXD_DRIVE_EDGE;               /*!< TX drive edge                                                             */
 } XIP_SSI_Type;                                 /*!< Size = 252 (0xfc)                                                         */
 
 
@@ -234,13 +233,12 @@ typedef struct {                                /*!< (@ 0x18000000) XIP_SSI Stru
   * @brief SYSINFO (SYSINFO)
   */
 
-typedef struct {                                /*!< (@ 0x40000000) SYSINFO Structure                                          */
-  __IOM uint32_t  CHIP_ID;                      /*!< (@ 0x00000000) JEDEC JEP-106 compliant chip identifier.                   */
-  __IOM uint32_t  PLATFORM;                     /*!< (@ 0x00000004) Platform register. Allows software to know what
-                                                                    environment it is running in.                              */
+typedef struct {                                /*!< SYSINFO Structure                                                         */
+  __IOM uint32_t  CHIP_ID;                      /*!< JEDEC JEP-106 compliant chip identifier.                                  */
+  __IOM uint32_t  PLATFORM;                     /*!< Platform register. Allows software to know what environment
+                                                     it is running in.                                                         */
   __IM  uint32_t  RESERVED[14];
-  __IM  uint32_t  GITREF_RP2040;                /*!< (@ 0x00000040) Git hash of the chip source. Used to identify
-                                                                    chip version.                                              */
+  __IM  uint32_t  GITREF_RP2040;                /*!< Git hash of the chip source. Used to identify chip version.               */
 } SYSINFO_Type;                                 /*!< Size = 68 (0x44)                                                          */
 
 
@@ -254,36 +252,34 @@ typedef struct {                                /*!< (@ 0x40000000) SYSINFO Stru
   * @brief Register block for various chip control signals (SYSCFG)
   */
 
-typedef struct {                                /*!< (@ 0x40004000) SYSCFG Structure                                           */
-  __IOM uint32_t  PROC0_NMI_MASK;               /*!< (@ 0x00000000) Processor core 0 NMI source mask
-                                                                    Set a bit high to enable NMI from that IRQ                 */
-  __IOM uint32_t  PROC1_NMI_MASK;               /*!< (@ 0x00000004) Processor core 1 NMI source mask
-                                                                    Set a bit high to enable NMI from that IRQ                 */
-  __IOM uint32_t  PROC_CONFIG;                  /*!< (@ 0x00000008) Configuration for processors                               */
-  __IOM uint32_t  PROC_IN_SYNC_BYPASS;          /*!< (@ 0x0000000C) For each bit, if 1, bypass the input synchronizer
-                                                                    between that GPIO
-                                                                    and the GPIO input register in the SIO.
-                                                                    The input synchronizers should
-                                                                    generally be unbypassed, to avoid injecting
-                                                                    metastabilities into processors.
-                                                                    If you're feeling brave, you can bypass
-                                                                    to save two cycles of input
-                                                                    latency. This register applies to GPIO 0...29.             */
-  __IOM uint32_t  PROC_IN_SYNC_BYPASS_HI;       /*!< (@ 0x00000010) For each bit, if 1, bypass the input synchronizer
-                                                                    between that GPIO
-                                                                    and the GPIO input register in the SIO.
-                                                                    The input synchronizers should
-                                                                    generally be unbypassed, to avoid injecting
-                                                                    metastabilities into processors.
-                                                                    If you're feeling brave, you can bypass
-                                                                    to save two cycles of input
-                                                                    latency. This register applies to GPIO 30...35
-                                                                    (the QSPI IOs).                                            */
-  __IOM uint32_t  DBGFORCE;                     /*!< (@ 0x00000014) Directly control the SWD debug port of either
-                                                                    processor                                                  */
-  __IOM uint32_t  MEMPOWERDOWN;                 /*!< (@ 0x00000018) Control power downs to memories. Set high to
-                                                                    power down memories.
-                                                                    Use with extreme caution                                   */
+typedef struct {                                /*!< SYSCFG Structure                                                          */
+  __IOM uint32_t  PROC0_NMI_MASK;               /*!< Processor core 0 NMI source mask
+                                                     Set a bit high to enable NMI from that IRQ                                */
+  __IOM uint32_t  PROC1_NMI_MASK;               /*!< Processor core 1 NMI source mask
+                                                     Set a bit high to enable NMI from that IRQ                                */
+  __IOM uint32_t  PROC_CONFIG;                  /*!< Configuration for processors                                              */
+  __IOM uint32_t  PROC_IN_SYNC_BYPASS;          /*!< For each bit, if 1, bypass the input synchronizer between that
+                                                     GPIO
+                                                     and the GPIO input register in the SIO. The input synchronizers
+                                                     should
+                                                     generally be unbypassed, to avoid injecting metastabilities
+                                                     into processors.
+                                                     If you're feeling brave, you can bypass to save two cycles
+                                                     of input
+                                                     latency. This register applies to GPIO 0...29.                            */
+  __IOM uint32_t  PROC_IN_SYNC_BYPASS_HI;       /*!< For each bit, if 1, bypass the input synchronizer between that
+                                                     GPIO
+                                                     and the GPIO input register in the SIO. The input synchronizers
+                                                     should
+                                                     generally be unbypassed, to avoid injecting metastabilities
+                                                     into processors.
+                                                     If you're feeling brave, you can bypass to save two cycles
+                                                     of input
+                                                     latency. This register applies to GPIO 30...35 (the QSPI
+                                                     IOs).                                                                     */
+  __IOM uint32_t  DBGFORCE;                     /*!< Directly control the SWD debug port of either processor                   */
+  __IOM uint32_t  MEMPOWERDOWN;                 /*!< Control power downs to memories. Set high to power down memories.
+                                                     Use with extreme caution                                                  */
 } SYSCFG_Type;                                  /*!< Size = 28 (0x1c)                                                          */
 
 
@@ -297,80 +293,113 @@ typedef struct {                                /*!< (@ 0x40004000) SYSCFG Struc
   * @brief CLOCKS (CLOCKS)
   */
 
-typedef struct {                                /*!< (@ 0x40008000) CLOCKS Structure                                           */
-  __IOM uint32_t  CLK_GPOUT0_CTRL;              /*!< (@ 0x00000000) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_GPOUT0_DIV;               /*!< (@ 0x00000004) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_GPOUT0_SELECTED;          /*!< (@ 0x00000008) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_GPOUT1_CTRL;              /*!< (@ 0x0000000C) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_GPOUT1_DIV;               /*!< (@ 0x00000010) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_GPOUT1_SELECTED;          /*!< (@ 0x00000014) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_GPOUT2_CTRL;              /*!< (@ 0x00000018) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_GPOUT2_DIV;               /*!< (@ 0x0000001C) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_GPOUT2_SELECTED;          /*!< (@ 0x00000020) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_GPOUT3_CTRL;              /*!< (@ 0x00000024) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_GPOUT3_DIV;               /*!< (@ 0x00000028) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_GPOUT3_SELECTED;          /*!< (@ 0x0000002C) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_REF_CTRL;                 /*!< (@ 0x00000030) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_REF_DIV;                  /*!< (@ 0x00000034) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_REF_SELECTED;             /*!< (@ 0x00000038) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_SYS_CTRL;                 /*!< (@ 0x0000003C) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_SYS_DIV;                  /*!< (@ 0x00000040) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_SYS_SELECTED;             /*!< (@ 0x00000044) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_PERI_CTRL;                /*!< (@ 0x00000048) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
+typedef struct {                                /*!< CLOCKS Structure                                                          */
+  __IOM uint32_t  CLK_GPOUT0_CTRL;              /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_GPOUT0_DIV;               /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_GPOUT0_SELECTED;          /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_GPOUT1_CTRL;              /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_GPOUT1_DIV;               /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_GPOUT1_SELECTED;          /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_GPOUT2_CTRL;              /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_GPOUT2_DIV;               /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_GPOUT2_SELECTED;          /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_GPOUT3_CTRL;              /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_GPOUT3_DIV;               /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_GPOUT3_SELECTED;          /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_REF_CTRL;                 /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_REF_DIV;                  /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_REF_SELECTED;             /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     The glitchless multiplexer does not switch instantaneously
+                                                     (to avoid glitches), so software should poll this register
+                                                     to wait for the switch to complete. This register contains
+                                                     one decoded bit for each of the clock sources enumerated
+                                                     in the CTRL SRC field. At most one of these bits will be
+                                                     set at any time, indicating that clock is currently present
+                                                     at the output of the glitchless mux. Whilst switching is
+                                                     in progress, this register may briefly show all-0s.                       */
+  __IOM uint32_t  CLK_SYS_CTRL;                 /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_SYS_DIV;                  /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_SYS_SELECTED;             /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     The glitchless multiplexer does not switch instantaneously
+                                                     (to avoid glitches), so software should poll this register
+                                                     to wait for the switch to complete. This register contains
+                                                     one decoded bit for each of the clock sources enumerated
+                                                     in the CTRL SRC field. At most one of these bits will be
+                                                     set at any time, indicating that clock is currently present
+                                                     at the output of the glitchless mux. Whilst switching is
+                                                     in progress, this register may briefly show all-0s.                       */
+  __IOM uint32_t  CLK_PERI_CTRL;                /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
   __IM  uint32_t  RESERVED;
-  __IM  uint32_t  CLK_PERI_SELECTED;            /*!< (@ 0x00000050) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_USB_CTRL;                 /*!< (@ 0x00000054) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_USB_DIV;                  /*!< (@ 0x00000058) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_USB_SELECTED;             /*!< (@ 0x0000005C) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_ADC_CTRL;                 /*!< (@ 0x00000060) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_ADC_DIV;                  /*!< (@ 0x00000064) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_ADC_SELECTED;             /*!< (@ 0x00000068) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_RTC_CTRL;                 /*!< (@ 0x0000006C) Clock control, can be changed on-the-fly (except
-                                                                    for auxsrc)                                                */
-  __IOM uint32_t  CLK_RTC_DIV;                  /*!< (@ 0x00000070) Clock divisor, can be changed on-the-fly                   */
-  __IM  uint32_t  CLK_RTC_SELECTED;             /*!< (@ 0x00000074) Indicates which src is currently selected (one-hot)        */
-  __IOM uint32_t  CLK_SYS_RESUS_CTRL;           /*!< (@ 0x00000078) CLK_SYS_RESUS_CTRL                                         */
-  __IOM uint32_t  CLK_SYS_RESUS_STATUS;         /*!< (@ 0x0000007C) CLK_SYS_RESUS_STATUS                                       */
-  __IOM uint32_t  FC0_REF_KHZ;                  /*!< (@ 0x00000080) Reference clock frequency in kHz                           */
-  __IOM uint32_t  FC0_MIN_KHZ;                  /*!< (@ 0x00000084) Minimum pass frequency in kHz. This is optional.
-                                                                    Set to 0 if you are not using the pass/fail
-                                                                    flags                                                      */
-  __IOM uint32_t  FC0_MAX_KHZ;                  /*!< (@ 0x00000088) Maximum pass frequency in kHz. This is optional.
-                                                                    Set to 0x1ffffff if you are not using the
-                                                                    pass/fail flags                                            */
-  __IOM uint32_t  FC0_DELAY;                    /*!< (@ 0x0000008C) Delays the start of frequency counting to allow
-                                                                    the mux to settle
-                                                                    Delay is measured in multiples of the reference
-                                                                    clock period                                               */
-  __IOM uint32_t  FC0_INTERVAL;                 /*!< (@ 0x00000090) The test interval is 0.98us * 2**interval, but
-                                                                    let's call it 1us * 2**interval
-                                                                    The default gives a test interval of 250us                 */
-  __IOM uint32_t  FC0_SRC;                      /*!< (@ 0x00000094) Clock sent to frequency counter, set to 0 when
-                                                                    not required
-                                                                    Writing to this register initiates the frequency
-                                                                    count                                                      */
-  __IOM uint32_t  FC0_STATUS;                   /*!< (@ 0x00000098) Frequency counter status                                   */
-  __IOM uint32_t  FC0_RESULT;                   /*!< (@ 0x0000009C) Result of frequency measurement, only valid when
-                                                                    status_done=1                                              */
-  __IOM uint32_t  WAKE_EN0;                     /*!< (@ 0x000000A0) enable clock in wake mode                                  */
-  __IOM uint32_t  WAKE_EN1;                     /*!< (@ 0x000000A4) enable clock in wake mode                                  */
-  __IOM uint32_t  SLEEP_EN0;                    /*!< (@ 0x000000A8) enable clock in sleep mode                                 */
-  __IOM uint32_t  SLEEP_EN1;                    /*!< (@ 0x000000AC) enable clock in sleep mode                                 */
-  __IOM uint32_t  ENABLED0;                     /*!< (@ 0x000000B0) indicates the state of the clock enable                    */
-  __IOM uint32_t  ENABLED1;                     /*!< (@ 0x000000B4) indicates the state of the clock enable                    */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x000000B8) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x000000BC) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x000000C0) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x000000C4) Interrupt status after masking & forcing                   */
+  __IM  uint32_t  CLK_PERI_SELECTED;            /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_USB_CTRL;                 /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_USB_DIV;                  /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_USB_SELECTED;             /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_ADC_CTRL;                 /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_ADC_DIV;                  /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_ADC_SELECTED;             /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_RTC_CTRL;                 /*!< Clock control, can be changed on-the-fly (except for auxsrc)              */
+  __IOM uint32_t  CLK_RTC_DIV;                  /*!< Clock divisor, can be changed on-the-fly                                  */
+  __IM  uint32_t  CLK_RTC_SELECTED;             /*!< Indicates which SRC is currently selected by the glitchless
+                                                     mux (one-hot).
+                                                     This slice does not have a glitchless mux (only the AUX_SRC
+                                                     field is present, not SRC) so this register is hardwired
+                                                     to 0x1.                                                                   */
+  __IOM uint32_t  CLK_SYS_RESUS_CTRL;           /*!< CLK_SYS_RESUS_CTRL                                                        */
+  __IOM uint32_t  CLK_SYS_RESUS_STATUS;         /*!< CLK_SYS_RESUS_STATUS                                                      */
+  __IOM uint32_t  FC0_REF_KHZ;                  /*!< Reference clock frequency in kHz                                          */
+  __IOM uint32_t  FC0_MIN_KHZ;                  /*!< Minimum pass frequency in kHz. This is optional. Set to 0 if
+                                                     you are not using the pass/fail flags                                     */
+  __IOM uint32_t  FC0_MAX_KHZ;                  /*!< Maximum pass frequency in kHz. This is optional. Set to 0x1ffffff
+                                                     if you are not using the pass/fail flags                                  */
+  __IOM uint32_t  FC0_DELAY;                    /*!< Delays the start of frequency counting to allow the mux to settle
+                                                     Delay is measured in multiples of the reference clock period              */
+  __IOM uint32_t  FC0_INTERVAL;                 /*!< The test interval is 0.98us * 2**interval, but let's call it
+                                                     1us * 2**interval
+                                                     The default gives a test interval of 250us                                */
+  __IOM uint32_t  FC0_SRC;                      /*!< Clock sent to frequency counter, set to 0 when not required
+                                                     Writing to this register initiates the frequency count                    */
+  __IOM uint32_t  FC0_STATUS;                   /*!< Frequency counter status                                                  */
+  __IOM uint32_t  FC0_RESULT;                   /*!< Result of frequency measurement, only valid when status_done=1            */
+  __IOM uint32_t  WAKE_EN0;                     /*!< enable clock in wake mode                                                 */
+  __IOM uint32_t  WAKE_EN1;                     /*!< enable clock in wake mode                                                 */
+  __IOM uint32_t  SLEEP_EN0;                    /*!< enable clock in sleep mode                                                */
+  __IOM uint32_t  SLEEP_EN1;                    /*!< enable clock in sleep mode                                                */
+  __IOM uint32_t  ENABLED0;                     /*!< indicates the state of the clock enable                                   */
+  __IOM uint32_t  ENABLED1;                     /*!< indicates the state of the clock enable                                   */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } CLOCKS_Type;                                  /*!< Size = 200 (0xc8)                                                         */
 
 
@@ -384,17 +413,14 @@ typedef struct {                                /*!< (@ 0x40008000) CLOCKS Struc
   * @brief RESETS (RESETS)
   */
 
-typedef struct {                                /*!< (@ 0x4000C000) RESETS Structure                                           */
-  __IOM uint32_t  RESET;                        /*!< (@ 0x00000000) Reset control. If a bit is set it means the peripheral
-                                                                    is in reset. 0 means the peripheral's reset
-                                                                    is deasserted.                                             */
-  __IOM uint32_t  WDSEL;                        /*!< (@ 0x00000004) Watchdog select. If a bit is set then the watchdog
-                                                                    will reset this peripheral when the watchdog
-                                                                    fires.                                                     */
-  __IOM uint32_t  RESET_DONE;                   /*!< (@ 0x00000008) Reset done. If a bit is set then a reset done
-                                                                    signal has been returned by the peripheral.
-                                                                    This indicates that the peripheral's registers
-                                                                    are ready to be accessed.                                  */
+typedef struct {                                /*!< RESETS Structure                                                          */
+  __IOM uint32_t  RESET;                        /*!< Reset control. If a bit is set it means the peripheral is in
+                                                     reset. 0 means the peripheral's reset is deasserted.                      */
+  __IOM uint32_t  WDSEL;                        /*!< Watchdog select. If a bit is set then the watchdog will reset
+                                                     this peripheral when the watchdog fires.                                  */
+  __IOM uint32_t  RESET_DONE;                   /*!< Reset done. If a bit is set then a reset done signal has been
+                                                     returned by the peripheral. This indicates that the peripheral's
+                                                     registers are ready to be accessed.                                       */
 } RESETS_Type;                                  /*!< Size = 12 (0xc)                                                           */
 
 
@@ -408,13 +434,12 @@ typedef struct {                                /*!< (@ 0x4000C000) RESETS Struc
   * @brief PSM (PSM)
   */
 
-typedef struct {                                /*!< (@ 0x40010000) PSM Structure                                              */
-  __IOM uint32_t  FRCE_ON;                      /*!< (@ 0x00000000) Force block out of reset (i.e. power it on)                */
-  __IOM uint32_t  FRCE_OFF;                     /*!< (@ 0x00000004) Force into reset (i.e. power it off)                       */
-  __IOM uint32_t  WDSEL;                        /*!< (@ 0x00000008) Set to 1 if this peripheral should be reset when
-                                                                    the watchdog fires.                                        */
-  __IOM uint32_t  DONE;                         /*!< (@ 0x0000000C) Indicates the peripheral's registers are ready
-                                                                    to access.                                                 */
+typedef struct {                                /*!< PSM Structure                                                             */
+  __IOM uint32_t  FRCE_ON;                      /*!< Force block out of reset (i.e. power it on)                               */
+  __IOM uint32_t  FRCE_OFF;                     /*!< Force into reset (i.e. power it off)                                      */
+  __IOM uint32_t  WDSEL;                        /*!< Set to 1 if this peripheral should be reset when the watchdog
+                                                     fires.                                                                    */
+  __IOM uint32_t  DONE;                         /*!< Indicates the peripheral's registers are ready to access.                 */
 } PSM_Type;                                     /*!< Size = 16 (0x10)                                                          */
 
 
@@ -428,119 +453,107 @@ typedef struct {                                /*!< (@ 0x40010000) PSM Structur
   * @brief IO_BANK0 (IO_BANK0)
   */
 
-typedef struct {                                /*!< (@ 0x40014000) IO_BANK0 Structure                                         */
-  __IOM uint32_t  GPIO0_STATUS;                 /*!< (@ 0x00000000) GPIO status                                                */
-  __IOM uint32_t  GPIO0_CTRL;                   /*!< (@ 0x00000004) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO1_STATUS;                 /*!< (@ 0x00000008) GPIO status                                                */
-  __IOM uint32_t  GPIO1_CTRL;                   /*!< (@ 0x0000000C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO2_STATUS;                 /*!< (@ 0x00000010) GPIO status                                                */
-  __IOM uint32_t  GPIO2_CTRL;                   /*!< (@ 0x00000014) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO3_STATUS;                 /*!< (@ 0x00000018) GPIO status                                                */
-  __IOM uint32_t  GPIO3_CTRL;                   /*!< (@ 0x0000001C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO4_STATUS;                 /*!< (@ 0x00000020) GPIO status                                                */
-  __IOM uint32_t  GPIO4_CTRL;                   /*!< (@ 0x00000024) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO5_STATUS;                 /*!< (@ 0x00000028) GPIO status                                                */
-  __IOM uint32_t  GPIO5_CTRL;                   /*!< (@ 0x0000002C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO6_STATUS;                 /*!< (@ 0x00000030) GPIO status                                                */
-  __IOM uint32_t  GPIO6_CTRL;                   /*!< (@ 0x00000034) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO7_STATUS;                 /*!< (@ 0x00000038) GPIO status                                                */
-  __IOM uint32_t  GPIO7_CTRL;                   /*!< (@ 0x0000003C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO8_STATUS;                 /*!< (@ 0x00000040) GPIO status                                                */
-  __IOM uint32_t  GPIO8_CTRL;                   /*!< (@ 0x00000044) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO9_STATUS;                 /*!< (@ 0x00000048) GPIO status                                                */
-  __IOM uint32_t  GPIO9_CTRL;                   /*!< (@ 0x0000004C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO10_STATUS;                /*!< (@ 0x00000050) GPIO status                                                */
-  __IOM uint32_t  GPIO10_CTRL;                  /*!< (@ 0x00000054) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO11_STATUS;                /*!< (@ 0x00000058) GPIO status                                                */
-  __IOM uint32_t  GPIO11_CTRL;                  /*!< (@ 0x0000005C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO12_STATUS;                /*!< (@ 0x00000060) GPIO status                                                */
-  __IOM uint32_t  GPIO12_CTRL;                  /*!< (@ 0x00000064) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO13_STATUS;                /*!< (@ 0x00000068) GPIO status                                                */
-  __IOM uint32_t  GPIO13_CTRL;                  /*!< (@ 0x0000006C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO14_STATUS;                /*!< (@ 0x00000070) GPIO status                                                */
-  __IOM uint32_t  GPIO14_CTRL;                  /*!< (@ 0x00000074) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO15_STATUS;                /*!< (@ 0x00000078) GPIO status                                                */
-  __IOM uint32_t  GPIO15_CTRL;                  /*!< (@ 0x0000007C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO16_STATUS;                /*!< (@ 0x00000080) GPIO status                                                */
-  __IOM uint32_t  GPIO16_CTRL;                  /*!< (@ 0x00000084) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO17_STATUS;                /*!< (@ 0x00000088) GPIO status                                                */
-  __IOM uint32_t  GPIO17_CTRL;                  /*!< (@ 0x0000008C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO18_STATUS;                /*!< (@ 0x00000090) GPIO status                                                */
-  __IOM uint32_t  GPIO18_CTRL;                  /*!< (@ 0x00000094) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO19_STATUS;                /*!< (@ 0x00000098) GPIO status                                                */
-  __IOM uint32_t  GPIO19_CTRL;                  /*!< (@ 0x0000009C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO20_STATUS;                /*!< (@ 0x000000A0) GPIO status                                                */
-  __IOM uint32_t  GPIO20_CTRL;                  /*!< (@ 0x000000A4) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO21_STATUS;                /*!< (@ 0x000000A8) GPIO status                                                */
-  __IOM uint32_t  GPIO21_CTRL;                  /*!< (@ 0x000000AC) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO22_STATUS;                /*!< (@ 0x000000B0) GPIO status                                                */
-  __IOM uint32_t  GPIO22_CTRL;                  /*!< (@ 0x000000B4) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO23_STATUS;                /*!< (@ 0x000000B8) GPIO status                                                */
-  __IOM uint32_t  GPIO23_CTRL;                  /*!< (@ 0x000000BC) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO24_STATUS;                /*!< (@ 0x000000C0) GPIO status                                                */
-  __IOM uint32_t  GPIO24_CTRL;                  /*!< (@ 0x000000C4) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO25_STATUS;                /*!< (@ 0x000000C8) GPIO status                                                */
-  __IOM uint32_t  GPIO25_CTRL;                  /*!< (@ 0x000000CC) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO26_STATUS;                /*!< (@ 0x000000D0) GPIO status                                                */
-  __IOM uint32_t  GPIO26_CTRL;                  /*!< (@ 0x000000D4) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO27_STATUS;                /*!< (@ 0x000000D8) GPIO status                                                */
-  __IOM uint32_t  GPIO27_CTRL;                  /*!< (@ 0x000000DC) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO28_STATUS;                /*!< (@ 0x000000E0) GPIO status                                                */
-  __IOM uint32_t  GPIO28_CTRL;                  /*!< (@ 0x000000E4) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO29_STATUS;                /*!< (@ 0x000000E8) GPIO status                                                */
-  __IOM uint32_t  GPIO29_CTRL;                  /*!< (@ 0x000000EC) GPIO control including function select and overrides.      */
-  __IOM uint32_t  INTR0;                        /*!< (@ 0x000000F0) Raw Interrupts                                             */
-  __IOM uint32_t  INTR1;                        /*!< (@ 0x000000F4) Raw Interrupts                                             */
-  __IOM uint32_t  INTR2;                        /*!< (@ 0x000000F8) Raw Interrupts                                             */
-  __IOM uint32_t  INTR3;                        /*!< (@ 0x000000FC) Raw Interrupts                                             */
-  __IOM uint32_t  PROC0_INTE0;                  /*!< (@ 0x00000100) Interrupt Enable for proc0                                 */
-  __IOM uint32_t  PROC0_INTE1;                  /*!< (@ 0x00000104) Interrupt Enable for proc0                                 */
-  __IOM uint32_t  PROC0_INTE2;                  /*!< (@ 0x00000108) Interrupt Enable for proc0                                 */
-  __IOM uint32_t  PROC0_INTE3;                  /*!< (@ 0x0000010C) Interrupt Enable for proc0                                 */
-  __IOM uint32_t  PROC0_INTF0;                  /*!< (@ 0x00000110) Interrupt Force for proc0                                  */
-  __IOM uint32_t  PROC0_INTF1;                  /*!< (@ 0x00000114) Interrupt Force for proc0                                  */
-  __IOM uint32_t  PROC0_INTF2;                  /*!< (@ 0x00000118) Interrupt Force for proc0                                  */
-  __IOM uint32_t  PROC0_INTF3;                  /*!< (@ 0x0000011C) Interrupt Force for proc0                                  */
-  __IOM uint32_t  PROC0_INTS0;                  /*!< (@ 0x00000120) Interrupt status after masking & forcing for
-                                                                    proc0                                                      */
-  __IOM uint32_t  PROC0_INTS1;                  /*!< (@ 0x00000124) Interrupt status after masking & forcing for
-                                                                    proc0                                                      */
-  __IOM uint32_t  PROC0_INTS2;                  /*!< (@ 0x00000128) Interrupt status after masking & forcing for
-                                                                    proc0                                                      */
-  __IOM uint32_t  PROC0_INTS3;                  /*!< (@ 0x0000012C) Interrupt status after masking & forcing for
-                                                                    proc0                                                      */
-  __IOM uint32_t  PROC1_INTE0;                  /*!< (@ 0x00000130) Interrupt Enable for proc1                                 */
-  __IOM uint32_t  PROC1_INTE1;                  /*!< (@ 0x00000134) Interrupt Enable for proc1                                 */
-  __IOM uint32_t  PROC1_INTE2;                  /*!< (@ 0x00000138) Interrupt Enable for proc1                                 */
-  __IOM uint32_t  PROC1_INTE3;                  /*!< (@ 0x0000013C) Interrupt Enable for proc1                                 */
-  __IOM uint32_t  PROC1_INTF0;                  /*!< (@ 0x00000140) Interrupt Force for proc1                                  */
-  __IOM uint32_t  PROC1_INTF1;                  /*!< (@ 0x00000144) Interrupt Force for proc1                                  */
-  __IOM uint32_t  PROC1_INTF2;                  /*!< (@ 0x00000148) Interrupt Force for proc1                                  */
-  __IOM uint32_t  PROC1_INTF3;                  /*!< (@ 0x0000014C) Interrupt Force for proc1                                  */
-  __IOM uint32_t  PROC1_INTS0;                  /*!< (@ 0x00000150) Interrupt status after masking & forcing for
-                                                                    proc1                                                      */
-  __IOM uint32_t  PROC1_INTS1;                  /*!< (@ 0x00000154) Interrupt status after masking & forcing for
-                                                                    proc1                                                      */
-  __IOM uint32_t  PROC1_INTS2;                  /*!< (@ 0x00000158) Interrupt status after masking & forcing for
-                                                                    proc1                                                      */
-  __IOM uint32_t  PROC1_INTS3;                  /*!< (@ 0x0000015C) Interrupt status after masking & forcing for
-                                                                    proc1                                                      */
-  __IOM uint32_t  DORMANT_WAKE_INTE0;           /*!< (@ 0x00000160) Interrupt Enable for dormant_wake                          */
-  __IOM uint32_t  DORMANT_WAKE_INTE1;           /*!< (@ 0x00000164) Interrupt Enable for dormant_wake                          */
-  __IOM uint32_t  DORMANT_WAKE_INTE2;           /*!< (@ 0x00000168) Interrupt Enable for dormant_wake                          */
-  __IOM uint32_t  DORMANT_WAKE_INTE3;           /*!< (@ 0x0000016C) Interrupt Enable for dormant_wake                          */
-  __IOM uint32_t  DORMANT_WAKE_INTF0;           /*!< (@ 0x00000170) Interrupt Force for dormant_wake                           */
-  __IOM uint32_t  DORMANT_WAKE_INTF1;           /*!< (@ 0x00000174) Interrupt Force for dormant_wake                           */
-  __IOM uint32_t  DORMANT_WAKE_INTF2;           /*!< (@ 0x00000178) Interrupt Force for dormant_wake                           */
-  __IOM uint32_t  DORMANT_WAKE_INTF3;           /*!< (@ 0x0000017C) Interrupt Force for dormant_wake                           */
-  __IOM uint32_t  DORMANT_WAKE_INTS0;           /*!< (@ 0x00000180) Interrupt status after masking & forcing for
-                                                                    dormant_wake                                               */
-  __IOM uint32_t  DORMANT_WAKE_INTS1;           /*!< (@ 0x00000184) Interrupt status after masking & forcing for
-                                                                    dormant_wake                                               */
-  __IOM uint32_t  DORMANT_WAKE_INTS2;           /*!< (@ 0x00000188) Interrupt status after masking & forcing for
-                                                                    dormant_wake                                               */
-  __IOM uint32_t  DORMANT_WAKE_INTS3;           /*!< (@ 0x0000018C) Interrupt status after masking & forcing for
-                                                                    dormant_wake                                               */
+typedef struct {                                /*!< IO_BANK0 Structure                                                        */
+  __IOM uint32_t  GPIO0_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO0_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO1_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO1_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO2_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO2_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO3_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO3_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO4_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO4_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO5_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO5_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO6_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO6_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO7_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO7_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO8_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO8_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO9_STATUS;                 /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO9_CTRL;                   /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO10_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO10_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO11_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO11_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO12_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO12_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO13_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO13_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO14_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO14_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO15_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO15_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO16_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO16_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO17_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO17_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO18_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO18_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO19_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO19_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO20_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO20_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO21_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO21_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO22_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO22_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO23_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO23_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO24_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO24_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO25_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO25_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO26_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO26_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO27_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO27_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO28_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO28_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO29_STATUS;                /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO29_CTRL;                  /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  INTR0;                        /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTR1;                        /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTR2;                        /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTR3;                        /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  PROC0_INTE0;                  /*!< Interrupt Enable for proc0                                                */
+  __IOM uint32_t  PROC0_INTE1;                  /*!< Interrupt Enable for proc0                                                */
+  __IOM uint32_t  PROC0_INTE2;                  /*!< Interrupt Enable for proc0                                                */
+  __IOM uint32_t  PROC0_INTE3;                  /*!< Interrupt Enable for proc0                                                */
+  __IOM uint32_t  PROC0_INTF0;                  /*!< Interrupt Force for proc0                                                 */
+  __IOM uint32_t  PROC0_INTF1;                  /*!< Interrupt Force for proc0                                                 */
+  __IOM uint32_t  PROC0_INTF2;                  /*!< Interrupt Force for proc0                                                 */
+  __IOM uint32_t  PROC0_INTF3;                  /*!< Interrupt Force for proc0                                                 */
+  __IOM uint32_t  PROC0_INTS0;                  /*!< Interrupt status after masking & forcing for proc0                        */
+  __IOM uint32_t  PROC0_INTS1;                  /*!< Interrupt status after masking & forcing for proc0                        */
+  __IOM uint32_t  PROC0_INTS2;                  /*!< Interrupt status after masking & forcing for proc0                        */
+  __IOM uint32_t  PROC0_INTS3;                  /*!< Interrupt status after masking & forcing for proc0                        */
+  __IOM uint32_t  PROC1_INTE0;                  /*!< Interrupt Enable for proc1                                                */
+  __IOM uint32_t  PROC1_INTE1;                  /*!< Interrupt Enable for proc1                                                */
+  __IOM uint32_t  PROC1_INTE2;                  /*!< Interrupt Enable for proc1                                                */
+  __IOM uint32_t  PROC1_INTE3;                  /*!< Interrupt Enable for proc1                                                */
+  __IOM uint32_t  PROC1_INTF0;                  /*!< Interrupt Force for proc1                                                 */
+  __IOM uint32_t  PROC1_INTF1;                  /*!< Interrupt Force for proc1                                                 */
+  __IOM uint32_t  PROC1_INTF2;                  /*!< Interrupt Force for proc1                                                 */
+  __IOM uint32_t  PROC1_INTF3;                  /*!< Interrupt Force for proc1                                                 */
+  __IOM uint32_t  PROC1_INTS0;                  /*!< Interrupt status after masking & forcing for proc1                        */
+  __IOM uint32_t  PROC1_INTS1;                  /*!< Interrupt status after masking & forcing for proc1                        */
+  __IOM uint32_t  PROC1_INTS2;                  /*!< Interrupt status after masking & forcing for proc1                        */
+  __IOM uint32_t  PROC1_INTS3;                  /*!< Interrupt status after masking & forcing for proc1                        */
+  __IOM uint32_t  DORMANT_WAKE_INTE0;           /*!< Interrupt Enable for dormant_wake                                         */
+  __IOM uint32_t  DORMANT_WAKE_INTE1;           /*!< Interrupt Enable for dormant_wake                                         */
+  __IOM uint32_t  DORMANT_WAKE_INTE2;           /*!< Interrupt Enable for dormant_wake                                         */
+  __IOM uint32_t  DORMANT_WAKE_INTE3;           /*!< Interrupt Enable for dormant_wake                                         */
+  __IOM uint32_t  DORMANT_WAKE_INTF0;           /*!< Interrupt Force for dormant_wake                                          */
+  __IOM uint32_t  DORMANT_WAKE_INTF1;           /*!< Interrupt Force for dormant_wake                                          */
+  __IOM uint32_t  DORMANT_WAKE_INTF2;           /*!< Interrupt Force for dormant_wake                                          */
+  __IOM uint32_t  DORMANT_WAKE_INTF3;           /*!< Interrupt Force for dormant_wake                                          */
+  __IOM uint32_t  DORMANT_WAKE_INTS0;           /*!< Interrupt status after masking & forcing for dormant_wake                 */
+  __IOM uint32_t  DORMANT_WAKE_INTS1;           /*!< Interrupt status after masking & forcing for dormant_wake                 */
+  __IOM uint32_t  DORMANT_WAKE_INTS2;           /*!< Interrupt status after masking & forcing for dormant_wake                 */
+  __IOM uint32_t  DORMANT_WAKE_INTS3;           /*!< Interrupt status after masking & forcing for dormant_wake                 */
 } IO_BANK0_Type;                                /*!< Size = 400 (0x190)                                                        */
 
 
@@ -554,32 +567,29 @@ typedef struct {                                /*!< (@ 0x40014000) IO_BANK0 Str
   * @brief IO_QSPI (IO_QSPI)
   */
 
-typedef struct {                                /*!< (@ 0x40018000) IO_QSPI Structure                                          */
-  __IOM uint32_t  GPIO_QSPI_SCLK_STATUS;        /*!< (@ 0x00000000) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SCLK_CTRL;          /*!< (@ 0x00000004) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO_QSPI_SS_STATUS;          /*!< (@ 0x00000008) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SS_CTRL;            /*!< (@ 0x0000000C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO_QSPI_SD0_STATUS;         /*!< (@ 0x00000010) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SD0_CTRL;           /*!< (@ 0x00000014) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO_QSPI_SD1_STATUS;         /*!< (@ 0x00000018) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SD1_CTRL;           /*!< (@ 0x0000001C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO_QSPI_SD2_STATUS;         /*!< (@ 0x00000020) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SD2_CTRL;           /*!< (@ 0x00000024) GPIO control including function select and overrides.      */
-  __IOM uint32_t  GPIO_QSPI_SD3_STATUS;         /*!< (@ 0x00000028) GPIO status                                                */
-  __IOM uint32_t  GPIO_QSPI_SD3_CTRL;           /*!< (@ 0x0000002C) GPIO control including function select and overrides.      */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000030) Raw Interrupts                                             */
-  __IOM uint32_t  PROC0_INTE;                   /*!< (@ 0x00000034) Interrupt Enable for proc0                                 */
-  __IOM uint32_t  PROC0_INTF;                   /*!< (@ 0x00000038) Interrupt Force for proc0                                  */
-  __IOM uint32_t  PROC0_INTS;                   /*!< (@ 0x0000003C) Interrupt status after masking & forcing for
-                                                                    proc0                                                      */
-  __IOM uint32_t  PROC1_INTE;                   /*!< (@ 0x00000040) Interrupt Enable for proc1                                 */
-  __IOM uint32_t  PROC1_INTF;                   /*!< (@ 0x00000044) Interrupt Force for proc1                                  */
-  __IOM uint32_t  PROC1_INTS;                   /*!< (@ 0x00000048) Interrupt status after masking & forcing for
-                                                                    proc1                                                      */
-  __IOM uint32_t  DORMANT_WAKE_INTE;            /*!< (@ 0x0000004C) Interrupt Enable for dormant_wake                          */
-  __IOM uint32_t  DORMANT_WAKE_INTF;            /*!< (@ 0x00000050) Interrupt Force for dormant_wake                           */
-  __IOM uint32_t  DORMANT_WAKE_INTS;            /*!< (@ 0x00000054) Interrupt status after masking & forcing for
-                                                                    dormant_wake                                               */
+typedef struct {                                /*!< IO_QSPI Structure                                                         */
+  __IOM uint32_t  GPIO_QSPI_SCLK_STATUS;        /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SCLK_CTRL;          /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO_QSPI_SS_STATUS;          /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SS_CTRL;            /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO_QSPI_SD0_STATUS;         /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SD0_CTRL;           /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO_QSPI_SD1_STATUS;         /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SD1_CTRL;           /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO_QSPI_SD2_STATUS;         /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SD2_CTRL;           /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  GPIO_QSPI_SD3_STATUS;         /*!< GPIO status                                                               */
+  __IOM uint32_t  GPIO_QSPI_SD3_CTRL;           /*!< GPIO control including function select and overrides.                     */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  PROC0_INTE;                   /*!< Interrupt Enable for proc0                                                */
+  __IOM uint32_t  PROC0_INTF;                   /*!< Interrupt Force for proc0                                                 */
+  __IOM uint32_t  PROC0_INTS;                   /*!< Interrupt status after masking & forcing for proc0                        */
+  __IOM uint32_t  PROC1_INTE;                   /*!< Interrupt Enable for proc1                                                */
+  __IOM uint32_t  PROC1_INTF;                   /*!< Interrupt Force for proc1                                                 */
+  __IOM uint32_t  PROC1_INTS;                   /*!< Interrupt status after masking & forcing for proc1                        */
+  __IOM uint32_t  DORMANT_WAKE_INTE;            /*!< Interrupt Enable for dormant_wake                                         */
+  __IOM uint32_t  DORMANT_WAKE_INTF;            /*!< Interrupt Force for dormant_wake                                          */
+  __IOM uint32_t  DORMANT_WAKE_INTS;            /*!< Interrupt status after masking & forcing for dormant_wake                 */
 } IO_QSPI_Type;                                 /*!< Size = 88 (0x58)                                                          */
 
 
@@ -593,40 +603,40 @@ typedef struct {                                /*!< (@ 0x40018000) IO_QSPI Stru
   * @brief PADS_BANK0 (PADS_BANK0)
   */
 
-typedef struct {                                /*!< (@ 0x4001C000) PADS_BANK0 Structure                                       */
-  __IOM uint32_t  VOLTAGE_SELECT;               /*!< (@ 0x00000000) Voltage select. Per bank control                           */
-  __IOM uint32_t  GPIO0;                        /*!< (@ 0x00000004) Pad control register                                       */
-  __IOM uint32_t  GPIO1;                        /*!< (@ 0x00000008) Pad control register                                       */
-  __IOM uint32_t  GPIO2;                        /*!< (@ 0x0000000C) Pad control register                                       */
-  __IOM uint32_t  GPIO3;                        /*!< (@ 0x00000010) Pad control register                                       */
-  __IOM uint32_t  GPIO4;                        /*!< (@ 0x00000014) Pad control register                                       */
-  __IOM uint32_t  GPIO5;                        /*!< (@ 0x00000018) Pad control register                                       */
-  __IOM uint32_t  GPIO6;                        /*!< (@ 0x0000001C) Pad control register                                       */
-  __IOM uint32_t  GPIO7;                        /*!< (@ 0x00000020) Pad control register                                       */
-  __IOM uint32_t  GPIO8;                        /*!< (@ 0x00000024) Pad control register                                       */
-  __IOM uint32_t  GPIO9;                        /*!< (@ 0x00000028) Pad control register                                       */
-  __IOM uint32_t  GPIO10;                       /*!< (@ 0x0000002C) Pad control register                                       */
-  __IOM uint32_t  GPIO11;                       /*!< (@ 0x00000030) Pad control register                                       */
-  __IOM uint32_t  GPIO12;                       /*!< (@ 0x00000034) Pad control register                                       */
-  __IOM uint32_t  GPIO13;                       /*!< (@ 0x00000038) Pad control register                                       */
-  __IOM uint32_t  GPIO14;                       /*!< (@ 0x0000003C) Pad control register                                       */
-  __IOM uint32_t  GPIO15;                       /*!< (@ 0x00000040) Pad control register                                       */
-  __IOM uint32_t  GPIO16;                       /*!< (@ 0x00000044) Pad control register                                       */
-  __IOM uint32_t  GPIO17;                       /*!< (@ 0x00000048) Pad control register                                       */
-  __IOM uint32_t  GPIO18;                       /*!< (@ 0x0000004C) Pad control register                                       */
-  __IOM uint32_t  GPIO19;                       /*!< (@ 0x00000050) Pad control register                                       */
-  __IOM uint32_t  GPIO20;                       /*!< (@ 0x00000054) Pad control register                                       */
-  __IOM uint32_t  GPIO21;                       /*!< (@ 0x00000058) Pad control register                                       */
-  __IOM uint32_t  GPIO22;                       /*!< (@ 0x0000005C) Pad control register                                       */
-  __IOM uint32_t  GPIO23;                       /*!< (@ 0x00000060) Pad control register                                       */
-  __IOM uint32_t  GPIO24;                       /*!< (@ 0x00000064) Pad control register                                       */
-  __IOM uint32_t  GPIO25;                       /*!< (@ 0x00000068) Pad control register                                       */
-  __IOM uint32_t  GPIO26;                       /*!< (@ 0x0000006C) Pad control register                                       */
-  __IOM uint32_t  GPIO27;                       /*!< (@ 0x00000070) Pad control register                                       */
-  __IOM uint32_t  GPIO28;                       /*!< (@ 0x00000074) Pad control register                                       */
-  __IOM uint32_t  GPIO29;                       /*!< (@ 0x00000078) Pad control register                                       */
-  __IOM uint32_t  SWCLK;                        /*!< (@ 0x0000007C) Pad control register                                       */
-  __IOM uint32_t  SWD;                          /*!< (@ 0x00000080) Pad control register                                       */
+typedef struct {                                /*!< PADS_BANK0 Structure                                                      */
+  __IOM uint32_t  VOLTAGE_SELECT;               /*!< Voltage select. Per bank control                                          */
+  __IOM uint32_t  GPIO0;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO1;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO2;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO3;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO4;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO5;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO6;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO7;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO8;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO9;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO10;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO11;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO12;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO13;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO14;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO15;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO16;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO17;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO18;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO19;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO20;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO21;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO22;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO23;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO24;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO25;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO26;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO27;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO28;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO29;                       /*!< Pad control register                                                      */
+  __IOM uint32_t  SWCLK;                        /*!< Pad control register                                                      */
+  __IOM uint32_t  SWD;                          /*!< Pad control register                                                      */
 } PADS_BANK0_Type;                              /*!< Size = 132 (0x84)                                                         */
 
 
@@ -640,14 +650,14 @@ typedef struct {                                /*!< (@ 0x4001C000) PADS_BANK0 S
   * @brief PADS_QSPI (PADS_QSPI)
   */
 
-typedef struct {                                /*!< (@ 0x40020000) PADS_QSPI Structure                                        */
-  __IOM uint32_t  VOLTAGE_SELECT;               /*!< (@ 0x00000000) Voltage select. Per bank control                           */
-  __IOM uint32_t  GPIO_QSPI_SCLK;               /*!< (@ 0x00000004) Pad control register                                       */
-  __IOM uint32_t  GPIO_QSPI_SD0;                /*!< (@ 0x00000008) Pad control register                                       */
-  __IOM uint32_t  GPIO_QSPI_SD1;                /*!< (@ 0x0000000C) Pad control register                                       */
-  __IOM uint32_t  GPIO_QSPI_SD2;                /*!< (@ 0x00000010) Pad control register                                       */
-  __IOM uint32_t  GPIO_QSPI_SD3;                /*!< (@ 0x00000014) Pad control register                                       */
-  __IOM uint32_t  GPIO_QSPI_SS;                 /*!< (@ 0x00000018) Pad control register                                       */
+typedef struct {                                /*!< PADS_QSPI Structure                                                       */
+  __IOM uint32_t  VOLTAGE_SELECT;               /*!< Voltage select. Per bank control                                          */
+  __IOM uint32_t  GPIO_QSPI_SCLK;               /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO_QSPI_SD0;                /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO_QSPI_SD1;                /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO_QSPI_SD2;                /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO_QSPI_SD3;                /*!< Pad control register                                                      */
+  __IOM uint32_t  GPIO_QSPI_SS;                 /*!< Pad control register                                                      */
 } PADS_QSPI_Type;                               /*!< Size = 28 (0x1c)                                                          */
 
 
@@ -661,26 +671,22 @@ typedef struct {                                /*!< (@ 0x40020000) PADS_QSPI St
   * @brief Controls the crystal oscillator (XOSC)
   */
 
-typedef struct {                                /*!< (@ 0x40024000) XOSC Structure                                             */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x00000000) Crystal Oscillator Control                                 */
-  __IOM uint32_t  STATUS;                       /*!< (@ 0x00000004) Crystal Oscillator Status                                  */
-  __IOM uint32_t  DORMANT;                      /*!< (@ 0x00000008) Crystal Oscillator pause control
-                                                                    This is used to save power by pausing the
-                                                                    XOSC
-                                                                    On power-up this field is initialised to
-                                                                    WAKE
-                                                                    An invalid write will also select WAKE
-                                                                    WARNING: stop the PLLs before selecting
-                                                                    dormant mode
-                                                                    WARNING: setup the irq before selecting
-                                                                    dormant mode                                               */
-  __IOM uint32_t  STARTUP;                      /*!< (@ 0x0000000C) Controls the startup delay                                 */
+typedef struct {                                /*!< XOSC Structure                                                            */
+  __IOM uint32_t  CTRL;                         /*!< Crystal Oscillator Control                                                */
+  __IOM uint32_t  STATUS;                       /*!< Crystal Oscillator Status                                                 */
+  __IOM uint32_t  DORMANT;                      /*!< Crystal Oscillator pause control
+                                                     This is used to save power by pausing the XOSC
+                                                     On power-up this field is initialised to WAKE
+                                                     An invalid write will also select WAKE
+                                                     WARNING: stop the PLLs before selecting dormant mode
+                                                     WARNING: setup the irq before selecting dormant mode                      */
+  __IOM uint32_t  STARTUP;                      /*!< Controls the startup delay                                                */
   __IM  uint32_t  RESERVED[3];
-  __IOM uint32_t  COUNT;                        /*!< (@ 0x0000001C) A down counter running at the xosc frequency
-                                                                    which counts to zero and stops.
-                                                                    To start the counter write a non-zero value.
-                                                                    Can be used for short software pauses when
-                                                                    setting up time sensitive hardware.                        */
+  __IOM uint32_t  COUNT;                        /*!< A down counter running at the xosc frequency which counts to
+                                                     zero and stops.
+                                                     To start the counter write a non-zero value.
+                                                     Can be used for short software pauses when setting up time
+                                                     sensitive hardware.                                                       */
 } XOSC_Type;                                    /*!< Size = 32 (0x20)                                                          */
 
 
@@ -694,22 +700,18 @@ typedef struct {                                /*!< (@ 0x40024000) XOSC Structu
   * @brief PLL_SYS (PLL_SYS)
   */
 
-typedef struct {                                /*!< (@ 0x40028000) PLL_SYS Structure                                          */
-  __IOM uint32_t  CS;                           /*!< (@ 0x00000000) Control and Status
-                                                                    GENERAL CONSTRAINTS:
-                                                                    Reference clock frequency min=5MHz, max=800MHz
-                                                                    Feedback divider min=16, max=320
-                                                                    VCO frequency min=400MHz, max=1600MHz                      */
-  __IOM uint32_t  PWR;                          /*!< (@ 0x00000004) Controls the PLL power modes.                              */
-  __IOM uint32_t  FBDIV_INT;                    /*!< (@ 0x00000008) Feedback divisor
-                                                                    (note: this PLL does not support fractional
-                                                                    division)                                                  */
-  __IOM uint32_t  PRIM;                         /*!< (@ 0x0000000C) Controls the PLL post dividers for the primary
-                                                                    output
-                                                                    (note: this PLL does not have a secondary
-                                                                    output)
-                                                                    the primary output is driven from VCO divided
-                                                                    by postdiv1*postdiv2                                       */
+typedef struct {                                /*!< PLL_SYS Structure                                                         */
+  __IOM uint32_t  CS;                           /*!< Control and Status
+                                                     GENERAL CONSTRAINTS:
+                                                     Reference clock frequency min=5MHz, max=800MHz
+                                                     Feedback divider min=16, max=320
+                                                     VCO frequency min=750MHz, max=1600MHz                                     */
+  __IOM uint32_t  PWR;                          /*!< Controls the PLL power modes.                                             */
+  __IOM uint32_t  FBDIV_INT;                    /*!< Feedback divisor
+                                                     (note: this PLL does not support fractional division)                     */
+  __IOM uint32_t  PRIM;                         /*!< Controls the PLL post dividers for the primary output
+                                                     (note: this PLL does not have a secondary output)
+                                                     the primary output is driven from VCO divided by postdiv1*postdiv2        */
 } PLL_SYS_Type;                                 /*!< Size = 16 (0x10)                                                          */
 
 
@@ -723,17 +725,17 @@ typedef struct {                                /*!< (@ 0x40028000) PLL_SYS Stru
   * @brief Register block for busfabric control signals and performance counters (BUSCTRL)
   */
 
-typedef struct {                                /*!< (@ 0x40030000) BUSCTRL Structure                                          */
-  __IOM uint32_t  BUS_PRIORITY;                 /*!< (@ 0x00000000) Set the priority of each master for bus arbitration.       */
-  __IOM uint32_t  BUS_PRIORITY_ACK;             /*!< (@ 0x00000004) Bus priority acknowledge                                   */
-  __IOM uint32_t  PERFCTR0;                     /*!< (@ 0x00000008) Bus fabric performance counter 0                           */
-  __IOM uint32_t  PERFSEL0;                     /*!< (@ 0x0000000C) Bus fabric performance event select for PERFCTR0           */
-  __IOM uint32_t  PERFCTR1;                     /*!< (@ 0x00000010) Bus fabric performance counter 1                           */
-  __IOM uint32_t  PERFSEL1;                     /*!< (@ 0x00000014) Bus fabric performance event select for PERFCTR1           */
-  __IOM uint32_t  PERFCTR2;                     /*!< (@ 0x00000018) Bus fabric performance counter 2                           */
-  __IOM uint32_t  PERFSEL2;                     /*!< (@ 0x0000001C) Bus fabric performance event select for PERFCTR2           */
-  __IOM uint32_t  PERFCTR3;                     /*!< (@ 0x00000020) Bus fabric performance counter 3                           */
-  __IOM uint32_t  PERFSEL3;                     /*!< (@ 0x00000024) Bus fabric performance event select for PERFCTR3           */
+typedef struct {                                /*!< BUSCTRL Structure                                                         */
+  __IOM uint32_t  BUS_PRIORITY;                 /*!< Set the priority of each master for bus arbitration.                      */
+  __IOM uint32_t  BUS_PRIORITY_ACK;             /*!< Bus priority acknowledge                                                  */
+  __IOM uint32_t  PERFCTR0;                     /*!< Bus fabric performance counter 0                                          */
+  __IOM uint32_t  PERFSEL0;                     /*!< Bus fabric performance event select for PERFCTR0                          */
+  __IOM uint32_t  PERFCTR1;                     /*!< Bus fabric performance counter 1                                          */
+  __IOM uint32_t  PERFSEL1;                     /*!< Bus fabric performance event select for PERFCTR1                          */
+  __IOM uint32_t  PERFCTR2;                     /*!< Bus fabric performance counter 2                                          */
+  __IOM uint32_t  PERFSEL2;                     /*!< Bus fabric performance event select for PERFCTR2                          */
+  __IOM uint32_t  PERFCTR3;                     /*!< Bus fabric performance counter 3                                          */
+  __IOM uint32_t  PERFSEL3;                     /*!< Bus fabric performance event select for PERFCTR3                          */
 } BUSCTRL_Type;                                 /*!< Size = 40 (0x28)                                                          */
 
 
@@ -747,33 +749,32 @@ typedef struct {                                /*!< (@ 0x40030000) BUSCTRL Stru
   * @brief UART0 (UART0)
   */
 
-typedef struct {                                /*!< (@ 0x40034000) UART0 Structure                                            */
-  __IOM uint32_t  UARTDR;                       /*!< (@ 0x00000000) Data Register, UARTDR                                      */
-  __IOM uint32_t  UARTRSR;                      /*!< (@ 0x00000004) Receive Status Register/Error Clear Register,
-                                                                    UARTRSR/UARTECR                                            */
+typedef struct {                                /*!< UART0 Structure                                                           */
+  __IOM uint32_t  UARTDR;                       /*!< Data Register, UARTDR                                                     */
+  __IOM uint32_t  UARTRSR;                      /*!< Receive Status Register/Error Clear Register, UARTRSR/UARTECR             */
   __IM  uint32_t  RESERVED[4];
-  __IOM uint32_t  UARTFR;                       /*!< (@ 0x00000018) Flag Register, UARTFR                                      */
+  __IOM uint32_t  UARTFR;                       /*!< Flag Register, UARTFR                                                     */
   __IM  uint32_t  RESERVED1;
-  __IOM uint32_t  UARTILPR;                     /*!< (@ 0x00000020) IrDA Low-Power Counter Register, UARTILPR                  */
-  __IOM uint32_t  UARTIBRD;                     /*!< (@ 0x00000024) Integer Baud Rate Register, UARTIBRD                       */
-  __IOM uint32_t  UARTFBRD;                     /*!< (@ 0x00000028) Fractional Baud Rate Register, UARTFBRD                    */
-  __IOM uint32_t  UARTLCR_H;                    /*!< (@ 0x0000002C) Line Control Register, UARTLCR_H                           */
-  __IOM uint32_t  UARTCR;                       /*!< (@ 0x00000030) Control Register, UARTCR                                   */
-  __IOM uint32_t  UARTIFLS;                     /*!< (@ 0x00000034) Interrupt FIFO Level Select Register, UARTIFLS             */
-  __IOM uint32_t  UARTIMSC;                     /*!< (@ 0x00000038) Interrupt Mask Set/Clear Register, UARTIMSC                */
-  __IOM uint32_t  UARTRIS;                      /*!< (@ 0x0000003C) Raw Interrupt Status Register, UARTRIS                     */
-  __IOM uint32_t  UARTMIS;                      /*!< (@ 0x00000040) Masked Interrupt Status Register, UARTMIS                  */
-  __IOM uint32_t  UARTICR;                      /*!< (@ 0x00000044) Interrupt Clear Register, UARTICR                          */
-  __IOM uint32_t  UARTDMACR;                    /*!< (@ 0x00000048) DMA Control Register, UARTDMACR                            */
+  __IOM uint32_t  UARTILPR;                     /*!< IrDA Low-Power Counter Register, UARTILPR                                 */
+  __IOM uint32_t  UARTIBRD;                     /*!< Integer Baud Rate Register, UARTIBRD                                      */
+  __IOM uint32_t  UARTFBRD;                     /*!< Fractional Baud Rate Register, UARTFBRD                                   */
+  __IOM uint32_t  UARTLCR_H;                    /*!< Line Control Register, UARTLCR_H                                          */
+  __IOM uint32_t  UARTCR;                       /*!< Control Register, UARTCR                                                  */
+  __IOM uint32_t  UARTIFLS;                     /*!< Interrupt FIFO Level Select Register, UARTIFLS                            */
+  __IOM uint32_t  UARTIMSC;                     /*!< Interrupt Mask Set/Clear Register, UARTIMSC                               */
+  __IOM uint32_t  UARTRIS;                      /*!< Raw Interrupt Status Register, UARTRIS                                    */
+  __IOM uint32_t  UARTMIS;                      /*!< Masked Interrupt Status Register, UARTMIS                                 */
+  __IOM uint32_t  UARTICR;                      /*!< Interrupt Clear Register, UARTICR                                         */
+  __IOM uint32_t  UARTDMACR;                    /*!< DMA Control Register, UARTDMACR                                           */
   __IM  uint32_t  RESERVED2[997];
-  __IOM uint32_t  UARTPERIPHID0;                /*!< (@ 0x00000FE0) UARTPeriphID0 Register                                     */
-  __IOM uint32_t  UARTPERIPHID1;                /*!< (@ 0x00000FE4) UARTPeriphID1 Register                                     */
-  __IOM uint32_t  UARTPERIPHID2;                /*!< (@ 0x00000FE8) UARTPeriphID2 Register                                     */
-  __IOM uint32_t  UARTPERIPHID3;                /*!< (@ 0x00000FEC) UARTPeriphID3 Register                                     */
-  __IOM uint32_t  UARTPCELLID0;                 /*!< (@ 0x00000FF0) UARTPCellID0 Register                                      */
-  __IOM uint32_t  UARTPCELLID1;                 /*!< (@ 0x00000FF4) UARTPCellID1 Register                                      */
-  __IOM uint32_t  UARTPCELLID2;                 /*!< (@ 0x00000FF8) UARTPCellID2 Register                                      */
-  __IOM uint32_t  UARTPCELLID3;                 /*!< (@ 0x00000FFC) UARTPCellID3 Register                                      */
+  __IOM uint32_t  UARTPERIPHID0;                /*!< UARTPeriphID0 Register                                                    */
+  __IOM uint32_t  UARTPERIPHID1;                /*!< UARTPeriphID1 Register                                                    */
+  __IOM uint32_t  UARTPERIPHID2;                /*!< UARTPeriphID2 Register                                                    */
+  __IOM uint32_t  UARTPERIPHID3;                /*!< UARTPeriphID3 Register                                                    */
+  __IOM uint32_t  UARTPCELLID0;                 /*!< UARTPCellID0 Register                                                     */
+  __IOM uint32_t  UARTPCELLID1;                 /*!< UARTPCellID1 Register                                                     */
+  __IOM uint32_t  UARTPCELLID2;                 /*!< UARTPCellID2 Register                                                     */
+  __IOM uint32_t  UARTPCELLID3;                 /*!< UARTPCellID3 Register                                                     */
 } UART0_Type;                                   /*!< Size = 4096 (0x1000)                                                      */
 
 
@@ -787,37 +788,30 @@ typedef struct {                                /*!< (@ 0x40034000) UART0 Struct
   * @brief SPI0 (SPI0)
   */
 
-typedef struct {                                /*!< (@ 0x4003C000) SPI0 Structure                                             */
-  __IOM uint32_t  SSPCR0;                       /*!< (@ 0x00000000) Control register 0, SSPCR0 on page 3-4                     */
-  __IOM uint32_t  SSPCR1;                       /*!< (@ 0x00000004) Control register 1, SSPCR1 on page 3-5                     */
-  __IOM uint32_t  SSPDR;                        /*!< (@ 0x00000008) Data register, SSPDR on page 3-6                           */
-  __IOM uint32_t  SSPSR;                        /*!< (@ 0x0000000C) Status register, SSPSR on page 3-7                         */
-  __IOM uint32_t  SSPCPSR;                      /*!< (@ 0x00000010) Clock prescale register, SSPCPSR on page 3-8               */
-  __IOM uint32_t  SSPIMSC;                      /*!< (@ 0x00000014) Interrupt mask set or clear register, SSPIMSC
-                                                                    on page 3-9                                                */
-  __IOM uint32_t  SSPRIS;                       /*!< (@ 0x00000018) Raw interrupt status register, SSPRIS on page
-                                                                    3-10                                                       */
-  __IOM uint32_t  SSPMIS;                       /*!< (@ 0x0000001C) Masked interrupt status register, SSPMIS on page
-                                                                    3-11                                                       */
-  __IOM uint32_t  SSPICR;                       /*!< (@ 0x00000020) Interrupt clear register, SSPICR on page 3-11              */
-  __IOM uint32_t  SSPDMACR;                     /*!< (@ 0x00000024) DMA control register, SSPDMACR on page 3-12                */
+typedef struct {                                /*!< SPI0 Structure                                                            */
+  __IOM uint32_t  SSPCR0;                       /*!< Control register 0, SSPCR0 on page 3-4                                    */
+  __IOM uint32_t  SSPCR1;                       /*!< Control register 1, SSPCR1 on page 3-5                                    */
+  __IOM uint32_t  SSPDR;                        /*!< Data register, SSPDR on page 3-6                                          */
+  __IOM uint32_t  SSPSR;                        /*!< Status register, SSPSR on page 3-7                                        */
+  __IOM uint32_t  SSPCPSR;                      /*!< Clock prescale register, SSPCPSR on page 3-8                              */
+  __IOM uint32_t  SSPIMSC;                      /*!< Interrupt mask set or clear register, SSPIMSC on page 3-9                 */
+  __IOM uint32_t  SSPRIS;                       /*!< Raw interrupt status register, SSPRIS on page 3-10                        */
+  __IOM uint32_t  SSPMIS;                       /*!< Masked interrupt status register, SSPMIS on page 3-11                     */
+  __IOM uint32_t  SSPICR;                       /*!< Interrupt clear register, SSPICR on page 3-11                             */
+  __IOM uint32_t  SSPDMACR;                     /*!< DMA control register, SSPDMACR on page 3-12                               */
   __IM  uint32_t  RESERVED[1006];
-  __IOM uint32_t  SSPPERIPHID0;                 /*!< (@ 0x00000FE0) Peripheral identification registers, SSPPeriphID0-3
-                                                                    on page 3-13                                               */
-  __IOM uint32_t  SSPPERIPHID1;                 /*!< (@ 0x00000FE4) Peripheral identification registers, SSPPeriphID0-3
-                                                                    on page 3-13                                               */
-  __IOM uint32_t  SSPPERIPHID2;                 /*!< (@ 0x00000FE8) Peripheral identification registers, SSPPeriphID0-3
-                                                                    on page 3-13                                               */
-  __IOM uint32_t  SSPPERIPHID3;                 /*!< (@ 0x00000FEC) Peripheral identification registers, SSPPeriphID0-3
-                                                                    on page 3-13                                               */
-  __IOM uint32_t  SSPPCELLID0;                  /*!< (@ 0x00000FF0) PrimeCell identification registers, SSPPCellID0-3
-                                                                    on page 3-16                                               */
-  __IOM uint32_t  SSPPCELLID1;                  /*!< (@ 0x00000FF4) PrimeCell identification registers, SSPPCellID0-3
-                                                                    on page 3-16                                               */
-  __IOM uint32_t  SSPPCELLID2;                  /*!< (@ 0x00000FF8) PrimeCell identification registers, SSPPCellID0-3
-                                                                    on page 3-16                                               */
-  __IOM uint32_t  SSPPCELLID3;                  /*!< (@ 0x00000FFC) PrimeCell identification registers, SSPPCellID0-3
-                                                                    on page 3-16                                               */
+  __IOM uint32_t  SSPPERIPHID0;                 /*!< Peripheral identification registers, SSPPeriphID0-3 on page
+                                                     3-13                                                                      */
+  __IOM uint32_t  SSPPERIPHID1;                 /*!< Peripheral identification registers, SSPPeriphID0-3 on page
+                                                     3-13                                                                      */
+  __IOM uint32_t  SSPPERIPHID2;                 /*!< Peripheral identification registers, SSPPeriphID0-3 on page
+                                                     3-13                                                                      */
+  __IOM uint32_t  SSPPERIPHID3;                 /*!< Peripheral identification registers, SSPPeriphID0-3 on page
+                                                     3-13                                                                      */
+  __IOM uint32_t  SSPPCELLID0;                  /*!< PrimeCell identification registers, SSPPCellID0-3 on page 3-16            */
+  __IOM uint32_t  SSPPCELLID1;                  /*!< PrimeCell identification registers, SSPPCellID0-3 on page 3-16            */
+  __IOM uint32_t  SSPPCELLID2;                  /*!< PrimeCell identification registers, SSPPCellID0-3 on page 3-16            */
+  __IOM uint32_t  SSPPCELLID3;                  /*!< PrimeCell identification registers, SSPPCellID0-3 on page 3-16            */
 } SPI0_Type;                                    /*!< Size = 4096 (0x1000)                                                      */
 
 
@@ -828,237 +822,295 @@ typedef struct {                                /*!< (@ 0x4003C000) SPI0 Structu
 
 
 /**
-  * @brief DW_apb_i2c address block (I2C0)
+  * @brief DW_apb_i2c address block\n\n
+        List of configuration constants for the Synopsys I2C hardware (you may see references to these in I2C register header; these are *fixed* values, set at hardware design time):\n\n
+        IC_ULTRA_FAST_MODE ................ 0x0\n
+        IC_UFM_TBUF_CNT_DEFAULT ........... 0x8\n
+        IC_UFM_SCL_LOW_COUNT .............. 0x0008\n
+        IC_UFM_SCL_HIGH_COUNT ............. 0x0006\n
+        IC_TX_TL .......................... 0x0\n
+        IC_TX_CMD_BLOCK ................... 0x1\n
+        IC_HAS_DMA ........................ 0x1\n
+        IC_HAS_ASYNC_FIFO ................. 0x0\n
+        IC_SMBUS_ARP ...................... 0x0\n
+        IC_FIRST_DATA_BYTE_STATUS ......... 0x1\n
+        IC_INTR_IO ........................ 0x1\n
+        IC_MASTER_MODE .................... 0x1\n
+        IC_DEFAULT_ACK_GENERAL_CALL ....... 0x1\n
+        IC_INTR_POL ....................... 0x1\n
+        IC_OPTIONAL_SAR ................... 0x0\n
+        IC_DEFAULT_TAR_SLAVE_ADDR ......... 0x055\n
+        IC_DEFAULT_SLAVE_ADDR ............. 0x055\n
+        IC_DEFAULT_HS_SPKLEN .............. 0x1\n
+        IC_FS_SCL_HIGH_COUNT .............. 0x0006\n
+        IC_HS_SCL_LOW_COUNT ............... 0x0008\n
+        IC_DEVICE_ID_VALUE ................ 0x0\n
+        IC_10BITADDR_MASTER ............... 0x0\n
+        IC_CLK_FREQ_OPTIMIZATION .......... 0x0\n
+        IC_DEFAULT_FS_SPKLEN .............. 0x7\n
+        IC_ADD_ENCODED_PARAMS ............. 0x0\n
+        IC_DEFAULT_SDA_HOLD ............... 0x000001\n
+        IC_DEFAULT_SDA_SETUP .............. 0x64\n
+        IC_AVOID_RX_FIFO_FLUSH_ON_TX_ABRT . 0x0\n
+        IC_CLOCK_PERIOD ................... 100\n
+        IC_EMPTYFIFO_HOLD_MASTER_EN ....... 1\n
+        IC_RESTART_EN ..................... 0x1\n
+        IC_TX_CMD_BLOCK_DEFAULT ........... 0x0\n
+        IC_BUS_CLEAR_FEATURE .............. 0x0\n
+        IC_CAP_LOADING .................... 100\n
+        IC_FS_SCL_LOW_COUNT ............... 0x000d\n
+        APB_DATA_WIDTH .................... 32\n
+        IC_SDA_STUCK_TIMEOUT_DEFAULT ...... 0xffffffff\n
+        IC_SLV_DATA_NACK_ONLY ............. 0x1\n
+        IC_10BITADDR_SLAVE ................ 0x0\n
+        IC_CLK_TYPE ....................... 0x0\n
+        IC_SMBUS_UDID_MSB ................. 0x0\n
+        IC_SMBUS_SUSPEND_ALERT ............ 0x0\n
+        IC_HS_SCL_HIGH_COUNT .............. 0x0006\n
+        IC_SLV_RESTART_DET_EN ............. 0x1\n
+        IC_SMBUS .......................... 0x0\n
+        IC_OPTIONAL_SAR_DEFAULT ........... 0x0\n
+        IC_PERSISTANT_SLV_ADDR_DEFAULT .... 0x0\n
+        IC_USE_COUNTS ..................... 0x0\n
+        IC_RX_BUFFER_DEPTH ................ 16\n
+        IC_SCL_STUCK_TIMEOUT_DEFAULT ...... 0xffffffff\n
+        IC_RX_FULL_HLD_BUS_EN ............. 0x1\n
+        IC_SLAVE_DISABLE .................. 0x1\n
+        IC_RX_TL .......................... 0x0\n
+        IC_DEVICE_ID ...................... 0x0\n
+        IC_HC_COUNT_VALUES ................ 0x0\n
+        I2C_DYNAMIC_TAR_UPDATE ............ 0\n
+        IC_SMBUS_CLK_LOW_MEXT_DEFAULT ..... 0xffffffff\n
+        IC_SMBUS_CLK_LOW_SEXT_DEFAULT ..... 0xffffffff\n
+        IC_HS_MASTER_CODE ................. 0x1\n
+        IC_SMBUS_RST_IDLE_CNT_DEFAULT ..... 0xffff\n
+        IC_SMBUS_UDID_LSB_DEFAULT ......... 0xffffffff\n
+        IC_SS_SCL_HIGH_COUNT .............. 0x0028\n
+        IC_SS_SCL_LOW_COUNT ............... 0x002f\n
+        IC_MAX_SPEED_MODE ................. 0x2\n
+        IC_STAT_FOR_CLK_STRETCH ........... 0x0\n
+        IC_STOP_DET_IF_MASTER_ACTIVE ...... 0x0\n
+        IC_DEFAULT_UFM_SPKLEN ............. 0x1\n
+        IC_TX_BUFFER_DEPTH ................ 16 (I2C0)
   */
 
-typedef struct {                                /*!< (@ 0x40044000) I2C0 Structure                                             */
-  __IOM uint32_t  IC_CON;                       /*!< (@ 0x00000000) I2C Control Register. This register can be written
-                                                                    only when the DW_apb_i2c is disabled, which
-                                                                    corresponds to the IC_ENABLE[0] register
-                                                                    being set to 0. Writes at other times have
-                                                                    no effect.
-
-                                                                    Read/Write Access: - bit 10 is read only.
-                                                                    - bit 11 is read only - bit 16 is read only
-                                                                    - bit 17 is read only - bits 18 and 19 are
-                                                                    read only.                                                 */
-  __IOM uint32_t  IC_TAR;                       /*!< (@ 0x00000004) I2C Target Address Register
-
-                                                                    This register is 12 bits wide, and bits
-                                                                    31:12 are reserved. This register can be
-                                                                    written to only when IC_ENABLE[0] is set
-                                                                    to 0.
-
-                                                                    Note: If the software or application is
-                                                                    aware that the DW_apb_i2c is not using the
-                                                                    TAR address for the pending commands in
-                                                                    the Tx FIFO, then it is possible to update
-                                                                    the TAR address even while the Tx FIFO has
-                                                                    entries (IC_STATUS[2]= 0). - It is not necessary
-                                                                    to perform any write to this register if
-                                                                    DW_ap                                                      */
-  __IOM uint32_t  IC_SAR;                       /*!< (@ 0x00000008) I2C Slave Address Register                                 */
+typedef struct {                                /*!< I2C0 Structure                                                            */
+  __IOM uint32_t  IC_CON;                       /*!< I2C Control Register. This register can be written only when
+                                                     the DW_apb_i2c is disabled, which corresponds to the IC_ENABLE[0]
+                                                     register being set to 0. Writes at other times have no
+                                                     effect.
+                                                     
+                                                     Read/Write Access: - bit 10 is read only. - bit 11 is read
+                                                     only - bit 16 is read only - bit 17 is read only - bits
+                                                     18 and 19 are read only.                                                  */
+  __IOM uint32_t  IC_TAR;                       /*!< I2C Target Address Register
+                                                     
+                                                     This register is 12 bits wide, and bits 31:12 are reserved.
+                                                     This register can be written to only when IC_ENABLE[0]
+                                                     is set to 0.
+                                                     
+                                                     Note: If the software or application is aware that the
+                                                     DW_apb_i2c is not using the TAR address for the pending
+                                                     commands in the Tx FIFO, then it is possible to update
+                                                     the TAR address even while the Tx FIFO has entries (IC_STATUS[2]=
+                                                     0). - It is not necessary to perform any write to this
+                                                     register if DW_apb_i2c is enabled as an I2C slave only.                   */
+  __IOM uint32_t  IC_SAR;                       /*!< I2C Slave Address Register                                                */
   __IM  uint32_t  RESERVED;
-  __IOM uint32_t  IC_DATA_CMD;                  /*!< (@ 0x00000010) I2C Rx/Tx Data Buffer and Command Register; this
-                                                                    is the register the CPU writes to when filling
-                                                                    the TX FIFO and the CPU reads from when
-                                                                    retrieving bytes from RX FIFO.
-
-                                                                    The size of the register changes as follows:
-
-                                                                    Write: - 11 bits when IC_EMPTYFIFO_HOLD_MASTER_EN=1
-                                                                    - 9 bits when IC_EMPTYFIFO_HOLD_MASTER_EN=0
-                                                                    Read: - 12 bits when IC_FIRST_DATA_BYTE_STATUS
-                                                                    = 1 - 8 bits when IC_FIRST_DATA_BYTE_STATUS
-                                                                    = 0 Note: In order for the DW_apb_i2c to
-                                                                    continue acknowledgi                                       */
-  __IOM uint32_t  IC_SS_SCL_HCNT;               /*!< (@ 0x00000014) Standard Speed I2C Clock SCL High Count Register           */
-  __IOM uint32_t  IC_SS_SCL_LCNT;               /*!< (@ 0x00000018) Standard Speed I2C Clock SCL Low Count Register            */
-  __IOM uint32_t  IC_FS_SCL_HCNT;               /*!< (@ 0x0000001C) Fast Mode or Fast Mode Plus I2C Clock SCL High
-                                                                    Count Register                                             */
-  __IOM uint32_t  IC_FS_SCL_LCNT;               /*!< (@ 0x00000020) Fast Mode or Fast Mode Plus I2C Clock SCL Low
-                                                                    Count Register                                             */
+  __IOM uint32_t  IC_DATA_CMD;                  /*!< I2C Rx/Tx Data Buffer and Command Register; this is the register
+                                                     the CPU writes to when filling the TX FIFO and the CPU
+                                                     reads from when retrieving bytes from RX FIFO.
+                                                     
+                                                     The size of the register changes as follows:
+                                                     
+                                                     Write: - 11 bits when IC_EMPTYFIFO_HOLD_MASTER_EN=1 - 9
+                                                     bits when IC_EMPTYFIFO_HOLD_MASTER_EN=0 Read: - 12 bits
+                                                     when IC_FIRST_DATA_BYTE_STATUS = 1 - 8 bits when IC_FIRST_DATA_BYTE_STATU
+                                                     = 0 Note: In order for the DW_apb_i2c to continue acknowledging
+                                                     reads, a read command should be written for every byte
+                                                     that is to be received; otherwise the DW_apb_i2c will stop
+                                                     acknowledging.                                                            */
+  __IOM uint32_t  IC_SS_SCL_HCNT;               /*!< Standard Speed I2C Clock SCL High Count Register                          */
+  __IOM uint32_t  IC_SS_SCL_LCNT;               /*!< Standard Speed I2C Clock SCL Low Count Register                           */
+  __IOM uint32_t  IC_FS_SCL_HCNT;               /*!< Fast Mode or Fast Mode Plus I2C Clock SCL High Count Register             */
+  __IOM uint32_t  IC_FS_SCL_LCNT;               /*!< Fast Mode or Fast Mode Plus I2C Clock SCL Low Count Register              */
   __IM  uint32_t  RESERVED1[2];
-  __IOM uint32_t  IC_INTR_STAT;                 /*!< (@ 0x0000002C) I2C Interrupt Status Register
-
-                                                                    Each bit in this register has a corresponding
-                                                                    mask bit in the IC_INTR_MASK register. These
-                                                                    bits are cleared by reading the matching
-                                                                    interrupt clear register. The unmasked raw
-                                                                    versions of these bits are available in
-                                                                    the IC_RAW_INTR_STAT register.                             */
-  __IOM uint32_t  IC_INTR_MASK;                 /*!< (@ 0x00000030) I2C Interrupt Mask Register.
-
-                                                                    These bits mask their corresponding interrupt
-                                                                    status bits. This register is active low;
-                                                                    a value of 0 masks the interrupt, whereas
-                                                                    a value of 1 unmasks the interrupt.                        */
-  __IOM uint32_t  IC_RAW_INTR_STAT;             /*!< (@ 0x00000034) I2C Raw Interrupt Status Register
-
-                                                                    Unlike the IC_INTR_STAT register, these
-                                                                    bits are not masked so they always show
-                                                                    the true status of the DW_apb_i2c.                         */
-  __IOM uint32_t  IC_RX_TL;                     /*!< (@ 0x00000038) I2C Receive FIFO Threshold Register                        */
-  __IOM uint32_t  IC_TX_TL;                     /*!< (@ 0x0000003C) I2C Transmit FIFO Threshold Register                       */
-  __IOM uint32_t  IC_CLR_INTR;                  /*!< (@ 0x00000040) Clear Combined and Individual Interrupt Register           */
-  __IOM uint32_t  IC_CLR_RX_UNDER;              /*!< (@ 0x00000044) Clear RX_UNDER Interrupt Register                          */
-  __IOM uint32_t  IC_CLR_RX_OVER;               /*!< (@ 0x00000048) Clear RX_OVER Interrupt Register                           */
-  __IOM uint32_t  IC_CLR_TX_OVER;               /*!< (@ 0x0000004C) Clear TX_OVER Interrupt Register                           */
-  __IOM uint32_t  IC_CLR_RD_REQ;                /*!< (@ 0x00000050) Clear RD_REQ Interrupt Register                            */
-  __IOM uint32_t  IC_CLR_TX_ABRT;               /*!< (@ 0x00000054) Clear TX_ABRT Interrupt Register                           */
-  __IOM uint32_t  IC_CLR_RX_DONE;               /*!< (@ 0x00000058) Clear RX_DONE Interrupt Register                           */
-  __IOM uint32_t  IC_CLR_ACTIVITY;              /*!< (@ 0x0000005C) Clear ACTIVITY Interrupt Register                          */
-  __IOM uint32_t  IC_CLR_STOP_DET;              /*!< (@ 0x00000060) Clear STOP_DET Interrupt Register                          */
-  __IOM uint32_t  IC_CLR_START_DET;             /*!< (@ 0x00000064) Clear START_DET Interrupt Register                         */
-  __IOM uint32_t  IC_CLR_GEN_CALL;              /*!< (@ 0x00000068) Clear GEN_CALL Interrupt Register                          */
-  __IOM uint32_t  IC_ENABLE;                    /*!< (@ 0x0000006C) I2C Enable Register                                        */
-  __IOM uint32_t  IC_STATUS;                    /*!< (@ 0x00000070) I2C Status Register
-
-                                                                    This is a read-only register used to indicate
-                                                                    the current transfer status and FIFO status.
-                                                                    The status register may be read at any time.
-                                                                    None of the bits in this register request
-                                                                    an interrupt.
-
-                                                                    When the I2C is disabled by writing 0 in
-                                                                    bit 0 of the IC_ENABLE register: - Bits
-                                                                    1 and 2 are set to 1 - Bits 3 and 10 are
-                                                                    set to 0 When the master or slave state
-                                                                    machines goes to idle and ic_en=0: - Bits
-                                                                    5 and 6 are set to 0                                       */
-  __IOM uint32_t  IC_TXFLR;                     /*!< (@ 0x00000074) I2C Transmit FIFO Level Register This register
-                                                                    contains the number of valid data entries
-                                                                    in the transmit FIFO buffer. It is cleared
-                                                                    whenever: - The I2C is disabled - There
-                                                                    is a transmit abort - that is, TX_ABRT bit
-                                                                    is set in the IC_RAW_INTR_STAT register
-                                                                    - The slave bulk transmit mode is aborted
-                                                                    The register increments whenever data is
-                                                                    placed into the transmit FIFO and decrements
-                                                                    when data is taken from the transmit FIFO.                 */
-  __IOM uint32_t  IC_RXFLR;                     /*!< (@ 0x00000078) I2C Receive FIFO Level Register This register
-                                                                    contains the number of valid data entries
-                                                                    in the receive FIFO buffer. It is cleared
-                                                                    whenever: - The I2C is disabled - Whenever
-                                                                    there is a transmit abort caused by any
-                                                                    of the events tracked in IC_TX_ABRT_SOURCE
-                                                                    The register increments whenever data is
-                                                                    placed into the receive FIFO and decrements
-                                                                    when data is taken from the receive FIFO.                  */
-  __IOM uint32_t  IC_SDA_HOLD;                  /*!< (@ 0x0000007C) I2C SDA Hold Time Length Register
-
-                                                                    The bits [15:0] of this register are used
-                                                                    to control the hold time of SDA during transmit
-                                                                    in both slave and master mode (after SCL
-                                                                    goes from HIGH to LOW).
-
-                                                                    The bits [23:16] of this register are used
-                                                                    to extend the SDA transition (if any) whenever
-                                                                    SCL is HIGH in the receiver in either master
-                                                                    or slave mode.
-
-                                                                    Writes to this register succeed only when
-                                                                    IC_ENABLE[0]=0.
-
-                                                                    The values in this register a                              */
-  __IOM uint32_t  IC_TX_ABRT_SOURCE;            /*!< (@ 0x00000080) I2C Transmit Abort Source Register
-
-                                                                    This register has 32 bits that indicate
-                                                                    the source of the TX_ABRT bit. Except for
-                                                                    Bit 9, this register is cleared whenever
-                                                                    the IC_CLR_TX_ABRT register or the IC_CLR_INTR
-                                                                    register is read. To clear Bit 9, the source
-                                                                    of the ABRT_SBYTE_NORSTRT must be fixed
-                                                                    first; RESTART must be enabled (IC_CON[5]=1),
-                                                                    the SPECIAL bit must be cleared (IC_TAR[11]),
-                                                                    or the GC_OR_START bit must be cleared (IC_TAR[10]).
-
-                                                                    Once the source of the AB                                  */
-  __IOM uint32_t  IC_SLV_DATA_NACK_ONLY;        /*!< (@ 0x00000084) Generate Slave Data NACK Register
-
-                                                                    The register is used to generate a NACK
-                                                                    for the data part of a transfer when DW_apb_i2c
-                                                                    is acting as a slave-receiver. This register
-                                                                    only exists when the IC_SLV_DATA_NACK_ONLY
-                                                                    parameter is set to 1. When this parameter
-                                                                    disabled, this register does not exist and
-                                                                    writing to the register's address has no
-                                                                    effect.
-
-                                                                    A write can occur on this register if both
-                                                                    of the following conditions are met: - DW_apb_i2c
-                                                                    is disabled (IC_ENABLE                                     */
-  __IOM uint32_t  IC_DMA_CR;                    /*!< (@ 0x00000088) DMA Control Register
-
-                                                                    The register is used to enable the DMA Controller
-                                                                    interface operation. There is a separate
-                                                                    bit for transmit and receive. This can be
-                                                                    programmed regardless of the state of IC_ENABLE.           */
-  __IOM uint32_t  IC_DMA_TDLR;                  /*!< (@ 0x0000008C) DMA Transmit Data Level Register                           */
-  __IOM uint32_t  IC_DMA_RDLR;                  /*!< (@ 0x00000090) I2C Receive Data Level Register                            */
-  __IOM uint32_t  IC_SDA_SETUP;                 /*!< (@ 0x00000094) I2C SDA Setup Register
-
-                                                                    This register controls the amount of time
-                                                                    delay (in terms of number of ic_clk clock
-                                                                    periods) introduced in the rising edge of
-                                                                    SCL - relative to SDA changing - when DW_apb_i2c
-                                                                    services a read request in a slave-transmitter
-                                                                    operation. The relevant I2C requirement
-                                                                    is tSU:DAT (note 4) as detailed in the I2C
-                                                                    Bus Specification. This register must be
-                                                                    programmed with a value equal to or greater
-                                                                    than 2.
-
-                                                                    Writes to this register succeed only wh                    */
-  __IOM uint32_t  IC_ACK_GENERAL_CALL;          /*!< (@ 0x00000098) I2C ACK General Call Register
-
-                                                                    The register controls whether DW_apb_i2c
-                                                                    responds with a ACK or NACK when it receives
-                                                                    an I2C General Call address.
-
-                                                                    This register is applicable only when the
-                                                                    DW_apb_i2c is in slave mode.                               */
-  __IOM uint32_t  IC_ENABLE_STATUS;             /*!< (@ 0x0000009C) I2C Enable Status Register
-
-                                                                    The register is used to report the DW_apb_i2c
-                                                                    hardware status when the IC_ENABLE[0] register
-                                                                    is set from 1 to 0; that is, when DW_apb_i2c
-                                                                    is disabled.
-
-                                                                    If IC_ENABLE[0] has been set to 1, bits
-                                                                    2:1 are forced to 0, and bit 0 is forced
-                                                                    to 1.
-
-                                                                    If IC_ENABLE[0] has been set to 0, bits
-                                                                    2:1 is only be valid as soon as bit 0 is
-                                                                    read as '0'.
-
-                                                                    Note: When IC_ENABLE[0] has been set to
-                                                                    0, a delay occurs for bit 0                                */
-  __IOM uint32_t  IC_FS_SPKLEN;                 /*!< (@ 0x000000A0) I2C SS, FS or FM+ spike suppression limit
-
-                                                                    This register is used to store the duration,
-                                                                    measured in ic_clk cycles, of the longest
-                                                                    spike that is filtered out by the spike
-                                                                    suppression logic when the component is
-                                                                    operating in SS, FS or FM+ modes. The relevant
-                                                                    I2C requirement is tSP (table 4) as detailed
-                                                                    in the I2C Bus Specification. This register
-                                                                    must be programmed with a minimum value
-                                                                    of 1.                                                      */
+  __IOM uint32_t  IC_INTR_STAT;                 /*!< I2C Interrupt Status Register
+                                                     
+                                                     Each bit in this register has a corresponding mask bit
+                                                     in the IC_INTR_MASK register. These bits are cleared by
+                                                     reading the matching interrupt clear register. The unmasked
+                                                     raw versions of these bits are available in the IC_RAW_INTR_STAT
+                                                     register.                                                                 */
+  __IOM uint32_t  IC_INTR_MASK;                 /*!< I2C Interrupt Mask Register.
+                                                     
+                                                     These bits mask their corresponding interrupt status bits.
+                                                     This register is active low; a value of 0 masks the interrupt,
+                                                     whereas a value of 1 unmasks the interrupt.                               */
+  __IOM uint32_t  IC_RAW_INTR_STAT;             /*!< I2C Raw Interrupt Status Register
+                                                     
+                                                     Unlike the IC_INTR_STAT register, these bits are not masked
+                                                     so they always show the true status of the DW_apb_i2c.                    */
+  __IOM uint32_t  IC_RX_TL;                     /*!< I2C Receive FIFO Threshold Register                                       */
+  __IOM uint32_t  IC_TX_TL;                     /*!< I2C Transmit FIFO Threshold Register                                      */
+  __IOM uint32_t  IC_CLR_INTR;                  /*!< Clear Combined and Individual Interrupt Register                          */
+  __IOM uint32_t  IC_CLR_RX_UNDER;              /*!< Clear RX_UNDER Interrupt Register                                         */
+  __IOM uint32_t  IC_CLR_RX_OVER;               /*!< Clear RX_OVER Interrupt Register                                          */
+  __IOM uint32_t  IC_CLR_TX_OVER;               /*!< Clear TX_OVER Interrupt Register                                          */
+  __IOM uint32_t  IC_CLR_RD_REQ;                /*!< Clear RD_REQ Interrupt Register                                           */
+  __IOM uint32_t  IC_CLR_TX_ABRT;               /*!< Clear TX_ABRT Interrupt Register                                          */
+  __IOM uint32_t  IC_CLR_RX_DONE;               /*!< Clear RX_DONE Interrupt Register                                          */
+  __IOM uint32_t  IC_CLR_ACTIVITY;              /*!< Clear ACTIVITY Interrupt Register                                         */
+  __IOM uint32_t  IC_CLR_STOP_DET;              /*!< Clear STOP_DET Interrupt Register                                         */
+  __IOM uint32_t  IC_CLR_START_DET;             /*!< Clear START_DET Interrupt Register                                        */
+  __IOM uint32_t  IC_CLR_GEN_CALL;              /*!< Clear GEN_CALL Interrupt Register                                         */
+  __IOM uint32_t  IC_ENABLE;                    /*!< I2C Enable Register                                                       */
+  __IOM uint32_t  IC_STATUS;                    /*!< I2C Status Register
+                                                     
+                                                     This is a read-only register used to indicate the current
+                                                     transfer status and FIFO status. The status register may
+                                                     be read at any time. None of the bits in this register
+                                                     request an interrupt.
+                                                     
+                                                     When the I2C is disabled by writing 0 in bit 0 of the IC_ENABLE
+                                                     register: - Bits 1 and 2 are set to 1 - Bits 3 and 10 are
+                                                     set to 0 When the master or slave state machines goes to
+                                                     idle and ic_en=0: - Bits 5 and 6 are set to 0                             */
+  __IOM uint32_t  IC_TXFLR;                     /*!< I2C Transmit FIFO Level Register This register contains the
+                                                     number of valid data entries in the transmit FIFO buffer.
+                                                     It is cleared whenever: - The I2C is disabled - There is
+                                                     a transmit abort - that is, TX_ABRT bit is set in the IC_RAW_INTR_STAT
+                                                     register - The slave bulk transmit mode is aborted The
+                                                     register increments whenever data is placed into the transmit
+                                                     FIFO and decrements when data is taken from the transmit
+                                                     FIFO.                                                                     */
+  __IOM uint32_t  IC_RXFLR;                     /*!< I2C Receive FIFO Level Register This register contains the number
+                                                     of valid data entries in the receive FIFO buffer. It is
+                                                     cleared whenever: - The I2C is disabled - Whenever there
+                                                     is a transmit abort caused by any of the events tracked
+                                                     in IC_TX_ABRT_SOURCE The register increments whenever data
+                                                     is placed into the receive FIFO and decrements when data
+                                                     is taken from the receive FIFO.                                           */
+  __IOM uint32_t  IC_SDA_HOLD;                  /*!< I2C SDA Hold Time Length Register
+                                                     
+                                                     The bits [15:0] of this register are used to control the
+                                                     hold time of SDA during transmit in both slave and master
+                                                     mode (after SCL goes from HIGH to LOW).
+                                                     
+                                                     The bits [23:16] of this register are used to extend the
+                                                     SDA transition (if any) whenever SCL is HIGH in the receiver
+                                                     in either master or slave mode.
+                                                     
+                                                     Writes to this register succeed only when IC_ENABLE[0]=0.
+                                                     
+                                                     The values in this register are in units of ic_clk period.
+                                                     The value programmed in IC_SDA_TX_HOLD must be greater
+                                                     than the minimum hold time in each mode (one cycle in master
+                                                     mode, seven cycles in slave mode) for the value to be implemented.
+                                                     
+                                                     The programmed SDA hold time during transmit (IC_SDA_TX_HOLD)
+                                                     cannot exceed at any time the duration of the low part
+                                                     of scl. Therefore the programmed value cannot be larger
+                                                     than N_SCL_LOW-2, where N_SCL_LOW is the duration of the
+                                                     low part of the scl period measured in ic_clk cycles.                     */
+  __IOM uint32_t  IC_TX_ABRT_SOURCE;            /*!< I2C Transmit Abort Source Register
+                                                     
+                                                     This register has 32 bits that indicate the source of the
+                                                     TX_ABRT bit. Except for Bit 9, this register is cleared
+                                                     whenever the IC_CLR_TX_ABRT register or the IC_CLR_INTR
+                                                     register is read. To clear Bit 9, the source of the ABRT_SBYTE_NORSTRT
+                                                     must be fixed first; RESTART must be enabled (IC_CON[5]=1),
+                                                     the SPECIAL bit must be cleared (IC_TAR[11]), or the GC_OR_START
+                                                     bit must be cleared (IC_TAR[10]).
+                                                     
+                                                     Once the source of the ABRT_SBYTE_NORSTRT is fixed, then
+                                                     this bit can be cleared in the same manner as other bits
+                                                     in this register. If the source of the ABRT_SBYTE_NORSTRT
+                                                     is not fixed before attempting to clear this bit, Bit 9
+                                                     clears for one cycle and is then re-asserted.                             */
+  __IOM uint32_t  IC_SLV_DATA_NACK_ONLY;        /*!< Generate Slave Data NACK Register
+                                                     
+                                                     The register is used to generate a NACK for the data part
+                                                     of a transfer when DW_apb_i2c is acting as a slave-receiver.
+                                                     This register only exists when the IC_SLV_DATA_NACK_ONLY
+                                                     parameter is set to 1. When this parameter disabled, this
+                                                     register does not exist and writing to the register's address
+                                                     has no effect.
+                                                     
+                                                     A write can occur on this register if both of the following
+                                                     conditions are met: - DW_apb_i2c is disabled (IC_ENABLE[0]
+                                                     = 0) - Slave part is inactive (IC_STATUS[6] = 0) Note:
+                                                     The IC_STATUS[6] is a register read-back location for the
+                                                     internal slv_activity signal; the user should poll this
+                                                     before writing the ic_slv_data_nack_only bit.                             */
+  __IOM uint32_t  IC_DMA_CR;                    /*!< DMA Control Register
+                                                     
+                                                     The register is used to enable the DMA Controller interface
+                                                     operation. There is a separate bit for transmit and receive.
+                                                     This can be programmed regardless of the state of IC_ENABLE.              */
+  __IOM uint32_t  IC_DMA_TDLR;                  /*!< DMA Transmit Data Level Register                                          */
+  __IOM uint32_t  IC_DMA_RDLR;                  /*!< I2C Receive Data Level Register                                           */
+  __IOM uint32_t  IC_SDA_SETUP;                 /*!< I2C SDA Setup Register
+                                                     
+                                                     This register controls the amount of time delay (in terms
+                                                     of number of ic_clk clock periods) introduced in the rising
+                                                     edge of SCL - relative to SDA changing - when DW_apb_i2c
+                                                     services a read request in a slave-transmitter operation.
+                                                     The relevant I2C requirement is tSU:DAT (note 4) as detailed
+                                                     in the I2C Bus Specification. This register must be programmed
+                                                     with a value equal to or greater than 2.
+                                                     
+                                                     Writes to this register succeed only when IC_ENABLE[0]
+                                                     = 0.
+                                                     
+                                                     Note: The length of setup time is calculated using [(IC_SDA_SETUP
+                                                     - 1) * (ic_clk_period)], so if the user requires 10 ic_clk
+                                                     periods of setup time, they should program a value of 11.
+                                                     The IC_SDA_SETUP register is only used by the DW_apb_i2c
+                                                     when operating as a slave transmitter.                                    */
+  __IOM uint32_t  IC_ACK_GENERAL_CALL;          /*!< I2C ACK General Call Register
+                                                     
+                                                     The register controls whether DW_apb_i2c responds with
+                                                     a ACK or NACK when it receives an I2C General Call address.
+                                                     
+                                                     This register is applicable only when the DW_apb_i2c is
+                                                     in slave mode.                                                            */
+  __IOM uint32_t  IC_ENABLE_STATUS;             /*!< I2C Enable Status Register
+                                                     
+                                                     The register is used to report the DW_apb_i2c hardware
+                                                     status when the IC_ENABLE[0] register is set from 1 to
+                                                     0; that is, when DW_apb_i2c is disabled.
+                                                     
+                                                     If IC_ENABLE[0] has been set to 1, bits 2:1 are forced
+                                                     to 0, and bit 0 is forced to 1.
+                                                     
+                                                     If IC_ENABLE[0] has been set to 0, bits 2:1 is only be
+                                                     valid as soon as bit 0 is read as '0'.
+                                                     
+                                                     Note: When IC_ENABLE[0] has been set to 0, a delay occurs
+                                                     for bit 0 to be read as 0 because disabling the DW_apb_i2c
+                                                     depends on I2C bus activities.                                            */
+  __IOM uint32_t  IC_FS_SPKLEN;                 /*!< I2C SS, FS or FM+ spike suppression limit
+                                                     
+                                                     This register is used to store the duration, measured in
+                                                     ic_clk cycles, of the longest spike that is filtered out
+                                                     by the spike suppression logic when the component is operating
+                                                     in SS, FS or FM+ modes. The relevant I2C requirement is
+                                                     tSP (table 4) as detailed in the I2C Bus Specification.
+                                                     This register must be programmed with a minimum value of
+                                                     1.                                                                        */
   __IM  uint32_t  RESERVED2;
-  __IOM uint32_t  IC_CLR_RESTART_DET;           /*!< (@ 0x000000A8) Clear RESTART_DET Interrupt Register                       */
+  __IOM uint32_t  IC_CLR_RESTART_DET;           /*!< Clear RESTART_DET Interrupt Register                                      */
   __IM  uint32_t  RESERVED3[18];
-  __IOM uint32_t  IC_COMP_PARAM_1;              /*!< (@ 0x000000F4) Component Parameter Register 1
-
-                                                                    Note This register is not implemented and
-                                                                    therefore reads as 0. If it was implemented
-                                                                    it would be a constant read-only register
-                                                                    that contains encoded information about
-                                                                    the component's parameter settings. Fields
-                                                                    shown below are the settings for those parameters          */
-  __IOM uint32_t  IC_COMP_VERSION;              /*!< (@ 0x000000F8) I2C Component Version Register                             */
-  __IOM uint32_t  IC_COMP_TYPE;                 /*!< (@ 0x000000FC) I2C Component Type Register                                */
+  __IOM uint32_t  IC_COMP_PARAM_1;              /*!< Component Parameter Register 1
+                                                     
+                                                     Note This register is not implemented and therefore reads
+                                                     as 0. If it was implemented it would be a constant read-only
+                                                     register that contains encoded information about the component's
+                                                     parameter settings. Fields shown below are the settings
+                                                     for those parameters                                                      */
+  __IOM uint32_t  IC_COMP_VERSION;              /*!< I2C Component Version Register                                            */
+  __IOM uint32_t  IC_COMP_TYPE;                 /*!< I2C Component Type Register                                               */
 } I2C0_Type;                                    /*!< Size = 256 (0x100)                                                        */
 
 
@@ -1072,21 +1124,19 @@ typedef struct {                                /*!< (@ 0x40044000) I2C0 Structu
   * @brief Control and data interface to SAR ADC (ADC)
   */
 
-typedef struct {                                /*!< (@ 0x4004C000) ADC Structure                                              */
-  __IOM uint32_t  CS;                           /*!< (@ 0x00000000) ADC Control and Status                                     */
-  __IOM uint32_t  RESULT;                       /*!< (@ 0x00000004) Result of most recent ADC conversion                       */
-  __IOM uint32_t  FCS;                          /*!< (@ 0x00000008) FIFO control and status                                    */
-  __IOM uint32_t  FIFO;                         /*!< (@ 0x0000000C) Conversion result FIFO                                     */
-  __IOM uint32_t  DIV;                          /*!< (@ 0x00000010) Clock divider. If non-zero, CS_START_MANY will
-                                                                    start conversions
-                                                                    at regular intervals rather than back-to-back.
-                                                                    The divider is reset when either of these
-                                                                    fields are written.
-                                                                    Total period is 1 + INT + FRAC / 256                       */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000014) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x00000018) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x0000001C) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x00000020) Interrupt status after masking & forcing                   */
+typedef struct {                                /*!< ADC Structure                                                             */
+  __IOM uint32_t  CS;                           /*!< ADC Control and Status                                                    */
+  __IOM uint32_t  RESULT;                       /*!< Result of most recent ADC conversion                                      */
+  __IOM uint32_t  FCS;                          /*!< FIFO control and status                                                   */
+  __IOM uint32_t  FIFO;                         /*!< Conversion result FIFO                                                    */
+  __IOM uint32_t  DIV;                          /*!< Clock divider. If non-zero, CS_START_MANY will start conversions
+                                                     at regular intervals rather than back-to-back.
+                                                     The divider is reset when either of these fields are written.
+                                                     Total period is 1 + INT + FRAC / 256                                      */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } ADC_Type;                                     /*!< Size = 36 (0x24)                                                          */
 
 
@@ -1100,92 +1150,83 @@ typedef struct {                                /*!< (@ 0x4004C000) ADC Structur
   * @brief Simple PWM (PWM)
   */
 
-typedef struct {                                /*!< (@ 0x40050000) PWM Structure                                              */
-  __IOM uint32_t  CH0_CSR;                      /*!< (@ 0x00000000) Control and status register                                */
-  __IOM uint32_t  CH0_DIV;                      /*!< (@ 0x00000004) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH0_CTR;                      /*!< (@ 0x00000008) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH0_CC;                       /*!< (@ 0x0000000C) Counter compare values                                     */
-  __IOM uint32_t  CH0_TOP;                      /*!< (@ 0x00000010) Counter wrap value                                         */
-  __IOM uint32_t  CH1_CSR;                      /*!< (@ 0x00000014) Control and status register                                */
-  __IOM uint32_t  CH1_DIV;                      /*!< (@ 0x00000018) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH1_CTR;                      /*!< (@ 0x0000001C) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH1_CC;                       /*!< (@ 0x00000020) Counter compare values                                     */
-  __IOM uint32_t  CH1_TOP;                      /*!< (@ 0x00000024) Counter wrap value                                         */
-  __IOM uint32_t  CH2_CSR;                      /*!< (@ 0x00000028) Control and status register                                */
-  __IOM uint32_t  CH2_DIV;                      /*!< (@ 0x0000002C) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH2_CTR;                      /*!< (@ 0x00000030) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH2_CC;                       /*!< (@ 0x00000034) Counter compare values                                     */
-  __IOM uint32_t  CH2_TOP;                      /*!< (@ 0x00000038) Counter wrap value                                         */
-  __IOM uint32_t  CH3_CSR;                      /*!< (@ 0x0000003C) Control and status register                                */
-  __IOM uint32_t  CH3_DIV;                      /*!< (@ 0x00000040) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH3_CTR;                      /*!< (@ 0x00000044) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH3_CC;                       /*!< (@ 0x00000048) Counter compare values                                     */
-  __IOM uint32_t  CH3_TOP;                      /*!< (@ 0x0000004C) Counter wrap value                                         */
-  __IOM uint32_t  CH4_CSR;                      /*!< (@ 0x00000050) Control and status register                                */
-  __IOM uint32_t  CH4_DIV;                      /*!< (@ 0x00000054) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH4_CTR;                      /*!< (@ 0x00000058) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH4_CC;                       /*!< (@ 0x0000005C) Counter compare values                                     */
-  __IOM uint32_t  CH4_TOP;                      /*!< (@ 0x00000060) Counter wrap value                                         */
-  __IOM uint32_t  CH5_CSR;                      /*!< (@ 0x00000064) Control and status register                                */
-  __IOM uint32_t  CH5_DIV;                      /*!< (@ 0x00000068) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH5_CTR;                      /*!< (@ 0x0000006C) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH5_CC;                       /*!< (@ 0x00000070) Counter compare values                                     */
-  __IOM uint32_t  CH5_TOP;                      /*!< (@ 0x00000074) Counter wrap value                                         */
-  __IOM uint32_t  CH6_CSR;                      /*!< (@ 0x00000078) Control and status register                                */
-  __IOM uint32_t  CH6_DIV;                      /*!< (@ 0x0000007C) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH6_CTR;                      /*!< (@ 0x00000080) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH6_CC;                       /*!< (@ 0x00000084) Counter compare values                                     */
-  __IOM uint32_t  CH6_TOP;                      /*!< (@ 0x00000088) Counter wrap value                                         */
-  __IOM uint32_t  CH7_CSR;                      /*!< (@ 0x0000008C) Control and status register                                */
-  __IOM uint32_t  CH7_DIV;                      /*!< (@ 0x00000090) INT and FRAC form a fixed-point fractional number.
-                                                                    Counting rate is system clock frequency
-                                                                    divided by this number.
-                                                                    Fractional division uses simple 1st-order
-                                                                    sigma-delta.                                               */
-  __IOM uint32_t  CH7_CTR;                      /*!< (@ 0x00000094) Direct access to the PWM counter                           */
-  __IOM uint32_t  CH7_CC;                       /*!< (@ 0x00000098) Counter compare values                                     */
-  __IOM uint32_t  CH7_TOP;                      /*!< (@ 0x0000009C) Counter wrap value                                         */
-  __IOM uint32_t  EN;                           /*!< (@ 0x000000A0) This register aliases the CSR_EN bits for all
-                                                                    channels.
-                                                                    Writing to this register allows multiple
-                                                                    channels to be enabled
-                                                                    or disabled simultaneously, so they can
-                                                                    run in perfect sync.
-                                                                    For each channel, there is only one physical
-                                                                    EN register bit,
-                                                                    which can be accessed through here or CHx_CSR.             */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x000000A4) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x000000A8) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x000000AC) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x000000B0) Interrupt status after masking & forcing                   */
+typedef struct {                                /*!< PWM Structure                                                             */
+  __IOM uint32_t  CH0_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH0_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH0_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH0_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH0_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH1_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH1_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH1_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH1_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH1_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH2_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH2_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH2_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH2_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH2_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH3_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH3_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH3_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH3_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH3_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH4_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH4_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH4_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH4_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH4_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH5_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH5_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH5_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH5_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH5_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH6_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH6_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH6_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH6_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH6_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  CH7_CSR;                      /*!< Control and status register                                               */
+  __IOM uint32_t  CH7_DIV;                      /*!< INT and FRAC form a fixed-point fractional number.
+                                                     Counting rate is system clock frequency divided by this
+                                                     number.
+                                                     Fractional division uses simple 1st-order sigma-delta.                    */
+  __IOM uint32_t  CH7_CTR;                      /*!< Direct access to the PWM counter                                          */
+  __IOM uint32_t  CH7_CC;                       /*!< Counter compare values                                                    */
+  __IOM uint32_t  CH7_TOP;                      /*!< Counter wrap value                                                        */
+  __IOM uint32_t  EN;                           /*!< This register aliases the CSR_EN bits for all channels.
+                                                     Writing to this register allows multiple channels to be
+                                                     enabled
+                                                     or disabled simultaneously, so they can run in perfect
+                                                     sync.
+                                                     For each channel, there is only one physical EN register
+                                                     bit,
+                                                     which can be accessed through here or CHx_CSR.                            */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } PWM_Type;                                     /*!< Size = 180 (0xb4)                                                         */
 
 
@@ -1208,59 +1249,44 @@ typedef struct {                                /*!< (@ 0x40050000) PWM Structur
         To clear the interrupt write a 1 to the corresponding alarm_irq (TIMER)
   */
 
-typedef struct {                                /*!< (@ 0x40054000) TIMER Structure                                            */
-  __OM  uint32_t  TIMEHW;                       /*!< (@ 0x00000000) Write to bits 63:32 of time
-                                                                    always write timelw before timehw                          */
-  __OM  uint32_t  TIMELW;                       /*!< (@ 0x00000004) Write to bits 31:0 of time
-                                                                    writes do not get copied to time until timehw
-                                                                    is written                                                 */
-  __IM  uint32_t  TIMEHR;                       /*!< (@ 0x00000008) Read from bits 63:32 of time
-                                                                    always read timelr before timehr                           */
-  __IM  uint32_t  TIMELR;                       /*!< (@ 0x0000000C) Read from bits 31:0 of time                                */
-  __IOM uint32_t  ALARM0;                       /*!< (@ 0x00000010) Arm alarm 0, and configure the time it will fire.
-                                                                    Once armed, the alarm fires when TIMER_ALARM0
-                                                                    == TIMELR.
-                                                                    The alarm will disarm itself once it fires,
-                                                                    and can
-                                                                    be disarmed early using the ARMED status
-                                                                    register.                                                  */
-  __IOM uint32_t  ALARM1;                       /*!< (@ 0x00000014) Arm alarm 1, and configure the time it will fire.
-                                                                    Once armed, the alarm fires when TIMER_ALARM1
-                                                                    == TIMELR.
-                                                                    The alarm will disarm itself once it fires,
-                                                                    and can
-                                                                    be disarmed early using the ARMED status
-                                                                    register.                                                  */
-  __IOM uint32_t  ALARM2;                       /*!< (@ 0x00000018) Arm alarm 2, and configure the time it will fire.
-                                                                    Once armed, the alarm fires when TIMER_ALARM2
-                                                                    == TIMELR.
-                                                                    The alarm will disarm itself once it fires,
-                                                                    and can
-                                                                    be disarmed early using the ARMED status
-                                                                    register.                                                  */
-  __IOM uint32_t  ALARM3;                       /*!< (@ 0x0000001C) Arm alarm 3, and configure the time it will fire.
-                                                                    Once armed, the alarm fires when TIMER_ALARM3
-                                                                    == TIMELR.
-                                                                    The alarm will disarm itself once it fires,
-                                                                    and can
-                                                                    be disarmed early using the ARMED status
-                                                                    register.                                                  */
-  __IOM uint32_t  ARMED;                        /*!< (@ 0x00000020) Indicates the armed/disarmed status of each alarm.
-                                                                    A write to the corresponding ALARMx register
-                                                                    arms the alarm.
-                                                                    Alarms automatically disarm upon firing,
-                                                                    but writing ones here
-                                                                    will disarm immediately without waiting
-                                                                    to fire.                                                   */
-  __IM  uint32_t  TIMERAWH;                     /*!< (@ 0x00000024) Raw read from bits 63:32 of time (no side effects)         */
-  __IM  uint32_t  TIMERAWL;                     /*!< (@ 0x00000028) Raw read from bits 31:0 of time (no side effects)          */
-  __IOM uint32_t  DBGPAUSE;                     /*!< (@ 0x0000002C) Set bits high to enable pause when the corresponding
-                                                                    debug ports are active                                     */
-  __IOM uint32_t  PAUSE;                        /*!< (@ 0x00000030) Set high to pause the timer                                */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000034) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x00000038) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x0000003C) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x00000040) Interrupt status after masking & forcing                   */
+typedef struct {                                /*!< TIMER Structure                                                           */
+  __OM  uint32_t  TIMEHW;                       /*!< Write to bits 63:32 of time
+                                                     always write timelw before timehw                                         */
+  __OM  uint32_t  TIMELW;                       /*!< Write to bits 31:0 of time
+                                                     writes do not get copied to time until timehw is written                  */
+  __IM  uint32_t  TIMEHR;                       /*!< Read from bits 63:32 of time
+                                                     always read timelr before timehr                                          */
+  __IM  uint32_t  TIMELR;                       /*!< Read from bits 31:0 of time                                               */
+  __IOM uint32_t  ALARM0;                       /*!< Arm alarm 0, and configure the time it will fire.
+                                                     Once armed, the alarm fires when TIMER_ALARM0 == TIMELR.
+                                                     The alarm will disarm itself once it fires, and can
+                                                     be disarmed early using the ARMED status register.                        */
+  __IOM uint32_t  ALARM1;                       /*!< Arm alarm 1, and configure the time it will fire.
+                                                     Once armed, the alarm fires when TIMER_ALARM1 == TIMELR.
+                                                     The alarm will disarm itself once it fires, and can
+                                                     be disarmed early using the ARMED status register.                        */
+  __IOM uint32_t  ALARM2;                       /*!< Arm alarm 2, and configure the time it will fire.
+                                                     Once armed, the alarm fires when TIMER_ALARM2 == TIMELR.
+                                                     The alarm will disarm itself once it fires, and can
+                                                     be disarmed early using the ARMED status register.                        */
+  __IOM uint32_t  ALARM3;                       /*!< Arm alarm 3, and configure the time it will fire.
+                                                     Once armed, the alarm fires when TIMER_ALARM3 == TIMELR.
+                                                     The alarm will disarm itself once it fires, and can
+                                                     be disarmed early using the ARMED status register.                        */
+  __IOM uint32_t  ARMED;                        /*!< Indicates the armed/disarmed status of each alarm.
+                                                     A write to the corresponding ALARMx register arms the alarm.
+                                                     Alarms automatically disarm upon firing, but writing ones
+                                                     here
+                                                     will disarm immediately without waiting to fire.                          */
+  __IM  uint32_t  TIMERAWH;                     /*!< Raw read from bits 63:32 of time (no side effects)                        */
+  __IM  uint32_t  TIMERAWL;                     /*!< Raw read from bits 31:0 of time (no side effects)                         */
+  __IOM uint32_t  DBGPAUSE;                     /*!< Set bits high to enable pause when the corresponding debug ports
+                                                     are active                                                                */
+  __IOM uint32_t  PAUSE;                        /*!< Set high to pause the timer                                               */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } TIMER_Type;                                   /*!< Size = 68 (0x44)                                                          */
 
 
@@ -1274,35 +1300,33 @@ typedef struct {                                /*!< (@ 0x40054000) TIMER Struct
   * @brief WATCHDOG (WATCHDOG)
   */
 
-typedef struct {                                /*!< (@ 0x40058000) WATCHDOG Structure                                         */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x00000000) Watchdog control
-                                                                    The rst_wdsel register determines which
-                                                                    subsystems are reset when the watchdog is
-                                                                    triggered.
-                                                                    The watchdog can be triggered in software.                 */
-  __IOM uint32_t  LOAD;                         /*!< (@ 0x00000004) Load the watchdog timer. The maximum setting
-                                                                    is 0xffffff which corresponds to 0xffffff
-                                                                    / 2 ticks before triggering a watchdog reset
-                                                                    (see errata RP2040-E1).                                    */
-  __IOM uint32_t  REASON;                       /*!< (@ 0x00000008) Logs the reason for the last reset. Both bits
-                                                                    are zero for the case of a hardware reset.                 */
-  __IOM uint32_t  SCRATCH0;                     /*!< (@ 0x0000000C) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH1;                     /*!< (@ 0x00000010) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH2;                     /*!< (@ 0x00000014) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH3;                     /*!< (@ 0x00000018) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH4;                     /*!< (@ 0x0000001C) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH5;                     /*!< (@ 0x00000020) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH6;                     /*!< (@ 0x00000024) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  SCRATCH7;                     /*!< (@ 0x00000028) Scratch register. Information persists through
-                                                                    soft reset of the chip.                                    */
-  __IOM uint32_t  TICK;                         /*!< (@ 0x0000002C) Controls the tick generator                                */
+typedef struct {                                /*!< WATCHDOG Structure                                                        */
+  __IOM uint32_t  CTRL;                         /*!< Watchdog control
+                                                     The rst_wdsel register determines which subsystems are
+                                                     reset when the watchdog is triggered.
+                                                     The watchdog can be triggered in software.                                */
+  __IOM uint32_t  LOAD;                         /*!< Load the watchdog timer. The maximum setting is 0xffffff which
+                                                     corresponds to 0xffffff / 2 ticks before triggering a watchdog
+                                                     reset (see errata RP2040-E1).                                             */
+  __IOM uint32_t  REASON;                       /*!< Logs the reason for the last reset. Both bits are zero for the
+                                                     case of a hardware reset.                                                 */
+  __IOM uint32_t  SCRATCH0;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH1;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH2;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH3;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH4;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH5;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH6;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  SCRATCH7;                     /*!< Scratch register. Information persists through soft reset of
+                                                     the chip.                                                                 */
+  __IOM uint32_t  TICK;                         /*!< Controls the tick generator                                               */
 } WATCHDOG_Type;                                /*!< Size = 48 (0x30)                                                          */
 
 
@@ -1316,21 +1340,21 @@ typedef struct {                                /*!< (@ 0x40058000) WATCHDOG Str
   * @brief Register block to control RTC (RTC)
   */
 
-typedef struct {                                /*!< (@ 0x4005C000) RTC Structure                                              */
-  __IOM uint32_t  CLKDIV_M1;                    /*!< (@ 0x00000000) Divider minus 1 for the 1 second counter. Safe
-                                                                    to change the value when RTC is not enabled.               */
-  __IOM uint32_t  SETUP_0;                      /*!< (@ 0x00000004) RTC setup register 0                                       */
-  __IOM uint32_t  SETUP_1;                      /*!< (@ 0x00000008) RTC setup register 1                                       */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x0000000C) RTC Control and status                                     */
-  __IOM uint32_t  IRQ_SETUP_0;                  /*!< (@ 0x00000010) Interrupt setup register 0                                 */
-  __IOM uint32_t  IRQ_SETUP_1;                  /*!< (@ 0x00000014) Interrupt setup register 1                                 */
-  __IOM uint32_t  RTC_1;                        /*!< (@ 0x00000018) RTC register 1.                                            */
-  __IOM uint32_t  RTC_0;                        /*!< (@ 0x0000001C) RTC register 0
-                                                                    Read this before RTC 1!                                    */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000020) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x00000024) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x00000028) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x0000002C) Interrupt status after masking & forcing                   */
+typedef struct {                                /*!< RTC Structure                                                             */
+  __IOM uint32_t  CLKDIV_M1;                    /*!< Divider minus 1 for the 1 second counter. Safe to change the
+                                                     value when RTC is not enabled.                                            */
+  __IOM uint32_t  SETUP_0;                      /*!< RTC setup register 0                                                      */
+  __IOM uint32_t  SETUP_1;                      /*!< RTC setup register 1                                                      */
+  __IOM uint32_t  CTRL;                         /*!< RTC Control and status                                                    */
+  __IOM uint32_t  IRQ_SETUP_0;                  /*!< Interrupt setup register 0                                                */
+  __IOM uint32_t  IRQ_SETUP_1;                  /*!< Interrupt setup register 1                                                */
+  __IOM uint32_t  RTC_1;                        /*!< RTC register 1.                                                           */
+  __IOM uint32_t  RTC_0;                        /*!< RTC register 0
+                                                     Read this before RTC 1!                                                   */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } RTC_Type;                                     /*!< Size = 48 (0x30)                                                          */
 
 
@@ -1344,41 +1368,35 @@ typedef struct {                                /*!< (@ 0x4005C000) RTC Structur
   * @brief ROSC (ROSC)
   */
 
-typedef struct {                                /*!< (@ 0x40060000) ROSC Structure                                             */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x00000000) Ring Oscillator control                                    */
-  __IOM uint32_t  FREQA;                        /*!< (@ 0x00000004) The FREQA & FREQB registers control the frequency
-                                                                    by controlling the drive strength of each
-                                                                    stage
-                                                                    The drive strength has 4 levels determined
-                                                                    by the number of bits set
-                                                                    Increasing the number of bits set increases
-                                                                    the drive strength and increases the oscillation
-                                                                    frequency
-                                                                    0 bits set is the default drive strength
-                                                                    1 bit set doubles the drive strength
-                                                                    2 bits set triples drive strength
-                                                                    3 bits set quadruples                                      */
-  __IOM uint32_t  FREQB;                        /*!< (@ 0x00000008) For a detailed description see freqa register              */
-  __IOM uint32_t  DORMANT;                      /*!< (@ 0x0000000C) Ring Oscillator pause control
-                                                                    This is used to save power by pausing the
-                                                                    ROSC
-                                                                    On power-up this field is initialised to
-                                                                    WAKE
-                                                                    An invalid write will also select WAKE
-                                                                    Warning: setup the irq before selecting
-                                                                    dormant mode                                               */
-  __IOM uint32_t  DIV;                          /*!< (@ 0x00000010) Controls the output divider                                */
-  __IOM uint32_t  PHASE;                        /*!< (@ 0x00000014) Controls the phase shifted output                          */
-  __IOM uint32_t  STATUS;                       /*!< (@ 0x00000018) Ring Oscillator Status                                     */
-  __IOM uint32_t  RANDOMBIT;                    /*!< (@ 0x0000001C) This just reads the state of the oscillator output
-                                                                    so randomness is compromised if the ring
-                                                                    oscillator is stopped or run at a harmonic
-                                                                    of the bus frequency                                       */
-  __IOM uint32_t  COUNT;                        /*!< (@ 0x00000020) A down counter running at the ROSC frequency
-                                                                    which counts to zero and stops.
-                                                                    To start the counter write a non-zero value.
-                                                                    Can be used for short software pauses when
-                                                                    setting up time sensitive hardware.                        */
+typedef struct {                                /*!< ROSC Structure                                                            */
+  __IOM uint32_t  CTRL;                         /*!< Ring Oscillator control                                                   */
+  __IOM uint32_t  FREQA;                        /*!< The FREQA & FREQB registers control the frequency by controlling
+                                                     the drive strength of each stage
+                                                     The drive strength has 4 levels determined by the number
+                                                     of bits set
+                                                     Increasing the number of bits set increases the drive strength
+                                                     and increases the oscillation frequency
+                                                     0 bits set is the default drive strength
+                                                     1 bit set doubles the drive strength
+                                                     2 bits set triples drive strength
+                                                     3 bits set quadruples drive strength                                      */
+  __IOM uint32_t  FREQB;                        /*!< For a detailed description see freqa register                             */
+  __IOM uint32_t  DORMANT;                      /*!< Ring Oscillator pause control
+                                                     This is used to save power by pausing the ROSC
+                                                     On power-up this field is initialised to WAKE
+                                                     An invalid write will also select WAKE
+                                                     Warning: setup the irq before selecting dormant mode                      */
+  __IOM uint32_t  DIV;                          /*!< Controls the output divider                                               */
+  __IOM uint32_t  PHASE;                        /*!< Controls the phase shifted output                                         */
+  __IOM uint32_t  STATUS;                       /*!< Ring Oscillator Status                                                    */
+  __IOM uint32_t  RANDOMBIT;                    /*!< This just reads the state of the oscillator output so randomness
+                                                     is compromised if the ring oscillator is stopped or run
+                                                     at a harmonic of the bus frequency                                        */
+  __IOM uint32_t  COUNT;                        /*!< A down counter running at the ROSC frequency which counts to
+                                                     zero and stops.
+                                                     To start the counter write a non-zero value.
+                                                     Can be used for short software pauses when setting up time
+                                                     sensitive hardware.                                                       */
 } ROSC_Type;                                    /*!< Size = 36 (0x24)                                                          */
 
 
@@ -1392,10 +1410,10 @@ typedef struct {                                /*!< (@ 0x40060000) ROSC Structu
   * @brief control and status for on-chip voltage regulator and chip level reset subsystem (VREG_AND_CHIP_RESET)
   */
 
-typedef struct {                                /*!< (@ 0x40064000) VREG_AND_CHIP_RESET Structure                              */
-  __IOM uint32_t  VREG;                         /*!< (@ 0x00000000) Voltage regulator control and status                       */
-  __IOM uint32_t  BOD;                          /*!< (@ 0x00000004) brown-out detection control                                */
-  __IOM uint32_t  CHIP_RESET;                   /*!< (@ 0x00000008) Chip reset control and status                              */
+typedef struct {                                /*!< VREG_AND_CHIP_RESET Structure                                             */
+  __IOM uint32_t  VREG;                         /*!< Voltage regulator control and status                                      */
+  __IOM uint32_t  BOD;                          /*!< brown-out detection control                                               */
+  __IOM uint32_t  CHIP_RESET;                   /*!< Chip reset control and status                                             */
 } VREG_AND_CHIP_RESET_Type;                     /*!< Size = 12 (0xc)                                                           */
 
 
@@ -1409,8 +1427,8 @@ typedef struct {                                /*!< (@ 0x40064000) VREG_AND_CHI
   * @brief Testbench manager. Allows the programmer to know what platform their software is running on. (TBMAN)
   */
 
-typedef struct {                                /*!< (@ 0x4006C000) TBMAN Structure                                            */
-  __IOM uint32_t  PLATFORM;                     /*!< (@ 0x00000000) Indicates the type of platform in use                      */
+typedef struct {                                /*!< TBMAN Structure                                                           */
+  __IOM uint32_t  PLATFORM;                     /*!< Indicates the type of platform in use                                     */
 } TBMAN_Type;                                   /*!< Size = 4 (0x4)                                                            */
 
 
@@ -1424,722 +1442,921 @@ typedef struct {                                /*!< (@ 0x4006C000) TBMAN Struct
   * @brief DMA with separate read and write masters (DMA)
   */
 
-typedef struct {                                /*!< (@ 0x50000000) DMA Structure                                              */
-  __IOM uint32_t  CH0_READ_ADDR;                /*!< (@ 0x00000000) DMA Channel 0 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH0_WRITE_ADDR;               /*!< (@ 0x00000004) DMA Channel 0 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH0_TRANS_COUNT;              /*!< (@ 0x00000008) DMA Channel 0 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH0_CTRL_TRIG;                /*!< (@ 0x0000000C) DMA Channel 0 Control and Status                           */
-  __IM  uint32_t  CH0_AL1_CTRL;                 /*!< (@ 0x00000010) Alias for channel 0 CTRL register                          */
-  __IM  uint32_t  CH0_AL1_READ_ADDR;            /*!< (@ 0x00000014) Alias for channel 0 READ_ADDR register                     */
-  __IM  uint32_t  CH0_AL1_WRITE_ADDR;           /*!< (@ 0x00000018) Alias for channel 0 WRITE_ADDR register                    */
-  __IM  uint32_t  CH0_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000001C) Alias for channel 0 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH0_AL2_CTRL;                 /*!< (@ 0x00000020) Alias for channel 0 CTRL register                          */
-  __IM  uint32_t  CH0_AL2_TRANS_COUNT;          /*!< (@ 0x00000024) Alias for channel 0 TRANS_COUNT register                   */
-  __IM  uint32_t  CH0_AL2_READ_ADDR;            /*!< (@ 0x00000028) Alias for channel 0 READ_ADDR register                     */
-  __IM  uint32_t  CH0_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000002C) Alias for channel 0 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH0_AL3_CTRL;                 /*!< (@ 0x00000030) Alias for channel 0 CTRL register                          */
-  __IM  uint32_t  CH0_AL3_WRITE_ADDR;           /*!< (@ 0x00000034) Alias for channel 0 WRITE_ADDR register                    */
-  __IM  uint32_t  CH0_AL3_TRANS_COUNT;          /*!< (@ 0x00000038) Alias for channel 0 TRANS_COUNT register                   */
-  __IM  uint32_t  CH0_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000003C) Alias for channel 0 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH1_READ_ADDR;                /*!< (@ 0x00000040) DMA Channel 1 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH1_WRITE_ADDR;               /*!< (@ 0x00000044) DMA Channel 1 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH1_TRANS_COUNT;              /*!< (@ 0x00000048) DMA Channel 1 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH1_CTRL_TRIG;                /*!< (@ 0x0000004C) DMA Channel 1 Control and Status                           */
-  __IM  uint32_t  CH1_AL1_CTRL;                 /*!< (@ 0x00000050) Alias for channel 1 CTRL register                          */
-  __IM  uint32_t  CH1_AL1_READ_ADDR;            /*!< (@ 0x00000054) Alias for channel 1 READ_ADDR register                     */
-  __IM  uint32_t  CH1_AL1_WRITE_ADDR;           /*!< (@ 0x00000058) Alias for channel 1 WRITE_ADDR register                    */
-  __IM  uint32_t  CH1_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000005C) Alias for channel 1 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH1_AL2_CTRL;                 /*!< (@ 0x00000060) Alias for channel 1 CTRL register                          */
-  __IM  uint32_t  CH1_AL2_TRANS_COUNT;          /*!< (@ 0x00000064) Alias for channel 1 TRANS_COUNT register                   */
-  __IM  uint32_t  CH1_AL2_READ_ADDR;            /*!< (@ 0x00000068) Alias for channel 1 READ_ADDR register                     */
-  __IM  uint32_t  CH1_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000006C) Alias for channel 1 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH1_AL3_CTRL;                 /*!< (@ 0x00000070) Alias for channel 1 CTRL register                          */
-  __IM  uint32_t  CH1_AL3_WRITE_ADDR;           /*!< (@ 0x00000074) Alias for channel 1 WRITE_ADDR register                    */
-  __IM  uint32_t  CH1_AL3_TRANS_COUNT;          /*!< (@ 0x00000078) Alias for channel 1 TRANS_COUNT register                   */
-  __IM  uint32_t  CH1_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000007C) Alias for channel 1 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH2_READ_ADDR;                /*!< (@ 0x00000080) DMA Channel 2 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH2_WRITE_ADDR;               /*!< (@ 0x00000084) DMA Channel 2 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH2_TRANS_COUNT;              /*!< (@ 0x00000088) DMA Channel 2 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH2_CTRL_TRIG;                /*!< (@ 0x0000008C) DMA Channel 2 Control and Status                           */
-  __IM  uint32_t  CH2_AL1_CTRL;                 /*!< (@ 0x00000090) Alias for channel 2 CTRL register                          */
-  __IM  uint32_t  CH2_AL1_READ_ADDR;            /*!< (@ 0x00000094) Alias for channel 2 READ_ADDR register                     */
-  __IM  uint32_t  CH2_AL1_WRITE_ADDR;           /*!< (@ 0x00000098) Alias for channel 2 WRITE_ADDR register                    */
-  __IM  uint32_t  CH2_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000009C) Alias for channel 2 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH2_AL2_CTRL;                 /*!< (@ 0x000000A0) Alias for channel 2 CTRL register                          */
-  __IM  uint32_t  CH2_AL2_TRANS_COUNT;          /*!< (@ 0x000000A4) Alias for channel 2 TRANS_COUNT register                   */
-  __IM  uint32_t  CH2_AL2_READ_ADDR;            /*!< (@ 0x000000A8) Alias for channel 2 READ_ADDR register                     */
-  __IM  uint32_t  CH2_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x000000AC) Alias for channel 2 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH2_AL3_CTRL;                 /*!< (@ 0x000000B0) Alias for channel 2 CTRL register                          */
-  __IM  uint32_t  CH2_AL3_WRITE_ADDR;           /*!< (@ 0x000000B4) Alias for channel 2 WRITE_ADDR register                    */
-  __IM  uint32_t  CH2_AL3_TRANS_COUNT;          /*!< (@ 0x000000B8) Alias for channel 2 TRANS_COUNT register                   */
-  __IM  uint32_t  CH2_AL3_READ_ADDR_TRIG;       /*!< (@ 0x000000BC) Alias for channel 2 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH3_READ_ADDR;                /*!< (@ 0x000000C0) DMA Channel 3 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH3_WRITE_ADDR;               /*!< (@ 0x000000C4) DMA Channel 3 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH3_TRANS_COUNT;              /*!< (@ 0x000000C8) DMA Channel 3 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH3_CTRL_TRIG;                /*!< (@ 0x000000CC) DMA Channel 3 Control and Status                           */
-  __IM  uint32_t  CH3_AL1_CTRL;                 /*!< (@ 0x000000D0) Alias for channel 3 CTRL register                          */
-  __IM  uint32_t  CH3_AL1_READ_ADDR;            /*!< (@ 0x000000D4) Alias for channel 3 READ_ADDR register                     */
-  __IM  uint32_t  CH3_AL1_WRITE_ADDR;           /*!< (@ 0x000000D8) Alias for channel 3 WRITE_ADDR register                    */
-  __IM  uint32_t  CH3_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x000000DC) Alias for channel 3 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH3_AL2_CTRL;                 /*!< (@ 0x000000E0) Alias for channel 3 CTRL register                          */
-  __IM  uint32_t  CH3_AL2_TRANS_COUNT;          /*!< (@ 0x000000E4) Alias for channel 3 TRANS_COUNT register                   */
-  __IM  uint32_t  CH3_AL2_READ_ADDR;            /*!< (@ 0x000000E8) Alias for channel 3 READ_ADDR register                     */
-  __IM  uint32_t  CH3_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x000000EC) Alias for channel 3 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH3_AL3_CTRL;                 /*!< (@ 0x000000F0) Alias for channel 3 CTRL register                          */
-  __IM  uint32_t  CH3_AL3_WRITE_ADDR;           /*!< (@ 0x000000F4) Alias for channel 3 WRITE_ADDR register                    */
-  __IM  uint32_t  CH3_AL3_TRANS_COUNT;          /*!< (@ 0x000000F8) Alias for channel 3 TRANS_COUNT register                   */
-  __IM  uint32_t  CH3_AL3_READ_ADDR_TRIG;       /*!< (@ 0x000000FC) Alias for channel 3 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH4_READ_ADDR;                /*!< (@ 0x00000100) DMA Channel 4 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH4_WRITE_ADDR;               /*!< (@ 0x00000104) DMA Channel 4 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH4_TRANS_COUNT;              /*!< (@ 0x00000108) DMA Channel 4 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH4_CTRL_TRIG;                /*!< (@ 0x0000010C) DMA Channel 4 Control and Status                           */
-  __IM  uint32_t  CH4_AL1_CTRL;                 /*!< (@ 0x00000110) Alias for channel 4 CTRL register                          */
-  __IM  uint32_t  CH4_AL1_READ_ADDR;            /*!< (@ 0x00000114) Alias for channel 4 READ_ADDR register                     */
-  __IM  uint32_t  CH4_AL1_WRITE_ADDR;           /*!< (@ 0x00000118) Alias for channel 4 WRITE_ADDR register                    */
-  __IM  uint32_t  CH4_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000011C) Alias for channel 4 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH4_AL2_CTRL;                 /*!< (@ 0x00000120) Alias for channel 4 CTRL register                          */
-  __IM  uint32_t  CH4_AL2_TRANS_COUNT;          /*!< (@ 0x00000124) Alias for channel 4 TRANS_COUNT register                   */
-  __IM  uint32_t  CH4_AL2_READ_ADDR;            /*!< (@ 0x00000128) Alias for channel 4 READ_ADDR register                     */
-  __IM  uint32_t  CH4_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000012C) Alias for channel 4 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH4_AL3_CTRL;                 /*!< (@ 0x00000130) Alias for channel 4 CTRL register                          */
-  __IM  uint32_t  CH4_AL3_WRITE_ADDR;           /*!< (@ 0x00000134) Alias for channel 4 WRITE_ADDR register                    */
-  __IM  uint32_t  CH4_AL3_TRANS_COUNT;          /*!< (@ 0x00000138) Alias for channel 4 TRANS_COUNT register                   */
-  __IM  uint32_t  CH4_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000013C) Alias for channel 4 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH5_READ_ADDR;                /*!< (@ 0x00000140) DMA Channel 5 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH5_WRITE_ADDR;               /*!< (@ 0x00000144) DMA Channel 5 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH5_TRANS_COUNT;              /*!< (@ 0x00000148) DMA Channel 5 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH5_CTRL_TRIG;                /*!< (@ 0x0000014C) DMA Channel 5 Control and Status                           */
-  __IM  uint32_t  CH5_AL1_CTRL;                 /*!< (@ 0x00000150) Alias for channel 5 CTRL register                          */
-  __IM  uint32_t  CH5_AL1_READ_ADDR;            /*!< (@ 0x00000154) Alias for channel 5 READ_ADDR register                     */
-  __IM  uint32_t  CH5_AL1_WRITE_ADDR;           /*!< (@ 0x00000158) Alias for channel 5 WRITE_ADDR register                    */
-  __IM  uint32_t  CH5_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000015C) Alias for channel 5 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH5_AL2_CTRL;                 /*!< (@ 0x00000160) Alias for channel 5 CTRL register                          */
-  __IM  uint32_t  CH5_AL2_TRANS_COUNT;          /*!< (@ 0x00000164) Alias for channel 5 TRANS_COUNT register                   */
-  __IM  uint32_t  CH5_AL2_READ_ADDR;            /*!< (@ 0x00000168) Alias for channel 5 READ_ADDR register                     */
-  __IM  uint32_t  CH5_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000016C) Alias for channel 5 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH5_AL3_CTRL;                 /*!< (@ 0x00000170) Alias for channel 5 CTRL register                          */
-  __IM  uint32_t  CH5_AL3_WRITE_ADDR;           /*!< (@ 0x00000174) Alias for channel 5 WRITE_ADDR register                    */
-  __IM  uint32_t  CH5_AL3_TRANS_COUNT;          /*!< (@ 0x00000178) Alias for channel 5 TRANS_COUNT register                   */
-  __IM  uint32_t  CH5_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000017C) Alias for channel 5 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH6_READ_ADDR;                /*!< (@ 0x00000180) DMA Channel 6 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH6_WRITE_ADDR;               /*!< (@ 0x00000184) DMA Channel 6 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH6_TRANS_COUNT;              /*!< (@ 0x00000188) DMA Channel 6 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH6_CTRL_TRIG;                /*!< (@ 0x0000018C) DMA Channel 6 Control and Status                           */
-  __IM  uint32_t  CH6_AL1_CTRL;                 /*!< (@ 0x00000190) Alias for channel 6 CTRL register                          */
-  __IM  uint32_t  CH6_AL1_READ_ADDR;            /*!< (@ 0x00000194) Alias for channel 6 READ_ADDR register                     */
-  __IM  uint32_t  CH6_AL1_WRITE_ADDR;           /*!< (@ 0x00000198) Alias for channel 6 WRITE_ADDR register                    */
-  __IM  uint32_t  CH6_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000019C) Alias for channel 6 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH6_AL2_CTRL;                 /*!< (@ 0x000001A0) Alias for channel 6 CTRL register                          */
-  __IM  uint32_t  CH6_AL2_TRANS_COUNT;          /*!< (@ 0x000001A4) Alias for channel 6 TRANS_COUNT register                   */
-  __IM  uint32_t  CH6_AL2_READ_ADDR;            /*!< (@ 0x000001A8) Alias for channel 6 READ_ADDR register                     */
-  __IM  uint32_t  CH6_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x000001AC) Alias for channel 6 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH6_AL3_CTRL;                 /*!< (@ 0x000001B0) Alias for channel 6 CTRL register                          */
-  __IM  uint32_t  CH6_AL3_WRITE_ADDR;           /*!< (@ 0x000001B4) Alias for channel 6 WRITE_ADDR register                    */
-  __IM  uint32_t  CH6_AL3_TRANS_COUNT;          /*!< (@ 0x000001B8) Alias for channel 6 TRANS_COUNT register                   */
-  __IM  uint32_t  CH6_AL3_READ_ADDR_TRIG;       /*!< (@ 0x000001BC) Alias for channel 6 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH7_READ_ADDR;                /*!< (@ 0x000001C0) DMA Channel 7 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH7_WRITE_ADDR;               /*!< (@ 0x000001C4) DMA Channel 7 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH7_TRANS_COUNT;              /*!< (@ 0x000001C8) DMA Channel 7 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH7_CTRL_TRIG;                /*!< (@ 0x000001CC) DMA Channel 7 Control and Status                           */
-  __IM  uint32_t  CH7_AL1_CTRL;                 /*!< (@ 0x000001D0) Alias for channel 7 CTRL register                          */
-  __IM  uint32_t  CH7_AL1_READ_ADDR;            /*!< (@ 0x000001D4) Alias for channel 7 READ_ADDR register                     */
-  __IM  uint32_t  CH7_AL1_WRITE_ADDR;           /*!< (@ 0x000001D8) Alias for channel 7 WRITE_ADDR register                    */
-  __IM  uint32_t  CH7_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x000001DC) Alias for channel 7 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH7_AL2_CTRL;                 /*!< (@ 0x000001E0) Alias for channel 7 CTRL register                          */
-  __IM  uint32_t  CH7_AL2_TRANS_COUNT;          /*!< (@ 0x000001E4) Alias for channel 7 TRANS_COUNT register                   */
-  __IM  uint32_t  CH7_AL2_READ_ADDR;            /*!< (@ 0x000001E8) Alias for channel 7 READ_ADDR register                     */
-  __IM  uint32_t  CH7_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x000001EC) Alias for channel 7 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH7_AL3_CTRL;                 /*!< (@ 0x000001F0) Alias for channel 7 CTRL register                          */
-  __IM  uint32_t  CH7_AL3_WRITE_ADDR;           /*!< (@ 0x000001F4) Alias for channel 7 WRITE_ADDR register                    */
-  __IM  uint32_t  CH7_AL3_TRANS_COUNT;          /*!< (@ 0x000001F8) Alias for channel 7 TRANS_COUNT register                   */
-  __IM  uint32_t  CH7_AL3_READ_ADDR_TRIG;       /*!< (@ 0x000001FC) Alias for channel 7 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH8_READ_ADDR;                /*!< (@ 0x00000200) DMA Channel 8 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH8_WRITE_ADDR;               /*!< (@ 0x00000204) DMA Channel 8 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH8_TRANS_COUNT;              /*!< (@ 0x00000208) DMA Channel 8 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH8_CTRL_TRIG;                /*!< (@ 0x0000020C) DMA Channel 8 Control and Status                           */
-  __IM  uint32_t  CH8_AL1_CTRL;                 /*!< (@ 0x00000210) Alias for channel 8 CTRL register                          */
-  __IM  uint32_t  CH8_AL1_READ_ADDR;            /*!< (@ 0x00000214) Alias for channel 8 READ_ADDR register                     */
-  __IM  uint32_t  CH8_AL1_WRITE_ADDR;           /*!< (@ 0x00000218) Alias for channel 8 WRITE_ADDR register                    */
-  __IM  uint32_t  CH8_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000021C) Alias for channel 8 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH8_AL2_CTRL;                 /*!< (@ 0x00000220) Alias for channel 8 CTRL register                          */
-  __IM  uint32_t  CH8_AL2_TRANS_COUNT;          /*!< (@ 0x00000224) Alias for channel 8 TRANS_COUNT register                   */
-  __IM  uint32_t  CH8_AL2_READ_ADDR;            /*!< (@ 0x00000228) Alias for channel 8 READ_ADDR register                     */
-  __IM  uint32_t  CH8_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000022C) Alias for channel 8 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH8_AL3_CTRL;                 /*!< (@ 0x00000230) Alias for channel 8 CTRL register                          */
-  __IM  uint32_t  CH8_AL3_WRITE_ADDR;           /*!< (@ 0x00000234) Alias for channel 8 WRITE_ADDR register                    */
-  __IM  uint32_t  CH8_AL3_TRANS_COUNT;          /*!< (@ 0x00000238) Alias for channel 8 TRANS_COUNT register                   */
-  __IM  uint32_t  CH8_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000023C) Alias for channel 8 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH9_READ_ADDR;                /*!< (@ 0x00000240) DMA Channel 9 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH9_WRITE_ADDR;               /*!< (@ 0x00000244) DMA Channel 9 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH9_TRANS_COUNT;              /*!< (@ 0x00000248) DMA Channel 9 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tran                                               */
-  __IOM uint32_t  CH9_CTRL_TRIG;                /*!< (@ 0x0000024C) DMA Channel 9 Control and Status                           */
-  __IM  uint32_t  CH9_AL1_CTRL;                 /*!< (@ 0x00000250) Alias for channel 9 CTRL register                          */
-  __IM  uint32_t  CH9_AL1_READ_ADDR;            /*!< (@ 0x00000254) Alias for channel 9 READ_ADDR register                     */
-  __IM  uint32_t  CH9_AL1_WRITE_ADDR;           /*!< (@ 0x00000258) Alias for channel 9 WRITE_ADDR register                    */
-  __IM  uint32_t  CH9_AL1_TRANS_COUNT_TRIG;     /*!< (@ 0x0000025C) Alias for channel 9 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH9_AL2_CTRL;                 /*!< (@ 0x00000260) Alias for channel 9 CTRL register                          */
-  __IM  uint32_t  CH9_AL2_TRANS_COUNT;          /*!< (@ 0x00000264) Alias for channel 9 TRANS_COUNT register                   */
-  __IM  uint32_t  CH9_AL2_READ_ADDR;            /*!< (@ 0x00000268) Alias for channel 9 READ_ADDR register                     */
-  __IM  uint32_t  CH9_AL2_WRITE_ADDR_TRIG;      /*!< (@ 0x0000026C) Alias for channel 9 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH9_AL3_CTRL;                 /*!< (@ 0x00000270) Alias for channel 9 CTRL register                          */
-  __IM  uint32_t  CH9_AL3_WRITE_ADDR;           /*!< (@ 0x00000274) Alias for channel 9 WRITE_ADDR register                    */
-  __IM  uint32_t  CH9_AL3_TRANS_COUNT;          /*!< (@ 0x00000278) Alias for channel 9 TRANS_COUNT register                   */
-  __IM  uint32_t  CH9_AL3_READ_ADDR_TRIG;       /*!< (@ 0x0000027C) Alias for channel 9 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH10_READ_ADDR;               /*!< (@ 0x00000280) DMA Channel 10 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH10_WRITE_ADDR;              /*!< (@ 0x00000284) DMA Channel 10 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH10_TRANS_COUNT;             /*!< (@ 0x00000288) DMA Channel 10 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tra                                                */
-  __IOM uint32_t  CH10_CTRL_TRIG;               /*!< (@ 0x0000028C) DMA Channel 10 Control and Status                          */
-  __IM  uint32_t  CH10_AL1_CTRL;                /*!< (@ 0x00000290) Alias for channel 10 CTRL register                         */
-  __IM  uint32_t  CH10_AL1_READ_ADDR;           /*!< (@ 0x00000294) Alias for channel 10 READ_ADDR register                    */
-  __IM  uint32_t  CH10_AL1_WRITE_ADDR;          /*!< (@ 0x00000298) Alias for channel 10 WRITE_ADDR register                   */
-  __IM  uint32_t  CH10_AL1_TRANS_COUNT_TRIG;    /*!< (@ 0x0000029C) Alias for channel 10 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH10_AL2_CTRL;                /*!< (@ 0x000002A0) Alias for channel 10 CTRL register                         */
-  __IM  uint32_t  CH10_AL2_TRANS_COUNT;         /*!< (@ 0x000002A4) Alias for channel 10 TRANS_COUNT register                  */
-  __IM  uint32_t  CH10_AL2_READ_ADDR;           /*!< (@ 0x000002A8) Alias for channel 10 READ_ADDR register                    */
-  __IM  uint32_t  CH10_AL2_WRITE_ADDR_TRIG;     /*!< (@ 0x000002AC) Alias for channel 10 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH10_AL3_CTRL;                /*!< (@ 0x000002B0) Alias for channel 10 CTRL register                         */
-  __IM  uint32_t  CH10_AL3_WRITE_ADDR;          /*!< (@ 0x000002B4) Alias for channel 10 WRITE_ADDR register                   */
-  __IM  uint32_t  CH10_AL3_TRANS_COUNT;         /*!< (@ 0x000002B8) Alias for channel 10 TRANS_COUNT register                  */
-  __IM  uint32_t  CH10_AL3_READ_ADDR_TRIG;      /*!< (@ 0x000002BC) Alias for channel 10 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH11_READ_ADDR;               /*!< (@ 0x000002C0) DMA Channel 11 Read Address pointer
-                                                                    This register updates automatically each
-                                                                    time a read completes. The current value
-                                                                    is the next address to be read by this channel.            */
-  __IOM uint32_t  CH11_WRITE_ADDR;              /*!< (@ 0x000002C4) DMA Channel 11 Write Address pointer
-                                                                    This register updates automatically each
-                                                                    time a write completes. The current value
-                                                                    is the next address to be written by this
-                                                                    channel.                                                   */
-  __IOM uint32_t  CH11_TRANS_COUNT;             /*!< (@ 0x000002C8) DMA Channel 11 Transfer Count
-                                                                    Program the number of bus transfers a channel
-                                                                    will perform before halting. Note that,
-                                                                    if transfers are larger than one byte in
-                                                                    size, this is not equal to the number of
-                                                                    bytes transferred (see CTRL_DATA_SIZE).
-
-                                                                    When the channel is active, reading this
-                                                                    register shows the number of transfers remaining,
-                                                                    updating automatically each time a write
-                                                                    transfer completes.
-
-                                                                    Writing this register sets the RELOAD value
-                                                                    for the tra                                                */
-  __IOM uint32_t  CH11_CTRL_TRIG;               /*!< (@ 0x000002CC) DMA Channel 11 Control and Status                          */
-  __IM  uint32_t  CH11_AL1_CTRL;                /*!< (@ 0x000002D0) Alias for channel 11 CTRL register                         */
-  __IM  uint32_t  CH11_AL1_READ_ADDR;           /*!< (@ 0x000002D4) Alias for channel 11 READ_ADDR register                    */
-  __IM  uint32_t  CH11_AL1_WRITE_ADDR;          /*!< (@ 0x000002D8) Alias for channel 11 WRITE_ADDR register                   */
-  __IM  uint32_t  CH11_AL1_TRANS_COUNT_TRIG;    /*!< (@ 0x000002DC) Alias for channel 11 TRANS_COUNT register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH11_AL2_CTRL;                /*!< (@ 0x000002E0) Alias for channel 11 CTRL register                         */
-  __IM  uint32_t  CH11_AL2_TRANS_COUNT;         /*!< (@ 0x000002E4) Alias for channel 11 TRANS_COUNT register                  */
-  __IM  uint32_t  CH11_AL2_READ_ADDR;           /*!< (@ 0x000002E8) Alias for channel 11 READ_ADDR register                    */
-  __IM  uint32_t  CH11_AL2_WRITE_ADDR_TRIG;     /*!< (@ 0x000002EC) Alias for channel 11 WRITE_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
-  __IM  uint32_t  CH11_AL3_CTRL;                /*!< (@ 0x000002F0) Alias for channel 11 CTRL register                         */
-  __IM  uint32_t  CH11_AL3_WRITE_ADDR;          /*!< (@ 0x000002F4) Alias for channel 11 WRITE_ADDR register                   */
-  __IM  uint32_t  CH11_AL3_TRANS_COUNT;         /*!< (@ 0x000002F8) Alias for channel 11 TRANS_COUNT register                  */
-  __IM  uint32_t  CH11_AL3_READ_ADDR_TRIG;      /*!< (@ 0x000002FC) Alias for channel 11 READ_ADDR register
-                                                                    This is a trigger register (0xc). Writing
-                                                                    a nonzero value will
-                                                                    reload the channel counter and start the
-                                                                    channel.                                                   */
+typedef struct {                                /*!< DMA Structure                                                             */
+  __IOM uint32_t  CH0_READ_ADDR;                /*!< DMA Channel 0 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH0_WRITE_ADDR;               /*!< DMA Channel 0 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH0_TRANS_COUNT;              /*!< DMA Channel 0 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH0_CTRL_TRIG;                /*!< DMA Channel 0 Control and Status                                          */
+  __IOM uint32_t  CH0_AL1_CTRL;                 /*!< Alias for channel 0 CTRL register                                         */
+  __IOM uint32_t  CH0_AL1_READ_ADDR;            /*!< Alias for channel 0 READ_ADDR register                                    */
+  __IOM uint32_t  CH0_AL1_WRITE_ADDR;           /*!< Alias for channel 0 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH0_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 0 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH0_AL2_CTRL;                 /*!< Alias for channel 0 CTRL register                                         */
+  __IOM uint32_t  CH0_AL2_TRANS_COUNT;          /*!< Alias for channel 0 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH0_AL2_READ_ADDR;            /*!< Alias for channel 0 READ_ADDR register                                    */
+  __IOM uint32_t  CH0_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 0 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH0_AL3_CTRL;                 /*!< Alias for channel 0 CTRL register                                         */
+  __IOM uint32_t  CH0_AL3_WRITE_ADDR;           /*!< Alias for channel 0 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH0_AL3_TRANS_COUNT;          /*!< Alias for channel 0 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH0_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 0 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH1_READ_ADDR;                /*!< DMA Channel 1 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH1_WRITE_ADDR;               /*!< DMA Channel 1 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH1_TRANS_COUNT;              /*!< DMA Channel 1 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH1_CTRL_TRIG;                /*!< DMA Channel 1 Control and Status                                          */
+  __IOM uint32_t  CH1_AL1_CTRL;                 /*!< Alias for channel 1 CTRL register                                         */
+  __IOM uint32_t  CH1_AL1_READ_ADDR;            /*!< Alias for channel 1 READ_ADDR register                                    */
+  __IOM uint32_t  CH1_AL1_WRITE_ADDR;           /*!< Alias for channel 1 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH1_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 1 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH1_AL2_CTRL;                 /*!< Alias for channel 1 CTRL register                                         */
+  __IOM uint32_t  CH1_AL2_TRANS_COUNT;          /*!< Alias for channel 1 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH1_AL2_READ_ADDR;            /*!< Alias for channel 1 READ_ADDR register                                    */
+  __IOM uint32_t  CH1_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 1 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH1_AL3_CTRL;                 /*!< Alias for channel 1 CTRL register                                         */
+  __IOM uint32_t  CH1_AL3_WRITE_ADDR;           /*!< Alias for channel 1 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH1_AL3_TRANS_COUNT;          /*!< Alias for channel 1 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH1_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 1 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH2_READ_ADDR;                /*!< DMA Channel 2 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH2_WRITE_ADDR;               /*!< DMA Channel 2 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH2_TRANS_COUNT;              /*!< DMA Channel 2 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH2_CTRL_TRIG;                /*!< DMA Channel 2 Control and Status                                          */
+  __IOM uint32_t  CH2_AL1_CTRL;                 /*!< Alias for channel 2 CTRL register                                         */
+  __IOM uint32_t  CH2_AL1_READ_ADDR;            /*!< Alias for channel 2 READ_ADDR register                                    */
+  __IOM uint32_t  CH2_AL1_WRITE_ADDR;           /*!< Alias for channel 2 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH2_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 2 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH2_AL2_CTRL;                 /*!< Alias for channel 2 CTRL register                                         */
+  __IOM uint32_t  CH2_AL2_TRANS_COUNT;          /*!< Alias for channel 2 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH2_AL2_READ_ADDR;            /*!< Alias for channel 2 READ_ADDR register                                    */
+  __IOM uint32_t  CH2_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 2 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH2_AL3_CTRL;                 /*!< Alias for channel 2 CTRL register                                         */
+  __IOM uint32_t  CH2_AL3_WRITE_ADDR;           /*!< Alias for channel 2 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH2_AL3_TRANS_COUNT;          /*!< Alias for channel 2 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH2_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 2 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH3_READ_ADDR;                /*!< DMA Channel 3 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH3_WRITE_ADDR;               /*!< DMA Channel 3 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH3_TRANS_COUNT;              /*!< DMA Channel 3 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH3_CTRL_TRIG;                /*!< DMA Channel 3 Control and Status                                          */
+  __IOM uint32_t  CH3_AL1_CTRL;                 /*!< Alias for channel 3 CTRL register                                         */
+  __IOM uint32_t  CH3_AL1_READ_ADDR;            /*!< Alias for channel 3 READ_ADDR register                                    */
+  __IOM uint32_t  CH3_AL1_WRITE_ADDR;           /*!< Alias for channel 3 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH3_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 3 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH3_AL2_CTRL;                 /*!< Alias for channel 3 CTRL register                                         */
+  __IOM uint32_t  CH3_AL2_TRANS_COUNT;          /*!< Alias for channel 3 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH3_AL2_READ_ADDR;            /*!< Alias for channel 3 READ_ADDR register                                    */
+  __IOM uint32_t  CH3_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 3 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH3_AL3_CTRL;                 /*!< Alias for channel 3 CTRL register                                         */
+  __IOM uint32_t  CH3_AL3_WRITE_ADDR;           /*!< Alias for channel 3 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH3_AL3_TRANS_COUNT;          /*!< Alias for channel 3 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH3_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 3 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH4_READ_ADDR;                /*!< DMA Channel 4 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH4_WRITE_ADDR;               /*!< DMA Channel 4 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH4_TRANS_COUNT;              /*!< DMA Channel 4 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH4_CTRL_TRIG;                /*!< DMA Channel 4 Control and Status                                          */
+  __IOM uint32_t  CH4_AL1_CTRL;                 /*!< Alias for channel 4 CTRL register                                         */
+  __IOM uint32_t  CH4_AL1_READ_ADDR;            /*!< Alias for channel 4 READ_ADDR register                                    */
+  __IOM uint32_t  CH4_AL1_WRITE_ADDR;           /*!< Alias for channel 4 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH4_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 4 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH4_AL2_CTRL;                 /*!< Alias for channel 4 CTRL register                                         */
+  __IOM uint32_t  CH4_AL2_TRANS_COUNT;          /*!< Alias for channel 4 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH4_AL2_READ_ADDR;            /*!< Alias for channel 4 READ_ADDR register                                    */
+  __IOM uint32_t  CH4_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 4 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH4_AL3_CTRL;                 /*!< Alias for channel 4 CTRL register                                         */
+  __IOM uint32_t  CH4_AL3_WRITE_ADDR;           /*!< Alias for channel 4 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH4_AL3_TRANS_COUNT;          /*!< Alias for channel 4 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH4_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 4 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH5_READ_ADDR;                /*!< DMA Channel 5 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH5_WRITE_ADDR;               /*!< DMA Channel 5 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH5_TRANS_COUNT;              /*!< DMA Channel 5 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH5_CTRL_TRIG;                /*!< DMA Channel 5 Control and Status                                          */
+  __IOM uint32_t  CH5_AL1_CTRL;                 /*!< Alias for channel 5 CTRL register                                         */
+  __IOM uint32_t  CH5_AL1_READ_ADDR;            /*!< Alias for channel 5 READ_ADDR register                                    */
+  __IOM uint32_t  CH5_AL1_WRITE_ADDR;           /*!< Alias for channel 5 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH5_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 5 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH5_AL2_CTRL;                 /*!< Alias for channel 5 CTRL register                                         */
+  __IOM uint32_t  CH5_AL2_TRANS_COUNT;          /*!< Alias for channel 5 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH5_AL2_READ_ADDR;            /*!< Alias for channel 5 READ_ADDR register                                    */
+  __IOM uint32_t  CH5_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 5 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH5_AL3_CTRL;                 /*!< Alias for channel 5 CTRL register                                         */
+  __IOM uint32_t  CH5_AL3_WRITE_ADDR;           /*!< Alias for channel 5 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH5_AL3_TRANS_COUNT;          /*!< Alias for channel 5 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH5_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 5 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH6_READ_ADDR;                /*!< DMA Channel 6 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH6_WRITE_ADDR;               /*!< DMA Channel 6 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH6_TRANS_COUNT;              /*!< DMA Channel 6 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH6_CTRL_TRIG;                /*!< DMA Channel 6 Control and Status                                          */
+  __IOM uint32_t  CH6_AL1_CTRL;                 /*!< Alias for channel 6 CTRL register                                         */
+  __IOM uint32_t  CH6_AL1_READ_ADDR;            /*!< Alias for channel 6 READ_ADDR register                                    */
+  __IOM uint32_t  CH6_AL1_WRITE_ADDR;           /*!< Alias for channel 6 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH6_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 6 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH6_AL2_CTRL;                 /*!< Alias for channel 6 CTRL register                                         */
+  __IOM uint32_t  CH6_AL2_TRANS_COUNT;          /*!< Alias for channel 6 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH6_AL2_READ_ADDR;            /*!< Alias for channel 6 READ_ADDR register                                    */
+  __IOM uint32_t  CH6_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 6 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH6_AL3_CTRL;                 /*!< Alias for channel 6 CTRL register                                         */
+  __IOM uint32_t  CH6_AL3_WRITE_ADDR;           /*!< Alias for channel 6 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH6_AL3_TRANS_COUNT;          /*!< Alias for channel 6 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH6_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 6 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH7_READ_ADDR;                /*!< DMA Channel 7 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH7_WRITE_ADDR;               /*!< DMA Channel 7 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH7_TRANS_COUNT;              /*!< DMA Channel 7 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH7_CTRL_TRIG;                /*!< DMA Channel 7 Control and Status                                          */
+  __IOM uint32_t  CH7_AL1_CTRL;                 /*!< Alias for channel 7 CTRL register                                         */
+  __IOM uint32_t  CH7_AL1_READ_ADDR;            /*!< Alias for channel 7 READ_ADDR register                                    */
+  __IOM uint32_t  CH7_AL1_WRITE_ADDR;           /*!< Alias for channel 7 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH7_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 7 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH7_AL2_CTRL;                 /*!< Alias for channel 7 CTRL register                                         */
+  __IOM uint32_t  CH7_AL2_TRANS_COUNT;          /*!< Alias for channel 7 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH7_AL2_READ_ADDR;            /*!< Alias for channel 7 READ_ADDR register                                    */
+  __IOM uint32_t  CH7_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 7 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH7_AL3_CTRL;                 /*!< Alias for channel 7 CTRL register                                         */
+  __IOM uint32_t  CH7_AL3_WRITE_ADDR;           /*!< Alias for channel 7 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH7_AL3_TRANS_COUNT;          /*!< Alias for channel 7 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH7_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 7 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH8_READ_ADDR;                /*!< DMA Channel 8 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH8_WRITE_ADDR;               /*!< DMA Channel 8 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH8_TRANS_COUNT;              /*!< DMA Channel 8 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH8_CTRL_TRIG;                /*!< DMA Channel 8 Control and Status                                          */
+  __IOM uint32_t  CH8_AL1_CTRL;                 /*!< Alias for channel 8 CTRL register                                         */
+  __IOM uint32_t  CH8_AL1_READ_ADDR;            /*!< Alias for channel 8 READ_ADDR register                                    */
+  __IOM uint32_t  CH8_AL1_WRITE_ADDR;           /*!< Alias for channel 8 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH8_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 8 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH8_AL2_CTRL;                 /*!< Alias for channel 8 CTRL register                                         */
+  __IOM uint32_t  CH8_AL2_TRANS_COUNT;          /*!< Alias for channel 8 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH8_AL2_READ_ADDR;            /*!< Alias for channel 8 READ_ADDR register                                    */
+  __IOM uint32_t  CH8_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 8 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH8_AL3_CTRL;                 /*!< Alias for channel 8 CTRL register                                         */
+  __IOM uint32_t  CH8_AL3_WRITE_ADDR;           /*!< Alias for channel 8 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH8_AL3_TRANS_COUNT;          /*!< Alias for channel 8 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH8_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 8 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH9_READ_ADDR;                /*!< DMA Channel 9 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH9_WRITE_ADDR;               /*!< DMA Channel 9 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH9_TRANS_COUNT;              /*!< DMA Channel 9 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH9_CTRL_TRIG;                /*!< DMA Channel 9 Control and Status                                          */
+  __IOM uint32_t  CH9_AL1_CTRL;                 /*!< Alias for channel 9 CTRL register                                         */
+  __IOM uint32_t  CH9_AL1_READ_ADDR;            /*!< Alias for channel 9 READ_ADDR register                                    */
+  __IOM uint32_t  CH9_AL1_WRITE_ADDR;           /*!< Alias for channel 9 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH9_AL1_TRANS_COUNT_TRIG;     /*!< Alias for channel 9 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH9_AL2_CTRL;                 /*!< Alias for channel 9 CTRL register                                         */
+  __IOM uint32_t  CH9_AL2_TRANS_COUNT;          /*!< Alias for channel 9 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH9_AL2_READ_ADDR;            /*!< Alias for channel 9 READ_ADDR register                                    */
+  __IOM uint32_t  CH9_AL2_WRITE_ADDR_TRIG;      /*!< Alias for channel 9 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH9_AL3_CTRL;                 /*!< Alias for channel 9 CTRL register                                         */
+  __IOM uint32_t  CH9_AL3_WRITE_ADDR;           /*!< Alias for channel 9 WRITE_ADDR register                                   */
+  __IOM uint32_t  CH9_AL3_TRANS_COUNT;          /*!< Alias for channel 9 TRANS_COUNT register                                  */
+  __IOM uint32_t  CH9_AL3_READ_ADDR_TRIG;       /*!< Alias for channel 9 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH10_READ_ADDR;               /*!< DMA Channel 10 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH10_WRITE_ADDR;              /*!< DMA Channel 10 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH10_TRANS_COUNT;             /*!< DMA Channel 10 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH10_CTRL_TRIG;               /*!< DMA Channel 10 Control and Status                                         */
+  __IOM uint32_t  CH10_AL1_CTRL;                /*!< Alias for channel 10 CTRL register                                        */
+  __IOM uint32_t  CH10_AL1_READ_ADDR;           /*!< Alias for channel 10 READ_ADDR register                                   */
+  __IOM uint32_t  CH10_AL1_WRITE_ADDR;          /*!< Alias for channel 10 WRITE_ADDR register                                  */
+  __IOM uint32_t  CH10_AL1_TRANS_COUNT_TRIG;    /*!< Alias for channel 10 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH10_AL2_CTRL;                /*!< Alias for channel 10 CTRL register                                        */
+  __IOM uint32_t  CH10_AL2_TRANS_COUNT;         /*!< Alias for channel 10 TRANS_COUNT register                                 */
+  __IOM uint32_t  CH10_AL2_READ_ADDR;           /*!< Alias for channel 10 READ_ADDR register                                   */
+  __IOM uint32_t  CH10_AL2_WRITE_ADDR_TRIG;     /*!< Alias for channel 10 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH10_AL3_CTRL;                /*!< Alias for channel 10 CTRL register                                        */
+  __IOM uint32_t  CH10_AL3_WRITE_ADDR;          /*!< Alias for channel 10 WRITE_ADDR register                                  */
+  __IOM uint32_t  CH10_AL3_TRANS_COUNT;         /*!< Alias for channel 10 TRANS_COUNT register                                 */
+  __IOM uint32_t  CH10_AL3_READ_ADDR_TRIG;      /*!< Alias for channel 10 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH11_READ_ADDR;               /*!< DMA Channel 11 Read Address pointer
+                                                     This register updates automatically each time a read completes.
+                                                     The current value is the next address to be read by this
+                                                     channel.                                                                  */
+  __IOM uint32_t  CH11_WRITE_ADDR;              /*!< DMA Channel 11 Write Address pointer
+                                                     This register updates automatically each time a write completes.
+                                                     The current value is the next address to be written by
+                                                     this channel.                                                             */
+  __IOM uint32_t  CH11_TRANS_COUNT;             /*!< DMA Channel 11 Transfer Count
+                                                     Program the number of bus transfers a channel will perform
+                                                     before halting. Note that, if transfers are larger than
+                                                     one byte in size, this is not equal to the number of bytes
+                                                     transferred (see CTRL_DATA_SIZE).
+                                                     
+                                                     When the channel is active, reading this register shows
+                                                     the number of transfers remaining, updating automatically
+                                                     each time a write transfer completes.
+                                                     
+                                                     Writing this register sets the RELOAD value for the transfer
+                                                     counter. Each time this channel is triggered, the RELOAD
+                                                     value is copied into the live transfer counter. The channel
+                                                     can be started multiple times, and will perform the same
+                                                     number of transfers each time, as programmed by most recent
+                                                     write.
+                                                     
+                                                     The RELOAD value can be observed at CHx_DBG_TCR. If TRANS_COUNT
+                                                     is used as a trigger, the written value is used immediately
+                                                     as the length of the new transfer sequence, as well as
+                                                     being written to RELOAD.                                                  */
+  __IOM uint32_t  CH11_CTRL_TRIG;               /*!< DMA Channel 11 Control and Status                                         */
+  __IOM uint32_t  CH11_AL1_CTRL;                /*!< Alias for channel 11 CTRL register                                        */
+  __IOM uint32_t  CH11_AL1_READ_ADDR;           /*!< Alias for channel 11 READ_ADDR register                                   */
+  __IOM uint32_t  CH11_AL1_WRITE_ADDR;          /*!< Alias for channel 11 WRITE_ADDR register                                  */
+  __IOM uint32_t  CH11_AL1_TRANS_COUNT_TRIG;    /*!< Alias for channel 11 TRANS_COUNT register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH11_AL2_CTRL;                /*!< Alias for channel 11 CTRL register                                        */
+  __IOM uint32_t  CH11_AL2_TRANS_COUNT;         /*!< Alias for channel 11 TRANS_COUNT register                                 */
+  __IOM uint32_t  CH11_AL2_READ_ADDR;           /*!< Alias for channel 11 READ_ADDR register                                   */
+  __IOM uint32_t  CH11_AL2_WRITE_ADDR_TRIG;     /*!< Alias for channel 11 WRITE_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
+  __IOM uint32_t  CH11_AL3_CTRL;                /*!< Alias for channel 11 CTRL register                                        */
+  __IOM uint32_t  CH11_AL3_WRITE_ADDR;          /*!< Alias for channel 11 WRITE_ADDR register                                  */
+  __IOM uint32_t  CH11_AL3_TRANS_COUNT;         /*!< Alias for channel 11 TRANS_COUNT register                                 */
+  __IOM uint32_t  CH11_AL3_READ_ADDR_TRIG;      /*!< Alias for channel 11 READ_ADDR register
+                                                     This is a trigger register (0xc). Writing a nonzero value
+                                                     will
+                                                     reload the channel counter and start the channel.                         */
   __IM  uint32_t  RESERVED[64];
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000400) Interrupt Status (raw)                                     */
-  __IOM uint32_t  INTE0;                        /*!< (@ 0x00000404) Interrupt Enables for IRQ 0                                */
-  __IOM uint32_t  INTF0;                        /*!< (@ 0x00000408) Force Interrupts                                           */
-  __IOM uint32_t  INTS0;                        /*!< (@ 0x0000040C) Interrupt Status for IRQ 0                                 */
+  __IOM uint32_t  INTR;                         /*!< Interrupt Status (raw)                                                    */
+  __IOM uint32_t  INTE0;                        /*!< Interrupt Enables for IRQ 0                                               */
+  __IOM uint32_t  INTF0;                        /*!< Force Interrupts                                                          */
+  __IOM uint32_t  INTS0;                        /*!< Interrupt Status for IRQ 0                                                */
   __IM  uint32_t  RESERVED1;
-  __IOM uint32_t  INTE1;                        /*!< (@ 0x00000414) Interrupt Enables for IRQ 1                                */
-  __IOM uint32_t  INTF1;                        /*!< (@ 0x00000418) Force Interrupts for IRQ 1                                 */
-  __IOM uint32_t  INTS1;                        /*!< (@ 0x0000041C) Interrupt Status (masked) for IRQ 1                        */
-  __IOM uint32_t  TIMER0;                       /*!< (@ 0x00000420) Pacing (X/Y) Fractional Timer
-                                                                    The pacing timer produces TREQ assertions
-                                                                    at a rate set by ((X/Y) * sys_clk). This
-                                                                    equation is evaluated every sys_clk cycles
-                                                                    and therefore can only generate TREQs at
-                                                                    a rate of 1 per sys_clk (i.e. permanent
-                                                                    TREQ) or less.                                             */
-  __IOM uint32_t  TIMER1;                       /*!< (@ 0x00000424) Pacing (X/Y) Fractional Timer
-                                                                    The pacing timer produces TREQ assertions
-                                                                    at a rate set by ((X/Y) * sys_clk). This
-                                                                    equation is evaluated every sys_clk cycles
-                                                                    and therefore can only generate TREQs at
-                                                                    a rate of 1 per sys_clk (i.e. permanent
-                                                                    TREQ) or less.                                             */
-  __IM  uint32_t  RESERVED2[2];
-  __IOM uint32_t  MULTI_CHAN_TRIGGER;           /*!< (@ 0x00000430) Trigger one or more channels simultaneously                */
-  __IOM uint32_t  SNIFF_CTRL;                   /*!< (@ 0x00000434) Sniffer Control                                            */
-  __IOM uint32_t  SNIFF_DATA;                   /*!< (@ 0x00000438) Data accumulator for sniff hardware
-                                                                    Write an initial seed value here before
-                                                                    starting a DMA transfer on the channel indicated
-                                                                    by SNIFF_CTRL_DMACH. The hardware will update
-                                                                    this register each time it observes a read
-                                                                    from the indicated channel. Once the channel
-                                                                    completes, the final result can be read
-                                                                    from this register.                                        */
-  __IM  uint32_t  RESERVED3;
-  __IOM uint32_t  FIFO_LEVELS;                  /*!< (@ 0x00000440) Debug RAF, WAF, TDF levels                                 */
-  __IOM uint32_t  CHAN_ABORT;                   /*!< (@ 0x00000444) Abort an in-progress transfer sequence on one
-                                                                    or more channels                                           */
-  __IOM uint32_t  N_CHANNELS;                   /*!< (@ 0x00000448) The number of channels this DMA instance is equipped
-                                                                    with. This DMA supports up to 16 hardware
-                                                                    channels, but can be configured with as
-                                                                    few as one, to minimise silicon area.                      */
-  __IM  uint32_t  RESERVED4[237];
-  __IOM uint32_t  CH0_DBG_CTDREQ;               /*!< (@ 0x00000800) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH0_DBG_TCR;                  /*!< (@ 0x00000804) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  INTE1;                        /*!< Interrupt Enables for IRQ 1                                               */
+  __IOM uint32_t  INTF1;                        /*!< Force Interrupts for IRQ 1                                                */
+  __IOM uint32_t  INTS1;                        /*!< Interrupt Status (masked) for IRQ 1                                       */
+  __IOM uint32_t  TIMER0;                       /*!< Pacing (X/Y) Fractional Timer
+                                                     The pacing timer produces TREQ assertions at a rate set
+                                                     by ((X/Y) * sys_clk). This equation is evaluated every
+                                                     sys_clk cycles and therefore can only generate TREQs at
+                                                     a rate of 1 per sys_clk (i.e. permanent TREQ) or less.                    */
+  __IOM uint32_t  TIMER1;                       /*!< Pacing (X/Y) Fractional Timer
+                                                     The pacing timer produces TREQ assertions at a rate set
+                                                     by ((X/Y) * sys_clk). This equation is evaluated every
+                                                     sys_clk cycles and therefore can only generate TREQs at
+                                                     a rate of 1 per sys_clk (i.e. permanent TREQ) or less.                    */
+  __IOM uint32_t  TIMER2;                       /*!< Pacing (X/Y) Fractional Timer
+                                                     The pacing timer produces TREQ assertions at a rate set
+                                                     by ((X/Y) * sys_clk). This equation is evaluated every
+                                                     sys_clk cycles and therefore can only generate TREQs at
+                                                     a rate of 1 per sys_clk (i.e. permanent TREQ) or less.                    */
+  __IOM uint32_t  TIMER3;                       /*!< Pacing (X/Y) Fractional Timer
+                                                     The pacing timer produces TREQ assertions at a rate set
+                                                     by ((X/Y) * sys_clk). This equation is evaluated every
+                                                     sys_clk cycles and therefore can only generate TREQs at
+                                                     a rate of 1 per sys_clk (i.e. permanent TREQ) or less.                    */
+  __IOM uint32_t  MULTI_CHAN_TRIGGER;           /*!< Trigger one or more channels simultaneously                               */
+  __IOM uint32_t  SNIFF_CTRL;                   /*!< Sniffer Control                                                           */
+  __IOM uint32_t  SNIFF_DATA;                   /*!< Data accumulator for sniff hardware
+                                                     Write an initial seed value here before starting a DMA
+                                                     transfer on the channel indicated by SNIFF_CTRL_DMACH.
+                                                     The hardware will update this register each time it observes
+                                                     a read from the indicated channel. Once the channel completes,
+                                                     the final result can be read from this register.                          */
+  __IM  uint32_t  RESERVED2;
+  __IOM uint32_t  FIFO_LEVELS;                  /*!< Debug RAF, WAF, TDF levels                                                */
+  __IOM uint32_t  CHAN_ABORT;                   /*!< Abort an in-progress transfer sequence on one or more channels            */
+  __IOM uint32_t  N_CHANNELS;                   /*!< The number of channels this DMA instance is equipped with. This
+                                                     DMA supports up to 16 hardware channels, but can be configured
+                                                     with as few as one, to minimise silicon area.                             */
+  __IM  uint32_t  RESERVED3[237];
+  __IOM uint32_t  CH0_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH0_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
+  __IM  uint32_t  RESERVED4[14];
+  __IOM uint32_t  CH1_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH1_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED5[14];
-  __IOM uint32_t  CH1_DBG_CTDREQ;               /*!< (@ 0x00000840) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH1_DBG_TCR;                  /*!< (@ 0x00000844) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH2_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH2_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED6[14];
-  __IOM uint32_t  CH2_DBG_CTDREQ;               /*!< (@ 0x00000880) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH2_DBG_TCR;                  /*!< (@ 0x00000884) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH3_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH3_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED7[14];
-  __IOM uint32_t  CH3_DBG_CTDREQ;               /*!< (@ 0x000008C0) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH3_DBG_TCR;                  /*!< (@ 0x000008C4) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH4_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH4_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED8[14];
-  __IOM uint32_t  CH4_DBG_CTDREQ;               /*!< (@ 0x00000900) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH4_DBG_TCR;                  /*!< (@ 0x00000904) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH5_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH5_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED9[14];
-  __IOM uint32_t  CH5_DBG_CTDREQ;               /*!< (@ 0x00000940) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH5_DBG_TCR;                  /*!< (@ 0x00000944) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH6_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH6_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED10[14];
-  __IOM uint32_t  CH6_DBG_CTDREQ;               /*!< (@ 0x00000980) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH6_DBG_TCR;                  /*!< (@ 0x00000984) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH7_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH7_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED11[14];
-  __IOM uint32_t  CH7_DBG_CTDREQ;               /*!< (@ 0x000009C0) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH7_DBG_TCR;                  /*!< (@ 0x000009C4) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH8_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH8_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED12[14];
-  __IOM uint32_t  CH8_DBG_CTDREQ;               /*!< (@ 0x00000A00) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH8_DBG_TCR;                  /*!< (@ 0x00000A04) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH9_DBG_CTDREQ;               /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH9_DBG_TCR;                  /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED13[14];
-  __IOM uint32_t  CH9_DBG_CTDREQ;               /*!< (@ 0x00000A40) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH9_DBG_TCR;                  /*!< (@ 0x00000A44) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH10_DBG_CTDREQ;              /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH10_DBG_TCR;                 /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
   __IM  uint32_t  RESERVED14[14];
-  __IOM uint32_t  CH10_DBG_CTDREQ;              /*!< (@ 0x00000A80) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH10_DBG_TCR;                 /*!< (@ 0x00000A84) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
-  __IM  uint32_t  RESERVED15[14];
-  __IOM uint32_t  CH11_DBG_CTDREQ;              /*!< (@ 0x00000AC0) Read: get channel DREQ counter (i.e. how many
-                                                                    accesses the DMA expects it can perform
-                                                                    on the peripheral without overflow/underflow.
-                                                                    Write any value: clears the counter, and
-                                                                    cause channel to re-initiate DREQ handshake.               */
-  __IM  uint32_t  CH11_DBG_TCR;                 /*!< (@ 0x00000AC4) Read to get channel TRANS_COUNT reload value,
-                                                                    i.e. the length of the next transfer                       */
+  __IOM uint32_t  CH11_DBG_CTDREQ;              /*!< Read: get channel DREQ counter (i.e. how many accesses the DMA
+                                                     expects it can perform on the peripheral without overflow/underflow.
+                                                     Write any value: clears the counter, and cause channel
+                                                     to re-initiate DREQ handshake.                                            */
+  __IM  uint32_t  CH11_DBG_TCR;                 /*!< Read to get channel TRANS_COUNT reload value, i.e. the length
+                                                     of the next transfer                                                      */
 } DMA_Type;                                     /*!< Size = 2760 (0xac8)                                                       */
+
+
+
+/* =========================================================================================================================== */
+/* ================                                       USBCTRL_DPRAM                                       ================ */
+/* =========================================================================================================================== */
+
+
+/**
+  * @brief DPRAM layout for USB device. (USBCTRL_DPRAM)
+  */
+
+typedef struct {                                /*!< USBCTRL_DPRAM Structure                                                   */
+  __IOM uint32_t  SETUP_PACKET_LOW;             /*!< Bytes 0-3 of the SETUP packet from the host.                              */
+  __IOM uint32_t  SETUP_PACKET_HIGH;            /*!< Bytes 4-7 of the setup packet from the host.                              */
+  __IOM uint32_t  EP1_IN_CONTROL;               /*!< EP1_IN_CONTROL                                                            */
+  __IOM uint32_t  EP1_OUT_CONTROL;              /*!< EP1_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP2_IN_CONTROL;               /*!< EP2_IN_CONTROL                                                            */
+  __IOM uint32_t  EP2_OUT_CONTROL;              /*!< EP2_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP3_IN_CONTROL;               /*!< EP3_IN_CONTROL                                                            */
+  __IOM uint32_t  EP3_OUT_CONTROL;              /*!< EP3_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP4_IN_CONTROL;               /*!< EP4_IN_CONTROL                                                            */
+  __IOM uint32_t  EP4_OUT_CONTROL;              /*!< EP4_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP5_IN_CONTROL;               /*!< EP5_IN_CONTROL                                                            */
+  __IOM uint32_t  EP5_OUT_CONTROL;              /*!< EP5_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP6_IN_CONTROL;               /*!< EP6_IN_CONTROL                                                            */
+  __IOM uint32_t  EP6_OUT_CONTROL;              /*!< EP6_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP7_IN_CONTROL;               /*!< EP7_IN_CONTROL                                                            */
+  __IOM uint32_t  EP7_OUT_CONTROL;              /*!< EP7_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP8_IN_CONTROL;               /*!< EP8_IN_CONTROL                                                            */
+  __IOM uint32_t  EP8_OUT_CONTROL;              /*!< EP8_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP9_IN_CONTROL;               /*!< EP9_IN_CONTROL                                                            */
+  __IOM uint32_t  EP9_OUT_CONTROL;              /*!< EP9_OUT_CONTROL                                                           */
+  __IOM uint32_t  EP10_IN_CONTROL;              /*!< EP10_IN_CONTROL                                                           */
+  __IOM uint32_t  EP10_OUT_CONTROL;             /*!< EP10_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP11_IN_CONTROL;              /*!< EP11_IN_CONTROL                                                           */
+  __IOM uint32_t  EP11_OUT_CONTROL;             /*!< EP11_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP12_IN_CONTROL;              /*!< EP12_IN_CONTROL                                                           */
+  __IOM uint32_t  EP12_OUT_CONTROL;             /*!< EP12_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP13_IN_CONTROL;              /*!< EP13_IN_CONTROL                                                           */
+  __IOM uint32_t  EP13_OUT_CONTROL;             /*!< EP13_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP14_IN_CONTROL;              /*!< EP14_IN_CONTROL                                                           */
+  __IOM uint32_t  EP14_OUT_CONTROL;             /*!< EP14_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP15_IN_CONTROL;              /*!< EP15_IN_CONTROL                                                           */
+  __IOM uint32_t  EP15_OUT_CONTROL;             /*!< EP15_OUT_CONTROL                                                          */
+  __IOM uint32_t  EP0_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP0_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP1_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP1_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP2_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP2_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP3_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP3_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP4_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP4_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP5_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP5_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP6_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP6_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP7_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP7_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP8_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP8_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP9_IN_BUFFER_CONTROL;        /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP9_OUT_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP10_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP10_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP11_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP11_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP12_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP12_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP13_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP13_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP14_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP14_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP15_IN_BUFFER_CONTROL;       /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+  __IOM uint32_t  EP15_OUT_BUFFER_CONTROL;      /*!< Buffer control for both buffers of an endpoint. Fields ending
+                                                     in a _1 are for buffer 1.
+                                                     Fields ending in a _0 are for buffer 0. Buffer 1 controls
+                                                     are only valid if the endpoint is in double buffered mode.                */
+} USBCTRL_DPRAM_Type;                           /*!< Size = 256 (0x100)                                                        */
 
 
 
@@ -2152,89 +2369,75 @@ typedef struct {                                /*!< (@ 0x50000000) DMA Structur
   * @brief USB FS/LS controller device registers (USBCTRL_REGS)
   */
 
-typedef struct {                                /*!< (@ 0x50110000) USBCTRL_REGS Structure                                     */
-  __IOM uint32_t  ADDR_ENDP;                    /*!< (@ 0x00000000) Device address and endpoint control                        */
-  __IOM uint32_t  ADDR_ENDP1;                   /*!< (@ 0x00000004) Interrupt endpoint 1. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP2;                   /*!< (@ 0x00000008) Interrupt endpoint 2. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP3;                   /*!< (@ 0x0000000C) Interrupt endpoint 3. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP4;                   /*!< (@ 0x00000010) Interrupt endpoint 4. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP5;                   /*!< (@ 0x00000014) Interrupt endpoint 5. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP6;                   /*!< (@ 0x00000018) Interrupt endpoint 6. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP7;                   /*!< (@ 0x0000001C) Interrupt endpoint 7. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP8;                   /*!< (@ 0x00000020) Interrupt endpoint 8. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP9;                   /*!< (@ 0x00000024) Interrupt endpoint 9. Only valid for HOST mode.            */
-  __IOM uint32_t  ADDR_ENDP10;                  /*!< (@ 0x00000028) Interrupt endpoint 10. Only valid for HOST mode.           */
-  __IOM uint32_t  ADDR_ENDP11;                  /*!< (@ 0x0000002C) Interrupt endpoint 11. Only valid for HOST mode.           */
-  __IOM uint32_t  ADDR_ENDP12;                  /*!< (@ 0x00000030) Interrupt endpoint 12. Only valid for HOST mode.           */
-  __IOM uint32_t  ADDR_ENDP13;                  /*!< (@ 0x00000034) Interrupt endpoint 13. Only valid for HOST mode.           */
-  __IOM uint32_t  ADDR_ENDP14;                  /*!< (@ 0x00000038) Interrupt endpoint 14. Only valid for HOST mode.           */
-  __IOM uint32_t  ADDR_ENDP15;                  /*!< (@ 0x0000003C) Interrupt endpoint 15. Only valid for HOST mode.           */
-  __IOM uint32_t  MAIN_CTRL;                    /*!< (@ 0x00000040) Main control register                                      */
-  __IOM uint32_t  SOF_WR;                       /*!< (@ 0x00000044) Set the SOF (Start of Frame) frame number in
-                                                                    the host controller. The SOF packet is sent
-                                                                    every 1ms and the host will increment the
-                                                                    frame number by 1 each time.                               */
-  __IOM uint32_t  SOF_RD;                       /*!< (@ 0x00000048) Read the last SOF (Start of Frame) frame number
-                                                                    seen. In device mode the last SOF received
-                                                                    from the host. In host mode the last SOF
-                                                                    sent by the host.                                          */
-  __IOM uint32_t  SIE_CTRL;                     /*!< (@ 0x0000004C) SIE control register                                       */
-  __IOM uint32_t  SIE_STATUS;                   /*!< (@ 0x00000050) SIE status register                                        */
-  __IOM uint32_t  INT_EP_CTRL;                  /*!< (@ 0x00000054) interrupt endpoint control register                        */
-  __IOM uint32_t  BUFF_STATUS;                  /*!< (@ 0x00000058) Buffer status register. A bit set here indicates
-                                                                    that a buffer has completed on the endpoint
-                                                                    (if the buffer interrupt is enabled). It
-                                                                    is possible for 2 buffers to be completed,
-                                                                    so clearing the buffer status bit may instantly
-                                                                    re set it on the next clock cycle.                         */
-  __IOM uint32_t  BUFF_CPU_SHOULD_HANDLE;       /*!< (@ 0x0000005C) Which of the double buffers should be handled.
-                                                                    Only valid if using an interrupt per buffer
-                                                                    (i.e. not per 2 buffers). Not valid for
-                                                                    host interrupt endpoint polling because
-                                                                    they are only single buffered.                             */
-  __IOM uint32_t  EP_ABORT;                     /*!< (@ 0x00000060) Device only: Can be set to ignore the buffer
-                                                                    control register for this endpoint in case
-                                                                    you would like to revoke a buffer. A NAK
-                                                                    will be sent for every access to the endpoint
-                                                                    until this bit is cleared. A corresponding
-                                                                    bit in `EP_ABORT_DONE` is set when it is
-                                                                    safe to modify the buffer control register.                */
-  __IOM uint32_t  EP_ABORT_DONE;                /*!< (@ 0x00000064) Device only: Used in conjunction with `EP_ABORT`.
-                                                                    Set once an endpoint is idle so the programmer
-                                                                    knows it is safe to modify the buffer control
-                                                                    register.                                                  */
-  __IOM uint32_t  EP_STALL_ARM;                 /*!< (@ 0x00000068) Device: this bit must be set in conjunction with
-                                                                    the `STALL` bit in the buffer control register
-                                                                    to send a STALL on EP0. The device controller
-                                                                    clears these bits when a SETUP packet is
-                                                                    received because the USB spec requires that
-                                                                    a STALL condition is cleared when a SETUP
-                                                                    packet is received.                                        */
-  __IOM uint32_t  NAK_POLL;                     /*!< (@ 0x0000006C) Used by the host controller. Sets the wait time
-                                                                    in microseconds before trying again if the
-                                                                    device replies with a NAK.                                 */
-  __IOM uint32_t  EP_STATUS_STALL_NAK;          /*!< (@ 0x00000070) Device: bits are set when the `IRQ_ON_NAK` or
-                                                                    `IRQ_ON_STALL` bits are set. For EP0 this
-                                                                    comes from `SIE_CTRL`. For all other endpoints
-                                                                    it comes from the endpoint control register.               */
-  __IOM uint32_t  USB_MUXING;                   /*!< (@ 0x00000074) Where to connect the USB controller. Should be
-                                                                    to_phy by default.                                         */
-  __IOM uint32_t  USB_PWR;                      /*!< (@ 0x00000078) Overrides for the power signals in the event
-                                                                    that the VBUS signals are not hooked up
-                                                                    to GPIO. Set the value of the override and
-                                                                    then the override enable to switch over
-                                                                    to the override value.                                     */
-  __IOM uint32_t  USBPHY_DIRECT;                /*!< (@ 0x0000007C) This register allows for direct control of the
-                                                                    USB phy. Use in conjunction with usbphy_direct_override
-                                                                    register to enable each override bit.                      */
-  __IOM uint32_t  USBPHY_DIRECT_OVERRIDE;       /*!< (@ 0x00000080) Override enable for each control in usbphy_direct          */
-  __IOM uint32_t  USBPHY_TRIM;                  /*!< (@ 0x00000084) Used to adjust trim values of USB phy pull down
-                                                                    resistors.                                                 */
+typedef struct {                                /*!< USBCTRL_REGS Structure                                                    */
+  __IOM uint32_t  ADDR_ENDP;                    /*!< Device address and endpoint control                                       */
+  __IOM uint32_t  ADDR_ENDP1;                   /*!< Interrupt endpoint 1. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP2;                   /*!< Interrupt endpoint 2. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP3;                   /*!< Interrupt endpoint 3. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP4;                   /*!< Interrupt endpoint 4. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP5;                   /*!< Interrupt endpoint 5. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP6;                   /*!< Interrupt endpoint 6. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP7;                   /*!< Interrupt endpoint 7. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP8;                   /*!< Interrupt endpoint 8. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP9;                   /*!< Interrupt endpoint 9. Only valid for HOST mode.                           */
+  __IOM uint32_t  ADDR_ENDP10;                  /*!< Interrupt endpoint 10. Only valid for HOST mode.                          */
+  __IOM uint32_t  ADDR_ENDP11;                  /*!< Interrupt endpoint 11. Only valid for HOST mode.                          */
+  __IOM uint32_t  ADDR_ENDP12;                  /*!< Interrupt endpoint 12. Only valid for HOST mode.                          */
+  __IOM uint32_t  ADDR_ENDP13;                  /*!< Interrupt endpoint 13. Only valid for HOST mode.                          */
+  __IOM uint32_t  ADDR_ENDP14;                  /*!< Interrupt endpoint 14. Only valid for HOST mode.                          */
+  __IOM uint32_t  ADDR_ENDP15;                  /*!< Interrupt endpoint 15. Only valid for HOST mode.                          */
+  __IOM uint32_t  MAIN_CTRL;                    /*!< Main control register                                                     */
+  __IOM uint32_t  SOF_WR;                       /*!< Set the SOF (Start of Frame) frame number in the host controller.
+                                                     The SOF packet is sent every 1ms and the host will increment
+                                                     the frame number by 1 each time.                                          */
+  __IOM uint32_t  SOF_RD;                       /*!< Read the last SOF (Start of Frame) frame number seen. In device
+                                                     mode the last SOF received from the host. In host mode
+                                                     the last SOF sent by the host.                                            */
+  __IOM uint32_t  SIE_CTRL;                     /*!< SIE control register                                                      */
+  __IOM uint32_t  SIE_STATUS;                   /*!< SIE status register                                                       */
+  __IOM uint32_t  INT_EP_CTRL;                  /*!< interrupt endpoint control register                                       */
+  __IOM uint32_t  BUFF_STATUS;                  /*!< Buffer status register. A bit set here indicates that a buffer
+                                                     has completed on the endpoint (if the buffer interrupt
+                                                     is enabled). It is possible for 2 buffers to be completed,
+                                                     so clearing the buffer status bit may instantly re set
+                                                     it on the next clock cycle.                                               */
+  __IOM uint32_t  BUFF_CPU_SHOULD_HANDLE;       /*!< Which of the double buffers should be handled. Only valid if
+                                                     using an interrupt per buffer (i.e. not per 2 buffers).
+                                                     Not valid for host interrupt endpoint polling because they
+                                                     are only single buffered.                                                 */
+  __IOM uint32_t  EP_ABORT;                     /*!< Device only: Can be set to ignore the buffer control register
+                                                     for this endpoint in case you would like to revoke a buffer.
+                                                     A NAK will be sent for every access to the endpoint until
+                                                     this bit is cleared. A corresponding bit in `EP_ABORT_DONE`
+                                                     is set when it is safe to modify the buffer control register.             */
+  __IOM uint32_t  EP_ABORT_DONE;                /*!< Device only: Used in conjunction with `EP_ABORT`. Set once an
+                                                     endpoint is idle so the programmer knows it is safe to
+                                                     modify the buffer control register.                                       */
+  __IOM uint32_t  EP_STALL_ARM;                 /*!< Device: this bit must be set in conjunction with the `STALL`
+                                                     bit in the buffer control register to send a STALL on EP0.
+                                                     The device controller clears these bits when a SETUP packet
+                                                     is received because the USB spec requires that a STALL
+                                                     condition is cleared when a SETUP packet is received.                     */
+  __IOM uint32_t  NAK_POLL;                     /*!< Used by the host controller. Sets the wait time in microseconds
+                                                     before trying again if the device replies with a NAK.                     */
+  __IOM uint32_t  EP_STATUS_STALL_NAK;          /*!< Device: bits are set when the `IRQ_ON_NAK` or `IRQ_ON_STALL`
+                                                     bits are set. For EP0 this comes from `SIE_CTRL`. For all
+                                                     other endpoints it comes from the endpoint control register.              */
+  __IOM uint32_t  USB_MUXING;                   /*!< Where to connect the USB controller. Should be to_phy by default.         */
+  __IOM uint32_t  USB_PWR;                      /*!< Overrides for the power signals in the event that the VBUS signals
+                                                     are not hooked up to GPIO. Set the value of the override
+                                                     and then the override enable to switch over to the override
+                                                     value.                                                                    */
+  __IOM uint32_t  USBPHY_DIRECT;                /*!< This register allows for direct control of the USB phy. Use
+                                                     in conjunction with usbphy_direct_override register to
+                                                     enable each override bit.                                                 */
+  __IOM uint32_t  USBPHY_DIRECT_OVERRIDE;       /*!< Override enable for each control in usbphy_direct                         */
+  __IOM uint32_t  USBPHY_TRIM;                  /*!< Used to adjust trim values of USB phy pull down resistors.                */
   __IM  uint32_t  RESERVED;
-  __IOM uint32_t  INTR;                         /*!< (@ 0x0000008C) Raw Interrupts                                             */
-  __IOM uint32_t  INTE;                         /*!< (@ 0x00000090) Interrupt Enable                                           */
-  __IOM uint32_t  INTF;                         /*!< (@ 0x00000094) Interrupt Force                                            */
-  __IOM uint32_t  INTS;                         /*!< (@ 0x00000098) Interrupt status after masking & forcing                   */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  INTE;                         /*!< Interrupt Enable                                                          */
+  __IOM uint32_t  INTF;                         /*!< Interrupt Force                                                           */
+  __IOM uint32_t  INTS;                         /*!< Interrupt status after masking & forcing                                  */
 } USBCTRL_REGS_Type;                            /*!< Size = 156 (0x9c)                                                         */
 
 
@@ -2248,192 +2451,168 @@ typedef struct {                                /*!< (@ 0x50110000) USBCTRL_REGS
   * @brief Programmable IO block (PIO0)
   */
 
-typedef struct {                                /*!< (@ 0x50200000) PIO0 Structure                                             */
-  __IOM uint32_t  CTRL;                         /*!< (@ 0x00000000) PIO control register                                       */
-  __IOM uint32_t  FSTAT;                        /*!< (@ 0x00000004) FIFO status register                                       */
-  __IOM uint32_t  FDEBUG;                       /*!< (@ 0x00000008) FIFO debug register                                        */
-  __IOM uint32_t  FLEVEL;                       /*!< (@ 0x0000000C) FIFO levels                                                */
-  __OM  uint32_t  TXF0;                         /*!< (@ 0x00000010) Direct write access to the TX FIFO for this state
-                                                                    machine. Each write pushes one word to the
-                                                                    FIFO.                                                      */
-  __OM  uint32_t  TXF1;                         /*!< (@ 0x00000014) Direct write access to the TX FIFO for this state
-                                                                    machine. Each write pushes one word to the
-                                                                    FIFO.                                                      */
-  __OM  uint32_t  TXF2;                         /*!< (@ 0x00000018) Direct write access to the TX FIFO for this state
-                                                                    machine. Each write pushes one word to the
-                                                                    FIFO.                                                      */
-  __OM  uint32_t  TXF3;                         /*!< (@ 0x0000001C) Direct write access to the TX FIFO for this state
-                                                                    machine. Each write pushes one word to the
-                                                                    FIFO.                                                      */
-  __IM  uint32_t  RXF0;                         /*!< (@ 0x00000020) Direct read access to the RX FIFO for this state
-                                                                    machine. Each read pops one word from the
-                                                                    FIFO.                                                      */
-  __IM  uint32_t  RXF1;                         /*!< (@ 0x00000024) Direct read access to the RX FIFO for this state
-                                                                    machine. Each read pops one word from the
-                                                                    FIFO.                                                      */
-  __IM  uint32_t  RXF2;                         /*!< (@ 0x00000028) Direct read access to the RX FIFO for this state
-                                                                    machine. Each read pops one word from the
-                                                                    FIFO.                                                      */
-  __IM  uint32_t  RXF3;                         /*!< (@ 0x0000002C) Direct read access to the RX FIFO for this state
-                                                                    machine. Each read pops one word from the
-                                                                    FIFO.                                                      */
-  __IOM uint32_t  IRQ;                          /*!< (@ 0x00000030) Interrupt request register. Write 1 to clear               */
-  __IOM uint32_t  IRQ_FORCE;                    /*!< (@ 0x00000034) Writing a 1 to each of these bits will forcibly
-                                                                    assert the corresponding IRQ.
-                                                                    Note this is different to the INTF register:
-                                                                    writing here affects PIO internal
-                                                                    state. INTF just asserts the processor-facing
-                                                                    IRQ signal for testing ISRs,
-                                                                    and is not visible to the state machines.                  */
-  __IOM uint32_t  INPUT_SYNC_BYPASS;            /*!< (@ 0x00000038) There is a 2-flipflop synchronizer on each GPIO
-                                                                    input, which protects
-                                                                    PIO logic from metastabilities. This increases
-                                                                    input delay, and for fast
-                                                                    synchronous IO (e.g. SPI) these synchronizers
-                                                                    may need to be bypassed.
-                                                                    Each bit in this register corresponds to
-                                                                    one GPIO.
-                                                                    0 -> input is synchronized (default)
-                                                                    1 -> synchronizer is bypassed
-                                                                    If in doubt, leave this register as all
-                                                                    zeroes.                                                    */
-  __IM  uint32_t  DBG_PADOUT;                   /*!< (@ 0x0000003C) Read to sample the pad output values PIO is currently
-                                                                    driving to the GPIOs.                                      */
-  __IM  uint32_t  DBG_PADOE;                    /*!< (@ 0x00000040) Read to sample the pad output enables (direction)
-                                                                    PIO is currently driving to the GPIOs.                     */
-  __IOM uint32_t  DBG_CFGINFO;                  /*!< (@ 0x00000044) The PIO hardware has some free parameters that
-                                                                    may vary between chip products.
-                                                                    These should be provided in the chip datasheet,
-                                                                    but are also exposed here.                                 */
-  __IOM uint32_t  INSTR_MEM0;                   /*!< (@ 0x00000048) Write-only access to instruction memory location
-                                                                    0                                                          */
-  __IOM uint32_t  INSTR_MEM1;                   /*!< (@ 0x0000004C) Write-only access to instruction memory location
-                                                                    1                                                          */
-  __IOM uint32_t  INSTR_MEM2;                   /*!< (@ 0x00000050) Write-only access to instruction memory location
-                                                                    2                                                          */
-  __IOM uint32_t  INSTR_MEM3;                   /*!< (@ 0x00000054) Write-only access to instruction memory location
-                                                                    3                                                          */
-  __IOM uint32_t  INSTR_MEM4;                   /*!< (@ 0x00000058) Write-only access to instruction memory location
-                                                                    4                                                          */
-  __IOM uint32_t  INSTR_MEM5;                   /*!< (@ 0x0000005C) Write-only access to instruction memory location
-                                                                    5                                                          */
-  __IOM uint32_t  INSTR_MEM6;                   /*!< (@ 0x00000060) Write-only access to instruction memory location
-                                                                    6                                                          */
-  __IOM uint32_t  INSTR_MEM7;                   /*!< (@ 0x00000064) Write-only access to instruction memory location
-                                                                    7                                                          */
-  __IOM uint32_t  INSTR_MEM8;                   /*!< (@ 0x00000068) Write-only access to instruction memory location
-                                                                    8                                                          */
-  __IOM uint32_t  INSTR_MEM9;                   /*!< (@ 0x0000006C) Write-only access to instruction memory location
-                                                                    9                                                          */
-  __IOM uint32_t  INSTR_MEM10;                  /*!< (@ 0x00000070) Write-only access to instruction memory location
-                                                                    10                                                         */
-  __IOM uint32_t  INSTR_MEM11;                  /*!< (@ 0x00000074) Write-only access to instruction memory location
-                                                                    11                                                         */
-  __IOM uint32_t  INSTR_MEM12;                  /*!< (@ 0x00000078) Write-only access to instruction memory location
-                                                                    12                                                         */
-  __IOM uint32_t  INSTR_MEM13;                  /*!< (@ 0x0000007C) Write-only access to instruction memory location
-                                                                    13                                                         */
-  __IOM uint32_t  INSTR_MEM14;                  /*!< (@ 0x00000080) Write-only access to instruction memory location
-                                                                    14                                                         */
-  __IOM uint32_t  INSTR_MEM15;                  /*!< (@ 0x00000084) Write-only access to instruction memory location
-                                                                    15                                                         */
-  __IOM uint32_t  INSTR_MEM16;                  /*!< (@ 0x00000088) Write-only access to instruction memory location
-                                                                    16                                                         */
-  __IOM uint32_t  INSTR_MEM17;                  /*!< (@ 0x0000008C) Write-only access to instruction memory location
-                                                                    17                                                         */
-  __IOM uint32_t  INSTR_MEM18;                  /*!< (@ 0x00000090) Write-only access to instruction memory location
-                                                                    18                                                         */
-  __IOM uint32_t  INSTR_MEM19;                  /*!< (@ 0x00000094) Write-only access to instruction memory location
-                                                                    19                                                         */
-  __IOM uint32_t  INSTR_MEM20;                  /*!< (@ 0x00000098) Write-only access to instruction memory location
-                                                                    20                                                         */
-  __IOM uint32_t  INSTR_MEM21;                  /*!< (@ 0x0000009C) Write-only access to instruction memory location
-                                                                    21                                                         */
-  __IOM uint32_t  INSTR_MEM22;                  /*!< (@ 0x000000A0) Write-only access to instruction memory location
-                                                                    22                                                         */
-  __IOM uint32_t  INSTR_MEM23;                  /*!< (@ 0x000000A4) Write-only access to instruction memory location
-                                                                    23                                                         */
-  __IOM uint32_t  INSTR_MEM24;                  /*!< (@ 0x000000A8) Write-only access to instruction memory location
-                                                                    24                                                         */
-  __IOM uint32_t  INSTR_MEM25;                  /*!< (@ 0x000000AC) Write-only access to instruction memory location
-                                                                    25                                                         */
-  __IOM uint32_t  INSTR_MEM26;                  /*!< (@ 0x000000B0) Write-only access to instruction memory location
-                                                                    26                                                         */
-  __IOM uint32_t  INSTR_MEM27;                  /*!< (@ 0x000000B4) Write-only access to instruction memory location
-                                                                    27                                                         */
-  __IOM uint32_t  INSTR_MEM28;                  /*!< (@ 0x000000B8) Write-only access to instruction memory location
-                                                                    28                                                         */
-  __IOM uint32_t  INSTR_MEM29;                  /*!< (@ 0x000000BC) Write-only access to instruction memory location
-                                                                    29                                                         */
-  __IOM uint32_t  INSTR_MEM30;                  /*!< (@ 0x000000C0) Write-only access to instruction memory location
-                                                                    30                                                         */
-  __IOM uint32_t  INSTR_MEM31;                  /*!< (@ 0x000000C4) Write-only access to instruction memory location
-                                                                    31                                                         */
-  __IOM uint32_t  SM0_CLKDIV;                   /*!< (@ 0x000000C8) Clock divider register for state machine 0
-                                                                    Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC
-                                                                    / 256)                                                     */
-  __IOM uint32_t  SM0_EXECCTRL;                 /*!< (@ 0x000000CC) Execution/behavioural settings for state machine
-                                                                    0                                                          */
-  __IOM uint32_t  SM0_SHIFTCTRL;                /*!< (@ 0x000000D0) Control behaviour of the input/output shift registers
-                                                                    for state machine 0                                        */
-  __IOM uint32_t  SM0_ADDR;                     /*!< (@ 0x000000D4) Current instruction address of state machine
-                                                                    0                                                          */
-  __IOM uint32_t  SM0_INSTR;                    /*!< (@ 0x000000D8) Instruction currently being executed by state
-                                                                    machine 0
-                                                                    Write to execute an instruction immediately
-                                                                    (including jumps) and then resume execution.               */
-  __IOM uint32_t  SM0_PINCTRL;                  /*!< (@ 0x000000DC) State machine pin control                                  */
-  __IOM uint32_t  SM1_CLKDIV;                   /*!< (@ 0x000000E0) Clock divider register for state machine 1
-                                                                    Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC
-                                                                    / 256)                                                     */
-  __IOM uint32_t  SM1_EXECCTRL;                 /*!< (@ 0x000000E4) Execution/behavioural settings for state machine
-                                                                    1                                                          */
-  __IOM uint32_t  SM1_SHIFTCTRL;                /*!< (@ 0x000000E8) Control behaviour of the input/output shift registers
-                                                                    for state machine 1                                        */
-  __IOM uint32_t  SM1_ADDR;                     /*!< (@ 0x000000EC) Current instruction address of state machine
-                                                                    1                                                          */
-  __IOM uint32_t  SM1_INSTR;                    /*!< (@ 0x000000F0) Instruction currently being executed by state
-                                                                    machine 1
-                                                                    Write to execute an instruction immediately
-                                                                    (including jumps) and then resume execution.               */
-  __IOM uint32_t  SM1_PINCTRL;                  /*!< (@ 0x000000F4) State machine pin control                                  */
-  __IOM uint32_t  SM2_CLKDIV;                   /*!< (@ 0x000000F8) Clock divider register for state machine 2
-                                                                    Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC
-                                                                    / 256)                                                     */
-  __IOM uint32_t  SM2_EXECCTRL;                 /*!< (@ 0x000000FC) Execution/behavioural settings for state machine
-                                                                    2                                                          */
-  __IOM uint32_t  SM2_SHIFTCTRL;                /*!< (@ 0x00000100) Control behaviour of the input/output shift registers
-                                                                    for state machine 2                                        */
-  __IOM uint32_t  SM2_ADDR;                     /*!< (@ 0x00000104) Current instruction address of state machine
-                                                                    2                                                          */
-  __IOM uint32_t  SM2_INSTR;                    /*!< (@ 0x00000108) Instruction currently being executed by state
-                                                                    machine 2
-                                                                    Write to execute an instruction immediately
-                                                                    (including jumps) and then resume execution.               */
-  __IOM uint32_t  SM2_PINCTRL;                  /*!< (@ 0x0000010C) State machine pin control                                  */
-  __IOM uint32_t  SM3_CLKDIV;                   /*!< (@ 0x00000110) Clock divider register for state machine 3
-                                                                    Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC
-                                                                    / 256)                                                     */
-  __IOM uint32_t  SM3_EXECCTRL;                 /*!< (@ 0x00000114) Execution/behavioural settings for state machine
-                                                                    3                                                          */
-  __IOM uint32_t  SM3_SHIFTCTRL;                /*!< (@ 0x00000118) Control behaviour of the input/output shift registers
-                                                                    for state machine 3                                        */
-  __IOM uint32_t  SM3_ADDR;                     /*!< (@ 0x0000011C) Current instruction address of state machine
-                                                                    3                                                          */
-  __IOM uint32_t  SM3_INSTR;                    /*!< (@ 0x00000120) Instruction currently being executed by state
-                                                                    machine 3
-                                                                    Write to execute an instruction immediately
-                                                                    (including jumps) and then resume execution.               */
-  __IOM uint32_t  SM3_PINCTRL;                  /*!< (@ 0x00000124) State machine pin control                                  */
-  __IOM uint32_t  INTR;                         /*!< (@ 0x00000128) Raw Interrupts                                             */
-  __IOM uint32_t  IRQ0_INTE;                    /*!< (@ 0x0000012C) Interrupt Enable for irq0                                  */
-  __IOM uint32_t  IRQ0_INTF;                    /*!< (@ 0x00000130) Interrupt Force for irq0                                   */
-  __IOM uint32_t  IRQ0_INTS;                    /*!< (@ 0x00000134) Interrupt status after masking & forcing for
-                                                                    irq0                                                       */
-  __IOM uint32_t  IRQ1_INTE;                    /*!< (@ 0x00000138) Interrupt Enable for irq1                                  */
-  __IOM uint32_t  IRQ1_INTF;                    /*!< (@ 0x0000013C) Interrupt Force for irq1                                   */
-  __IOM uint32_t  IRQ1_INTS;                    /*!< (@ 0x00000140) Interrupt status after masking & forcing for
-                                                                    irq1                                                       */
+typedef struct {                                /*!< PIO0 Structure                                                            */
+  __IOM uint32_t  CTRL;                         /*!< PIO control register                                                      */
+  __IOM uint32_t  FSTAT;                        /*!< FIFO status register                                                      */
+  __IOM uint32_t  FDEBUG;                       /*!< FIFO debug register                                                       */
+  __IOM uint32_t  FLEVEL;                       /*!< FIFO levels                                                               */
+  __OM  uint32_t  TXF0;                         /*!< Direct write access to the TX FIFO for this state machine. Each
+                                                     write pushes one word to the FIFO. Attempting to write
+                                                     to a full FIFO has no effect on the FIFO state or contents,
+                                                     and sets the sticky FDEBUG_TXOVER error flag for this FIFO.               */
+  __OM  uint32_t  TXF1;                         /*!< Direct write access to the TX FIFO for this state machine. Each
+                                                     write pushes one word to the FIFO. Attempting to write
+                                                     to a full FIFO has no effect on the FIFO state or contents,
+                                                     and sets the sticky FDEBUG_TXOVER error flag for this FIFO.               */
+  __OM  uint32_t  TXF2;                         /*!< Direct write access to the TX FIFO for this state machine. Each
+                                                     write pushes one word to the FIFO. Attempting to write
+                                                     to a full FIFO has no effect on the FIFO state or contents,
+                                                     and sets the sticky FDEBUG_TXOVER error flag for this FIFO.               */
+  __OM  uint32_t  TXF3;                         /*!< Direct write access to the TX FIFO for this state machine. Each
+                                                     write pushes one word to the FIFO. Attempting to write
+                                                     to a full FIFO has no effect on the FIFO state or contents,
+                                                     and sets the sticky FDEBUG_TXOVER error flag for this FIFO.               */
+  __IM  uint32_t  RXF0;                         /*!< Direct read access to the RX FIFO for this state machine. Each
+                                                     read pops one word from the FIFO. Attempting to read from
+                                                     an empty FIFO has no effect on the FIFO state, and sets
+                                                     the sticky FDEBUG_RXUNDER error flag for this FIFO. The
+                                                     data returned to the system on a read from an empty FIFO
+                                                     is undefined.                                                             */
+  __IM  uint32_t  RXF1;                         /*!< Direct read access to the RX FIFO for this state machine. Each
+                                                     read pops one word from the FIFO. Attempting to read from
+                                                     an empty FIFO has no effect on the FIFO state, and sets
+                                                     the sticky FDEBUG_RXUNDER error flag for this FIFO. The
+                                                     data returned to the system on a read from an empty FIFO
+                                                     is undefined.                                                             */
+  __IM  uint32_t  RXF2;                         /*!< Direct read access to the RX FIFO for this state machine. Each
+                                                     read pops one word from the FIFO. Attempting to read from
+                                                     an empty FIFO has no effect on the FIFO state, and sets
+                                                     the sticky FDEBUG_RXUNDER error flag for this FIFO. The
+                                                     data returned to the system on a read from an empty FIFO
+                                                     is undefined.                                                             */
+  __IM  uint32_t  RXF3;                         /*!< Direct read access to the RX FIFO for this state machine. Each
+                                                     read pops one word from the FIFO. Attempting to read from
+                                                     an empty FIFO has no effect on the FIFO state, and sets
+                                                     the sticky FDEBUG_RXUNDER error flag for this FIFO. The
+                                                     data returned to the system on a read from an empty FIFO
+                                                     is undefined.                                                             */
+  __IOM uint32_t  IRQ;                          /*!< State machine IRQ flags register. Write 1 to clear. There are
+                                                     8 state machine IRQ flags, which can be set, cleared, and
+                                                     waited on by the state machines. There's no fixed association
+                                                     between flags and state machines -- any state machine can
+                                                     use any flag.
+                                                     
+                                                     Any of the 8 flags can be used for timing synchronisation
+                                                     between state machines, using IRQ and WAIT instructions.
+                                                     The lower four of these flags are also routed out to system-level
+                                                     interrupt requests, alongside FIFO status interrupts --
+                                                     see e.g. IRQ0_INTE.                                                       */
+  __IOM uint32_t  IRQ_FORCE;                    /*!< Writing a 1 to each of these bits will forcibly assert the corresponding
+                                                     IRQ. Note this is different to the INTF register: writing
+                                                     here affects PIO internal state. INTF just asserts the
+                                                     processor-facing IRQ signal for testing ISRs, and is not
+                                                     visible to the state machines.                                            */
+  __IOM uint32_t  INPUT_SYNC_BYPASS;            /*!< There is a 2-flipflop synchronizer on each GPIO input, which
+                                                     protects PIO logic from metastabilities. This increases
+                                                     input delay, and for fast synchronous IO (e.g. SPI) these
+                                                     synchronizers may need to be bypassed. Each bit in this
+                                                     register corresponds to one GPIO.
+                                                     0 -> input is synchronized (default)
+                                                     1 -> synchronizer is bypassed
+                                                     If in doubt, leave this register as all zeroes.                           */
+  __IM  uint32_t  DBG_PADOUT;                   /*!< Read to sample the pad output values PIO is currently driving
+                                                     to the GPIOs. On RP2040 there are 30 GPIOs, so the two
+                                                     most significant bits are hardwired to 0.                                 */
+  __IM  uint32_t  DBG_PADOE;                    /*!< Read to sample the pad output enables (direction) PIO is currently
+                                                     driving to the GPIOs. On RP2040 there are 30 GPIOs, so
+                                                     the two most significant bits are hardwired to 0.                         */
+  __IOM uint32_t  DBG_CFGINFO;                  /*!< The PIO hardware has some free parameters that may vary between
+                                                     chip products.
+                                                     These should be provided in the chip datasheet, but are
+                                                     also exposed here.                                                        */
+  __IOM uint32_t  INSTR_MEM0;                   /*!< Write-only access to instruction memory location 0                        */
+  __IOM uint32_t  INSTR_MEM1;                   /*!< Write-only access to instruction memory location 1                        */
+  __IOM uint32_t  INSTR_MEM2;                   /*!< Write-only access to instruction memory location 2                        */
+  __IOM uint32_t  INSTR_MEM3;                   /*!< Write-only access to instruction memory location 3                        */
+  __IOM uint32_t  INSTR_MEM4;                   /*!< Write-only access to instruction memory location 4                        */
+  __IOM uint32_t  INSTR_MEM5;                   /*!< Write-only access to instruction memory location 5                        */
+  __IOM uint32_t  INSTR_MEM6;                   /*!< Write-only access to instruction memory location 6                        */
+  __IOM uint32_t  INSTR_MEM7;                   /*!< Write-only access to instruction memory location 7                        */
+  __IOM uint32_t  INSTR_MEM8;                   /*!< Write-only access to instruction memory location 8                        */
+  __IOM uint32_t  INSTR_MEM9;                   /*!< Write-only access to instruction memory location 9                        */
+  __IOM uint32_t  INSTR_MEM10;                  /*!< Write-only access to instruction memory location 10                       */
+  __IOM uint32_t  INSTR_MEM11;                  /*!< Write-only access to instruction memory location 11                       */
+  __IOM uint32_t  INSTR_MEM12;                  /*!< Write-only access to instruction memory location 12                       */
+  __IOM uint32_t  INSTR_MEM13;                  /*!< Write-only access to instruction memory location 13                       */
+  __IOM uint32_t  INSTR_MEM14;                  /*!< Write-only access to instruction memory location 14                       */
+  __IOM uint32_t  INSTR_MEM15;                  /*!< Write-only access to instruction memory location 15                       */
+  __IOM uint32_t  INSTR_MEM16;                  /*!< Write-only access to instruction memory location 16                       */
+  __IOM uint32_t  INSTR_MEM17;                  /*!< Write-only access to instruction memory location 17                       */
+  __IOM uint32_t  INSTR_MEM18;                  /*!< Write-only access to instruction memory location 18                       */
+  __IOM uint32_t  INSTR_MEM19;                  /*!< Write-only access to instruction memory location 19                       */
+  __IOM uint32_t  INSTR_MEM20;                  /*!< Write-only access to instruction memory location 20                       */
+  __IOM uint32_t  INSTR_MEM21;                  /*!< Write-only access to instruction memory location 21                       */
+  __IOM uint32_t  INSTR_MEM22;                  /*!< Write-only access to instruction memory location 22                       */
+  __IOM uint32_t  INSTR_MEM23;                  /*!< Write-only access to instruction memory location 23                       */
+  __IOM uint32_t  INSTR_MEM24;                  /*!< Write-only access to instruction memory location 24                       */
+  __IOM uint32_t  INSTR_MEM25;                  /*!< Write-only access to instruction memory location 25                       */
+  __IOM uint32_t  INSTR_MEM26;                  /*!< Write-only access to instruction memory location 26                       */
+  __IOM uint32_t  INSTR_MEM27;                  /*!< Write-only access to instruction memory location 27                       */
+  __IOM uint32_t  INSTR_MEM28;                  /*!< Write-only access to instruction memory location 28                       */
+  __IOM uint32_t  INSTR_MEM29;                  /*!< Write-only access to instruction memory location 29                       */
+  __IOM uint32_t  INSTR_MEM30;                  /*!< Write-only access to instruction memory location 30                       */
+  __IOM uint32_t  INSTR_MEM31;                  /*!< Write-only access to instruction memory location 31                       */
+  __IOM uint32_t  SM0_CLKDIV;                   /*!< Clock divisor register for state machine 0
+                                                     Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC / 256)                 */
+  __IOM uint32_t  SM0_EXECCTRL;                 /*!< Execution/behavioural settings for state machine 0                        */
+  __IOM uint32_t  SM0_SHIFTCTRL;                /*!< Control behaviour of the input/output shift registers for state
+                                                     machine 0                                                                 */
+  __IOM uint32_t  SM0_ADDR;                     /*!< Current instruction address of state machine 0                            */
+  __IOM uint32_t  SM0_INSTR;                    /*!< Read to see the instruction currently addressed by state machine
+                                                     0's program counter
+                                                     Write to execute an instruction immediately (including
+                                                     jumps) and then resume execution.                                         */
+  __IOM uint32_t  SM0_PINCTRL;                  /*!< State machine pin control                                                 */
+  __IOM uint32_t  SM1_CLKDIV;                   /*!< Clock divisor register for state machine 1
+                                                     Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC / 256)                 */
+  __IOM uint32_t  SM1_EXECCTRL;                 /*!< Execution/behavioural settings for state machine 1                        */
+  __IOM uint32_t  SM1_SHIFTCTRL;                /*!< Control behaviour of the input/output shift registers for state
+                                                     machine 1                                                                 */
+  __IOM uint32_t  SM1_ADDR;                     /*!< Current instruction address of state machine 1                            */
+  __IOM uint32_t  SM1_INSTR;                    /*!< Read to see the instruction currently addressed by state machine
+                                                     1's program counter
+                                                     Write to execute an instruction immediately (including
+                                                     jumps) and then resume execution.                                         */
+  __IOM uint32_t  SM1_PINCTRL;                  /*!< State machine pin control                                                 */
+  __IOM uint32_t  SM2_CLKDIV;                   /*!< Clock divisor register for state machine 2
+                                                     Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC / 256)                 */
+  __IOM uint32_t  SM2_EXECCTRL;                 /*!< Execution/behavioural settings for state machine 2                        */
+  __IOM uint32_t  SM2_SHIFTCTRL;                /*!< Control behaviour of the input/output shift registers for state
+                                                     machine 2                                                                 */
+  __IOM uint32_t  SM2_ADDR;                     /*!< Current instruction address of state machine 2                            */
+  __IOM uint32_t  SM2_INSTR;                    /*!< Read to see the instruction currently addressed by state machine
+                                                     2's program counter
+                                                     Write to execute an instruction immediately (including
+                                                     jumps) and then resume execution.                                         */
+  __IOM uint32_t  SM2_PINCTRL;                  /*!< State machine pin control                                                 */
+  __IOM uint32_t  SM3_CLKDIV;                   /*!< Clock divisor register for state machine 3
+                                                     Frequency = clock freq / (CLKDIV_INT + CLKDIV_FRAC / 256)                 */
+  __IOM uint32_t  SM3_EXECCTRL;                 /*!< Execution/behavioural settings for state machine 3                        */
+  __IOM uint32_t  SM3_SHIFTCTRL;                /*!< Control behaviour of the input/output shift registers for state
+                                                     machine 3                                                                 */
+  __IOM uint32_t  SM3_ADDR;                     /*!< Current instruction address of state machine 3                            */
+  __IOM uint32_t  SM3_INSTR;                    /*!< Read to see the instruction currently addressed by state machine
+                                                     3's program counter
+                                                     Write to execute an instruction immediately (including
+                                                     jumps) and then resume execution.                                         */
+  __IOM uint32_t  SM3_PINCTRL;                  /*!< State machine pin control                                                 */
+  __IOM uint32_t  INTR;                         /*!< Raw Interrupts                                                            */
+  __IOM uint32_t  IRQ0_INTE;                    /*!< Interrupt Enable for irq0                                                 */
+  __IOM uint32_t  IRQ0_INTF;                    /*!< Interrupt Force for irq0                                                  */
+  __IOM uint32_t  IRQ0_INTS;                    /*!< Interrupt status after masking & forcing for irq0                         */
+  __IOM uint32_t  IRQ1_INTE;                    /*!< Interrupt Enable for irq1                                                 */
+  __IOM uint32_t  IRQ1_INTF;                    /*!< Interrupt Force for irq1                                                  */
+  __IOM uint32_t  IRQ1_INTS;                    /*!< Interrupt status after masking & forcing for irq1                         */
 } PIO0_Type;                                    /*!< Size = 324 (0x144)                                                        */
 
 
@@ -2448,474 +2627,429 @@ typedef struct {                                /*!< (@ 0x50200000) PIO0 Structu
         Provides core-local and inter-core hardware for the two processors, with single-cycle access. (SIO)
   */
 
-typedef struct {                                /*!< (@ 0xD0000000) SIO Structure                                              */
-  __IM  uint32_t  CPUID;                        /*!< (@ 0x00000000) Processor core identifier
-                                                                    Value is 0 when read from processor core
-                                                                    0, and 1 when read from processor core 1.                  */
-  __IOM uint32_t  GPIO_IN;                      /*!< (@ 0x00000004) Input value for GPIO pins                                  */
-  __IOM uint32_t  GPIO_HI_IN;                   /*!< (@ 0x00000008) Input value for QSPI pins                                  */
+typedef struct {                                /*!< SIO Structure                                                             */
+  __IM  uint32_t  CPUID;                        /*!< Processor core identifier
+                                                     Value is 0 when read from processor core 0, and 1 when
+                                                     read from processor core 1.                                               */
+  __IOM uint32_t  GPIO_IN;                      /*!< Input value for GPIO pins                                                 */
+  __IOM uint32_t  GPIO_HI_IN;                   /*!< Input value for QSPI pins                                                 */
   __IM  uint32_t  RESERVED;
-  __IOM uint32_t  GPIO_OUT;                     /*!< (@ 0x00000010) GPIO output value                                          */
-  __IOM uint32_t  GPIO_OUT_SET;                 /*!< (@ 0x00000014) GPIO output value set                                      */
-  __IOM uint32_t  GPIO_OUT_CLR;                 /*!< (@ 0x00000018) GPIO output value clear                                    */
-  __IOM uint32_t  GPIO_OUT_XOR;                 /*!< (@ 0x0000001C) GPIO output value XOR                                      */
-  __IOM uint32_t  GPIO_OE;                      /*!< (@ 0x00000020) GPIO output enable                                         */
-  __IOM uint32_t  GPIO_OE_SET;                  /*!< (@ 0x00000024) GPIO output enable set                                     */
-  __IOM uint32_t  GPIO_OE_CLR;                  /*!< (@ 0x00000028) GPIO output enable clear                                   */
-  __IOM uint32_t  GPIO_OE_XOR;                  /*!< (@ 0x0000002C) GPIO output enable XOR                                     */
-  __IOM uint32_t  GPIO_HI_OUT;                  /*!< (@ 0x00000030) QSPI output value                                          */
-  __IOM uint32_t  GPIO_HI_OUT_SET;              /*!< (@ 0x00000034) QSPI output value set                                      */
-  __IOM uint32_t  GPIO_HI_OUT_CLR;              /*!< (@ 0x00000038) QSPI output value clear                                    */
-  __IOM uint32_t  GPIO_HI_OUT_XOR;              /*!< (@ 0x0000003C) QSPI output value XOR                                      */
-  __IOM uint32_t  GPIO_HI_OE;                   /*!< (@ 0x00000040) QSPI output enable                                         */
-  __IOM uint32_t  GPIO_HI_OE_SET;               /*!< (@ 0x00000044) QSPI output enable set                                     */
-  __IOM uint32_t  GPIO_HI_OE_CLR;               /*!< (@ 0x00000048) QSPI output enable clear                                   */
-  __IOM uint32_t  GPIO_HI_OE_XOR;               /*!< (@ 0x0000004C) QSPI output enable XOR                                     */
-  __IOM uint32_t  FIFO_ST;                      /*!< (@ 0x00000050) Status register for inter-core FIFOs (mailboxes).
-                                                                    There is one FIFO in the core 0 -> core
-                                                                    1 direction, and one core 1 -> core 0. Both
-                                                                    are 32 bits wide and 8 words deep.
-                                                                    Core 0 can see the read side of the 1->0
-                                                                    FIFO (RX), and the write side of 0->1 FIFO
-                                                                    (TX).
-                                                                    Core 1 can see the read side of the 0->1
-                                                                    FIFO (RX), and the write side of 1->0 FIFO
-                                                                    (TX).
-                                                                    The SIO IRQ for each core is the logical
-                                                                    OR of the VLD, WOF and ROE fields of its
-                                                                    FIF                                                        */
-  __OM  uint32_t  FIFO_WR;                      /*!< (@ 0x00000054) Write access to this core's TX FIFO                        */
-  __IM  uint32_t  FIFO_RD;                      /*!< (@ 0x00000058) Read access to this core's RX FIFO                         */
-  __IM  uint32_t  SPINLOCK_ST;                  /*!< (@ 0x0000005C) Spinlock state
-                                                                    A bitmap containing the state of all 32
-                                                                    spinlocks (1=locked).
-                                                                    Mainly intended for debugging.                             */
-  __IOM uint32_t  DIV_UDIVIDEND;                /*!< (@ 0x00000060) Divider unsigned dividend
-                                                                    Write to the DIVIDEND operand of the divider,
-                                                                    i.e. the p in `p / q`.
-                                                                    Any operand write starts a new calculation.
-                                                                    The results appear in QUOTIENT, REMAINDER.
-                                                                    UDIVIDEND/SDIVIDEND are aliases of the same
-                                                                    internal register. The U alias starts an
-                                                                    unsigned calculation, and the S alias starts
-                                                                    a signed calculation.                                      */
-  __IOM uint32_t  DIV_UDIVISOR;                 /*!< (@ 0x00000064) Divider unsigned divisor
-                                                                    Write to the DIVISOR operand of the divider,
-                                                                    i.e. the q in `p / q`.
-                                                                    Any operand write starts a new calculation.
-                                                                    The results appear in QUOTIENT, REMAINDER.
-                                                                    UDIVIDEND/SDIVIDEND are aliases of the same
-                                                                    internal register. The U alias starts an
-                                                                    unsigned calculation, and the S alias starts
-                                                                    a signed calculation.                                      */
-  __IOM uint32_t  DIV_SDIVIDEND;                /*!< (@ 0x00000068) Divider signed dividend
-                                                                    The same as UDIVIDEND, but starts a signed
-                                                                    calculation, rather than unsigned.                         */
-  __IOM uint32_t  DIV_SDIVISOR;                 /*!< (@ 0x0000006C) Divider signed divisor
-                                                                    The same as UDIVISOR, but starts a signed
-                                                                    calculation, rather than unsigned.                         */
-  __IOM uint32_t  DIV_QUOTIENT;                 /*!< (@ 0x00000070) Divider result quotient
-                                                                    The result of `DIVIDEND / DIVISOR` (division).
-                                                                    Contents undefined while CSR_READY is low.
-                                                                    For signed calculations, QUOTIENT is negative
-                                                                    when the signs of DIVIDEND and DIVISOR differ.
-                                                                    This register can be written to directly,
-                                                                    for context save/restore purposes. This
-                                                                    halts any
-                                                                    in-progress calculation and sets the CSR_READY
-                                                                    and CSR_DIRTY flags.
-                                                                    Reading from QUOTIENT clears the CSR_DIRTY
-                                                                    flag, so                                                   */
-  __IOM uint32_t  DIV_REMAINDER;                /*!< (@ 0x00000074) Divider result remainder
-                                                                    The result of `DIVIDEND % DIVISOR` (modulo).
-                                                                    Contents undefined while CSR_READY is low.
-                                                                    For signed calculations, REMAINDER is negative
-                                                                    only when DIVIDEND is negative.
-                                                                    This register can be written to directly,
-                                                                    for context save/restore purposes. This
-                                                                    halts any
-                                                                    in-progress calculation and sets the CSR_READY
-                                                                    and CSR_DIRTY flags.                                       */
-  __IOM uint32_t  DIV_CSR;                      /*!< (@ 0x00000078) Control and status register for divider.                   */
+  __IOM uint32_t  GPIO_OUT;                     /*!< GPIO output value                                                         */
+  __IOM uint32_t  GPIO_OUT_SET;                 /*!< GPIO output value set                                                     */
+  __IOM uint32_t  GPIO_OUT_CLR;                 /*!< GPIO output value clear                                                   */
+  __IOM uint32_t  GPIO_OUT_XOR;                 /*!< GPIO output value XOR                                                     */
+  __IOM uint32_t  GPIO_OE;                      /*!< GPIO output enable                                                        */
+  __IOM uint32_t  GPIO_OE_SET;                  /*!< GPIO output enable set                                                    */
+  __IOM uint32_t  GPIO_OE_CLR;                  /*!< GPIO output enable clear                                                  */
+  __IOM uint32_t  GPIO_OE_XOR;                  /*!< GPIO output enable XOR                                                    */
+  __IOM uint32_t  GPIO_HI_OUT;                  /*!< QSPI output value                                                         */
+  __IOM uint32_t  GPIO_HI_OUT_SET;              /*!< QSPI output value set                                                     */
+  __IOM uint32_t  GPIO_HI_OUT_CLR;              /*!< QSPI output value clear                                                   */
+  __IOM uint32_t  GPIO_HI_OUT_XOR;              /*!< QSPI output value XOR                                                     */
+  __IOM uint32_t  GPIO_HI_OE;                   /*!< QSPI output enable                                                        */
+  __IOM uint32_t  GPIO_HI_OE_SET;               /*!< QSPI output enable set                                                    */
+  __IOM uint32_t  GPIO_HI_OE_CLR;               /*!< QSPI output enable clear                                                  */
+  __IOM uint32_t  GPIO_HI_OE_XOR;               /*!< QSPI output enable XOR                                                    */
+  __IOM uint32_t  FIFO_ST;                      /*!< Status register for inter-core FIFOs (mailboxes).
+                                                     There is one FIFO in the core 0 -> core 1 direction, and
+                                                     one core 1 -> core 0. Both are 32 bits wide and 8 words
+                                                     deep.
+                                                     Core 0 can see the read side of the 1->0 FIFO (RX), and
+                                                     the write side of 0->1 FIFO (TX).
+                                                     Core 1 can see the read side of the 0->1 FIFO (RX), and
+                                                     the write side of 1->0 FIFO (TX).
+                                                     The SIO IRQ for each core is the logical OR of the VLD,
+                                                     WOF and ROE fields of its FIFO_ST register.                               */
+  __OM  uint32_t  FIFO_WR;                      /*!< Write access to this core's TX FIFO                                       */
+  __IM  uint32_t  FIFO_RD;                      /*!< Read access to this core's RX FIFO                                        */
+  __IM  uint32_t  SPINLOCK_ST;                  /*!< Spinlock state
+                                                     A bitmap containing the state of all 32 spinlocks (1=locked).
+                                                     Mainly intended for debugging.                                            */
+  __IOM uint32_t  DIV_UDIVIDEND;                /*!< Divider unsigned dividend
+                                                     Write to the DIVIDEND operand of the divider, i.e. the
+                                                     p in `p / q`.
+                                                     Any operand write starts a new calculation. The results
+                                                     appear in QUOTIENT, REMAINDER.
+                                                     UDIVIDEND/SDIVIDEND are aliases of the same internal register.
+                                                     The U alias starts an
+                                                     unsigned calculation, and the S alias starts a signed calculation.        */
+  __IOM uint32_t  DIV_UDIVISOR;                 /*!< Divider unsigned divisor
+                                                     Write to the DIVISOR operand of the divider, i.e. the q
+                                                     in `p / q`.
+                                                     Any operand write starts a new calculation. The results
+                                                     appear in QUOTIENT, REMAINDER.
+                                                     UDIVISOR/SDIVISOR are aliases of the same internal register.
+                                                     The U alias starts an
+                                                     unsigned calculation, and the S alias starts a signed calculation.        */
+  __IOM uint32_t  DIV_SDIVIDEND;                /*!< Divider signed dividend
+                                                     The same as UDIVIDEND, but starts a signed calculation,
+                                                     rather than unsigned.                                                     */
+  __IOM uint32_t  DIV_SDIVISOR;                 /*!< Divider signed divisor
+                                                     The same as UDIVISOR, but starts a signed calculation,
+                                                     rather than unsigned.                                                     */
+  __IOM uint32_t  DIV_QUOTIENT;                 /*!< Divider result quotient
+                                                     The result of `DIVIDEND / DIVISOR` (division). Contents
+                                                     undefined while CSR_READY is low.
+                                                     For signed calculations, QUOTIENT is negative when the
+                                                     signs of DIVIDEND and DIVISOR differ.
+                                                     This register can be written to directly, for context save/restore
+                                                     purposes. This halts any
+                                                     in-progress calculation and sets the CSR_READY and CSR_DIRTY
+                                                     flags.
+                                                     Reading from QUOTIENT clears the CSR_DIRTY flag, so should
+                                                     read results in the order
+                                                     REMAINDER, QUOTIENT if CSR_DIRTY is used.                                 */
+  __IOM uint32_t  DIV_REMAINDER;                /*!< Divider result remainder
+                                                     The result of `DIVIDEND % DIVISOR` (modulo). Contents undefined
+                                                     while CSR_READY is low.
+                                                     For signed calculations, REMAINDER is negative only when
+                                                     DIVIDEND is negative.
+                                                     This register can be written to directly, for context save/restore
+                                                     purposes. This halts any
+                                                     in-progress calculation and sets the CSR_READY and CSR_DIRTY
+                                                     flags.                                                                    */
+  __IOM uint32_t  DIV_CSR;                      /*!< Control and status register for divider.                                  */
   __IM  uint32_t  RESERVED1;
-  __IOM uint32_t  INTERP0_ACCUM0;               /*!< (@ 0x00000080) Read/write access to accumulator 0                         */
-  __IOM uint32_t  INTERP0_ACCUM1;               /*!< (@ 0x00000084) Read/write access to accumulator 1                         */
-  __IOM uint32_t  INTERP0_BASE0;                /*!< (@ 0x00000088) Read/write access to BASE0 register.                       */
-  __IOM uint32_t  INTERP0_BASE1;                /*!< (@ 0x0000008C) Read/write access to BASE1 register.                       */
-  __IOM uint32_t  INTERP0_BASE2;                /*!< (@ 0x00000090) Read/write access to BASE2 register.                       */
-  __IM  uint32_t  INTERP0_POP_LANE0;            /*!< (@ 0x00000094) Read LANE0 result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP0_POP_LANE1;            /*!< (@ 0x00000098) Read LANE1 result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP0_POP_FULL;             /*!< (@ 0x0000009C) Read FULL result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP0_PEEK_LANE0;           /*!< (@ 0x000000A0) Read LANE0 result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IM  uint32_t  INTERP0_PEEK_LANE1;           /*!< (@ 0x000000A4) Read LANE1 result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IM  uint32_t  INTERP0_PEEK_FULL;            /*!< (@ 0x000000A8) Read FULL result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IOM uint32_t  INTERP0_CTRL_LANE0;           /*!< (@ 0x000000AC) Control register for lane 0                                */
-  __IOM uint32_t  INTERP0_CTRL_LANE1;           /*!< (@ 0x000000B0) Control register for lane 1                                */
-  __IOM uint32_t  INTERP0_ACCUM0_ADD;           /*!< (@ 0x000000B4) Values written here are atomically added to ACCUM0
-                                                                    Reading yields lane 0's raw shift and mask
-                                                                    value (BASE0 not added).                                   */
-  __IOM uint32_t  INTERP0_ACCUM1_ADD;           /*!< (@ 0x000000B8) Values written here are atomically added to ACCUM1
-                                                                    Reading yields lane 1's raw shift and mask
-                                                                    value (BASE1 not added).                                   */
-  __IOM uint32_t  INTERP0_BASE_1AND0;           /*!< (@ 0x000000BC) On write, the lower 16 bits go to BASE0, upper
-                                                                    bits to BASE1 simultaneously.
-                                                                    Each half is sign-extended to 32 bits if
-                                                                    that lane's SIGNED flag is set.                            */
-  __IOM uint32_t  INTERP1_ACCUM0;               /*!< (@ 0x000000C0) Read/write access to accumulator 0                         */
-  __IOM uint32_t  INTERP1_ACCUM1;               /*!< (@ 0x000000C4) Read/write access to accumulator 1                         */
-  __IOM uint32_t  INTERP1_BASE0;                /*!< (@ 0x000000C8) Read/write access to BASE0 register.                       */
-  __IOM uint32_t  INTERP1_BASE1;                /*!< (@ 0x000000CC) Read/write access to BASE1 register.                       */
-  __IOM uint32_t  INTERP1_BASE2;                /*!< (@ 0x000000D0) Read/write access to BASE2 register.                       */
-  __IM  uint32_t  INTERP1_POP_LANE0;            /*!< (@ 0x000000D4) Read LANE0 result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP1_POP_LANE1;            /*!< (@ 0x000000D8) Read LANE1 result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP1_POP_FULL;             /*!< (@ 0x000000DC) Read FULL result, and simultaneously write lane
-                                                                    results to both accumulators (POP).                        */
-  __IM  uint32_t  INTERP1_PEEK_LANE0;           /*!< (@ 0x000000E0) Read LANE0 result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IM  uint32_t  INTERP1_PEEK_LANE1;           /*!< (@ 0x000000E4) Read LANE1 result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IM  uint32_t  INTERP1_PEEK_FULL;            /*!< (@ 0x000000E8) Read FULL result, without altering any internal
-                                                                    state (PEEK).                                              */
-  __IOM uint32_t  INTERP1_CTRL_LANE0;           /*!< (@ 0x000000EC) Control register for lane 0                                */
-  __IOM uint32_t  INTERP1_CTRL_LANE1;           /*!< (@ 0x000000F0) Control register for lane 1                                */
-  __IOM uint32_t  INTERP1_ACCUM0_ADD;           /*!< (@ 0x000000F4) Values written here are atomically added to ACCUM0
-                                                                    Reading yields lane 0's raw shift and mask
-                                                                    value (BASE0 not added).                                   */
-  __IOM uint32_t  INTERP1_ACCUM1_ADD;           /*!< (@ 0x000000F8) Values written here are atomically added to ACCUM1
-                                                                    Reading yields lane 1's raw shift and mask
-                                                                    value (BASE1 not added).                                   */
-  __IOM uint32_t  INTERP1_BASE_1AND0;           /*!< (@ 0x000000FC) On write, the lower 16 bits go to BASE0, upper
-                                                                    bits to BASE1 simultaneously.
-                                                                    Each half is sign-extended to 32 bits if
-                                                                    that lane's SIGNED flag is set.                            */
-  __IM  uint32_t  SPINLOCK0;                    /*!< (@ 0x00000100) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK1;                    /*!< (@ 0x00000104) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK2;                    /*!< (@ 0x00000108) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK3;                    /*!< (@ 0x0000010C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK4;                    /*!< (@ 0x00000110) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK5;                    /*!< (@ 0x00000114) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK6;                    /*!< (@ 0x00000118) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK7;                    /*!< (@ 0x0000011C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK8;                    /*!< (@ 0x00000120) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK9;                    /*!< (@ 0x00000124) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK10;                   /*!< (@ 0x00000128) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK11;                   /*!< (@ 0x0000012C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK12;                   /*!< (@ 0x00000130) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK13;                   /*!< (@ 0x00000134) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK14;                   /*!< (@ 0x00000138) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK15;                   /*!< (@ 0x0000013C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK16;                   /*!< (@ 0x00000140) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK17;                   /*!< (@ 0x00000144) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK18;                   /*!< (@ 0x00000148) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK19;                   /*!< (@ 0x0000014C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK20;                   /*!< (@ 0x00000150) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK21;                   /*!< (@ 0x00000154) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK22;                   /*!< (@ 0x00000158) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK23;                   /*!< (@ 0x0000015C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK24;                   /*!< (@ 0x00000160) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK25;                   /*!< (@ 0x00000164) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK26;                   /*!< (@ 0x00000168) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK27;                   /*!< (@ 0x0000016C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK28;                   /*!< (@ 0x00000170) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK29;                   /*!< (@ 0x00000174) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK30;                   /*!< (@ 0x00000178) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
-  __IM  uint32_t  SPINLOCK31;                   /*!< (@ 0x0000017C) Reading from a spinlock address will:
-                                                                    - Return 0 if lock is already locked
-                                                                    - Otherwise return nonzero, and simultaneously
-                                                                    claim the lock
-
-                                                                    Writing (any value) releases the lock.
-                                                                    If core 0 and core 1 attempt to claim the
-                                                                    same lock simultaneously, core 0 wins.
-                                                                    The value returned on success is 0x1 <<
-                                                                    lock number.                                               */
+  __IOM uint32_t  INTERP0_ACCUM0;               /*!< Read/write access to accumulator 0                                        */
+  __IOM uint32_t  INTERP0_ACCUM1;               /*!< Read/write access to accumulator 1                                        */
+  __IOM uint32_t  INTERP0_BASE0;                /*!< Read/write access to BASE0 register.                                      */
+  __IOM uint32_t  INTERP0_BASE1;                /*!< Read/write access to BASE1 register.                                      */
+  __IOM uint32_t  INTERP0_BASE2;                /*!< Read/write access to BASE2 register.                                      */
+  __IM  uint32_t  INTERP0_POP_LANE0;            /*!< Read LANE0 result, and simultaneously write lane results to
+                                                     both accumulators (POP).                                                  */
+  __IM  uint32_t  INTERP0_POP_LANE1;            /*!< Read LANE1 result, and simultaneously write lane results to
+                                                     both accumulators (POP).                                                  */
+  __IM  uint32_t  INTERP0_POP_FULL;             /*!< Read FULL result, and simultaneously write lane results to both
+                                                     accumulators (POP).                                                       */
+  __IM  uint32_t  INTERP0_PEEK_LANE0;           /*!< Read LANE0 result, without altering any internal state (PEEK).            */
+  __IM  uint32_t  INTERP0_PEEK_LANE1;           /*!< Read LANE1 result, without altering any internal state (PEEK).            */
+  __IM  uint32_t  INTERP0_PEEK_FULL;            /*!< Read FULL result, without altering any internal state (PEEK).             */
+  __IOM uint32_t  INTERP0_CTRL_LANE0;           /*!< Control register for lane 0                                               */
+  __IOM uint32_t  INTERP0_CTRL_LANE1;           /*!< Control register for lane 1                                               */
+  __IOM uint32_t  INTERP0_ACCUM0_ADD;           /*!< Values written here are atomically added to ACCUM0
+                                                     Reading yields lane 0's raw shift and mask value (BASE0
+                                                     not added).                                                               */
+  __IOM uint32_t  INTERP0_ACCUM1_ADD;           /*!< Values written here are atomically added to ACCUM1
+                                                     Reading yields lane 1's raw shift and mask value (BASE1
+                                                     not added).                                                               */
+  __OM  uint32_t  INTERP0_BASE_1AND0;           /*!< On write, the lower 16 bits go to BASE0, upper bits to BASE1
+                                                     simultaneously.
+                                                     Each half is sign-extended to 32 bits if that lane's SIGNED
+                                                     flag is set.                                                              */
+  __IOM uint32_t  INTERP1_ACCUM0;               /*!< Read/write access to accumulator 0                                        */
+  __IOM uint32_t  INTERP1_ACCUM1;               /*!< Read/write access to accumulator 1                                        */
+  __IOM uint32_t  INTERP1_BASE0;                /*!< Read/write access to BASE0 register.                                      */
+  __IOM uint32_t  INTERP1_BASE1;                /*!< Read/write access to BASE1 register.                                      */
+  __IOM uint32_t  INTERP1_BASE2;                /*!< Read/write access to BASE2 register.                                      */
+  __IM  uint32_t  INTERP1_POP_LANE0;            /*!< Read LANE0 result, and simultaneously write lane results to
+                                                     both accumulators (POP).                                                  */
+  __IM  uint32_t  INTERP1_POP_LANE1;            /*!< Read LANE1 result, and simultaneously write lane results to
+                                                     both accumulators (POP).                                                  */
+  __IM  uint32_t  INTERP1_POP_FULL;             /*!< Read FULL result, and simultaneously write lane results to both
+                                                     accumulators (POP).                                                       */
+  __IM  uint32_t  INTERP1_PEEK_LANE0;           /*!< Read LANE0 result, without altering any internal state (PEEK).            */
+  __IM  uint32_t  INTERP1_PEEK_LANE1;           /*!< Read LANE1 result, without altering any internal state (PEEK).            */
+  __IM  uint32_t  INTERP1_PEEK_FULL;            /*!< Read FULL result, without altering any internal state (PEEK).             */
+  __IOM uint32_t  INTERP1_CTRL_LANE0;           /*!< Control register for lane 0                                               */
+  __IOM uint32_t  INTERP1_CTRL_LANE1;           /*!< Control register for lane 1                                               */
+  __IOM uint32_t  INTERP1_ACCUM0_ADD;           /*!< Values written here are atomically added to ACCUM0
+                                                     Reading yields lane 0's raw shift and mask value (BASE0
+                                                     not added).                                                               */
+  __IOM uint32_t  INTERP1_ACCUM1_ADD;           /*!< Values written here are atomically added to ACCUM1
+                                                     Reading yields lane 1's raw shift and mask value (BASE1
+                                                     not added).                                                               */
+  __OM  uint32_t  INTERP1_BASE_1AND0;           /*!< On write, the lower 16 bits go to BASE0, upper bits to BASE1
+                                                     simultaneously.
+                                                     Each half is sign-extended to 32 bits if that lane's SIGNED
+                                                     flag is set.                                                              */
+  __IOM uint32_t  SPINLOCK0;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK1;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK2;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK3;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK4;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK5;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK6;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK7;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK8;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK9;                    /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK10;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK11;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK12;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK13;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK14;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK15;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK16;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK17;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK18;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK19;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK20;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK21;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK22;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK23;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK24;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK25;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK26;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK27;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK28;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK29;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK30;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
+  __IOM uint32_t  SPINLOCK31;                   /*!< Reading from a spinlock address will:
+                                                     - Return 0 if lock is already locked
+                                                     - Otherwise return nonzero, and simultaneously claim the
+                                                     lock
+                                                     
+                                                     Writing (any value) releases the lock.
+                                                     If core 0 and core 1 attempt to claim the same lock simultaneously,
+                                                     core 0 wins.
+                                                     The value returned on success is 0x1 << lock number.                      */
 } SIO_Type;                                     /*!< Size = 384 (0x180)                                                        */
 
 
@@ -2929,148 +3063,117 @@ typedef struct {                                /*!< (@ 0xD0000000) SIO Structur
   * @brief PPB (PPB)
   */
 
-typedef struct {                                /*!< (@ 0xE0000000) PPB Structure                                              */
+typedef struct {                                /*!< PPB Structure                                                             */
   __IM  uint32_t  RESERVED[14340];
-  __IOM uint32_t  SYST_CSR;                     /*!< (@ 0x0000E010) Use the SysTick Control and Status Register to
-                                                                    enable the SysTick features.                               */
-  __IOM uint32_t  SYST_RVR;                     /*!< (@ 0x0000E014) Use the SysTick Reload Value Register to specify
-                                                                    the start value to load into the current
-                                                                    value register when the counter reaches
-                                                                    0. It can be any value between 0 and 0x00FFFFFF.
-                                                                    A start value of 0 is possible, but has
-                                                                    no effect because the SysTick interrupt
-                                                                    and COUNTFLAG are activated when counting
-                                                                    from 1 to 0. The reset value of this register
-                                                                    is UNKNOWN.
-                                                                    To generate a multi-shot timer with a period
-                                                                    of N processor clock cycles, use a RELOAD
-                                                                    value of N-1. For example, if the                          */
-  __IOM uint32_t  SYST_CVR;                     /*!< (@ 0x0000E018) Use the SysTick Current Value Register to find
-                                                                    the current value in the register. The reset
-                                                                    value of this register is UNKNOWN.                         */
-  __IOM uint32_t  SYST_CALIB;                   /*!< (@ 0x0000E01C) Use the SysTick Calibration Value Register to
-                                                                    enable software to scale to any required
-                                                                    speed using divide and multiply.                           */
+  __IOM uint32_t  SYST_CSR;                     /*!< Use the SysTick Control and Status Register to enable the SysTick
+                                                     features.                                                                 */
+  __IOM uint32_t  SYST_RVR;                     /*!< Use the SysTick Reload Value Register to specify the start value
+                                                     to load into the current value register when the counter
+                                                     reaches 0. It can be any value between 0 and 0x00FFFFFF.
+                                                     A start value of 0 is possible, but has no effect because
+                                                     the SysTick interrupt and COUNTFLAG are activated when
+                                                     counting from 1 to 0. The reset value of this register
+                                                     is UNKNOWN.
+                                                     To generate a multi-shot timer with a period of N processor
+                                                     clock cycles, use a RELOAD value of N-1. For example, if
+                                                     the SysTick interrupt is required every 100 clock pulses,
+                                                     set RELOAD to 99.                                                         */
+  __IOM uint32_t  SYST_CVR;                     /*!< Use the SysTick Current Value Register to find the current value
+                                                     in the register. The reset value of this register is UNKNOWN.             */
+  __IOM uint32_t  SYST_CALIB;                   /*!< Use the SysTick Calibration Value Register to enable software
+                                                     to scale to any required speed using divide and multiply.                 */
   __IM  uint32_t  RESERVED1[56];
-  __IOM uint32_t  NVIC_ISER;                    /*!< (@ 0x0000E100) Use the Interrupt Set-Enable Register to enable
-                                                                    interrupts and determine which interrupts
-                                                                    are currently enabled.
-                                                                    If a pending interrupt is enabled, the NVIC
-                                                                    activates the interrupt based on its priority.
-                                                                    If an interrupt is not enabled, asserting
-                                                                    its interrupt signal changes the interrupt
-                                                                    state to pending, but the NVIC never activates
-                                                                    the interrupt, regardless of its priority.                 */
+  __IOM uint32_t  NVIC_ISER;                    /*!< Use the Interrupt Set-Enable Register to enable interrupts and
+                                                     determine which interrupts are currently enabled.
+                                                     If a pending interrupt is enabled, the NVIC activates the
+                                                     interrupt based on its priority. If an interrupt is not
+                                                     enabled, asserting its interrupt signal changes the interrupt
+                                                     state to pending, but the NVIC never activates the interrupt,
+                                                     regardless of its priority.                                               */
   __IM  uint32_t  RESERVED2[31];
-  __IOM uint32_t  NVIC_ICER;                    /*!< (@ 0x0000E180) Use the Interrupt Clear-Enable Registers to disable
-                                                                    interrupts and determine which interrupts
-                                                                    are currently enabled.                                     */
+  __IOM uint32_t  NVIC_ICER;                    /*!< Use the Interrupt Clear-Enable Registers to disable interrupts
+                                                     and determine which interrupts are currently enabled.                     */
   __IM  uint32_t  RESERVED3[31];
-  __IOM uint32_t  NVIC_ISPR;                    /*!< (@ 0x0000E200) The NVIC_ISPR forces interrupts into the pending
-                                                                    state, and shows which interrupts are pending.             */
+  __IOM uint32_t  NVIC_ISPR;                    /*!< The NVIC_ISPR forces interrupts into the pending state, and
+                                                     shows which interrupts are pending.                                       */
   __IM  uint32_t  RESERVED4[31];
-  __IOM uint32_t  NVIC_ICPR;                    /*!< (@ 0x0000E280) Use the Interrupt Clear-Pending Register to clear
-                                                                    pending interrupts and determine which interrupts
-                                                                    are currently pending.                                     */
+  __IOM uint32_t  NVIC_ICPR;                    /*!< Use the Interrupt Clear-Pending Register to clear pending interrupts
+                                                     and determine which interrupts are currently pending.                     */
   __IM  uint32_t  RESERVED5[95];
-  __IOM uint32_t  NVIC_IPR0;                    /*!< (@ 0x0000E400) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.
-                                                                    Note: Writing 1 to an NVIC_ICPR bit does
-                                                                    not affect the active state of the corresponding
-                                                                    interrupt.
-                                                                    These registers are only word-accessible                   */
-  __IOM uint32_t  NVIC_IPR1;                    /*!< (@ 0x0000E404) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR2;                    /*!< (@ 0x0000E408) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR3;                    /*!< (@ 0x0000E40C) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR4;                    /*!< (@ 0x0000E410) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR5;                    /*!< (@ 0x0000E414) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR6;                    /*!< (@ 0x0000E418) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
-  __IOM uint32_t  NVIC_IPR7;                    /*!< (@ 0x0000E41C) Use the Interrupt Priority Registers to assign
-                                                                    a priority from 0 to 3 to each of the available
-                                                                    interrupts. 0 is the highest priority, and
-                                                                    3 is the lowest.                                           */
+  __IOM uint32_t  NVIC_IPR0;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.
+                                                     Note: Writing 1 to an NVIC_ICPR bit does not affect the
+                                                     active state of the corresponding interrupt.
+                                                     These registers are only word-accessible                                  */
+  __IOM uint32_t  NVIC_IPR1;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR2;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR3;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR4;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR5;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR6;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
+  __IOM uint32_t  NVIC_IPR7;                    /*!< Use the Interrupt Priority Registers to assign a priority from
+                                                     0 to 3 to each of the available interrupts. 0 is the highest
+                                                     priority, and 3 is the lowest.                                            */
   __IM  uint32_t  RESERVED6[568];
-  __IOM uint32_t  CPUID;                        /*!< (@ 0x0000ED00) Read the CPU ID Base Register to determine: the
-                                                                    ID number of the processor core, the version
-                                                                    number of the processor core, the implementation
-                                                                    details of the processor core.                             */
-  __IOM uint32_t  ICSR;                         /*!< (@ 0x0000ED04) Use the Interrupt Control State Register to set
-                                                                    a pending Non-Maskable Interrupt (NMI),
-                                                                    set or clear a pending PendSV, set or clear
-                                                                    a pending SysTick, check for pending exceptions,
-                                                                    check the vector number of the highest priority
-                                                                    pended exception, check the vector number
-                                                                    of the active exception.                                   */
-  __IOM uint32_t  VTOR;                         /*!< (@ 0x0000ED08) The VTOR holds the vector table offset address.            */
-  __IOM uint32_t  AIRCR;                        /*!< (@ 0x0000ED0C) Use the Application Interrupt and Reset Control
-                                                                    Register to: determine data endianness,
-                                                                    clear all active state information from
-                                                                    debug halt mode, request a system reset.                   */
-  __IOM uint32_t  SCR;                          /*!< (@ 0x0000ED10) System Control Register. Use the System Control
-                                                                    Register for power-management functions:
-                                                                    signal to the system when the processor
-                                                                    can enter a low power state, control how
-                                                                    the processor enters and exits low power
-                                                                    states.                                                    */
-  __IOM uint32_t  CCR;                          /*!< (@ 0x0000ED14) The Configuration and Control Register permanently
-                                                                    enables stack alignment and causes unaligned
-                                                                    accesses to result in a Hard Fault.                        */
+  __IOM uint32_t  CPUID;                        /*!< Read the CPU ID Base Register to determine: the ID number of
+                                                     the processor core, the version number of the processor
+                                                     core, the implementation details of the processor core.                   */
+  __IOM uint32_t  ICSR;                         /*!< Use the Interrupt Control State Register to set a pending Non-Maskable
+                                                     Interrupt (NMI), set or clear a pending PendSV, set or
+                                                     clear a pending SysTick, check for pending exceptions,
+                                                     check the vector number of the highest priority pended
+                                                     exception, check the vector number of the active exception.               */
+  __IOM uint32_t  VTOR;                         /*!< The VTOR holds the vector table offset address.                           */
+  __IOM uint32_t  AIRCR;                        /*!< Use the Application Interrupt and Reset Control Register to:
+                                                     determine data endianness, clear all active state information
+                                                     from debug halt mode, request a system reset.                             */
+  __IOM uint32_t  SCR;                          /*!< System Control Register. Use the System Control Register for
+                                                     power-management functions: signal to the system when the
+                                                     processor can enter a low power state, control how the
+                                                     processor enters and exits low power states.                              */
+  __IOM uint32_t  CCR;                          /*!< The Configuration and Control Register permanently enables stack
+                                                     alignment and causes unaligned accesses to result in a
+                                                     Hard Fault.                                                               */
   __IM  uint32_t  RESERVED7;
-  __IOM uint32_t  SHPR2;                        /*!< (@ 0x0000ED1C) System handlers are a special class of exception
-                                                                    handler that can have their priority set
-                                                                    to any of the priority levels. Use the System
-                                                                    Handler Priority Register 2 to set the priority
-                                                                    of SVCall.                                                 */
-  __IOM uint32_t  SHPR3;                        /*!< (@ 0x0000ED20) System handlers are a special class of exception
-                                                                    handler that can have their priority set
-                                                                    to any of the priority levels. Use the System
-                                                                    Handler Priority Register 3 to set the priority
-                                                                    of PendSV and SysTick.                                     */
-  __IOM uint32_t  SHCSR;                        /*!< (@ 0x0000ED24) Use the System Handler Control and State Register
-                                                                    to determine or clear the pending status
-                                                                    of SVCall.                                                 */
+  __IOM uint32_t  SHPR2;                        /*!< System handlers are a special class of exception handler that
+                                                     can have their priority set to any of the priority levels.
+                                                     Use the System Handler Priority Register 2 to set the priority
+                                                     of SVCall.                                                                */
+  __IOM uint32_t  SHPR3;                        /*!< System handlers are a special class of exception handler that
+                                                     can have their priority set to any of the priority levels.
+                                                     Use the System Handler Priority Register 3 to set the priority
+                                                     of PendSV and SysTick.                                                    */
+  __IOM uint32_t  SHCSR;                        /*!< Use the System Handler Control and State Register to determine
+                                                     or clear the pending status of SVCall.                                    */
   __IM  uint32_t  RESERVED8[26];
-  __IOM uint32_t  MPU_TYPE;                     /*!< (@ 0x0000ED90) Read the MPU Type Register to determine if the
-                                                                    processor implements an MPU, and how many
-                                                                    regions the MPU supports.                                  */
-  __IOM uint32_t  MPU_CTRL;                     /*!< (@ 0x0000ED94) Use the MPU Control Register to enable and disable
-                                                                    the MPU, and to control whether the default
-                                                                    memory map is enabled as a background region
-                                                                    for privileged accesses, and whether the
-                                                                    MPU is enabled for HardFaults and NMIs.                    */
-  __IOM uint32_t  MPU_RNR;                      /*!< (@ 0x0000ED98) Use the MPU Region Number Register to select
-                                                                    the region currently accessed by MPU_RBAR
-                                                                    and MPU_RASR.                                              */
-  __IOM uint32_t  MPU_RBAR;                     /*!< (@ 0x0000ED9C) Read the MPU Region Base Address Register to
-                                                                    determine the base address of the region
-                                                                    identified by MPU_RNR. Write to update the
-                                                                    base address of said region or that of a
-                                                                    specified region, with whose number MPU_RNR
-                                                                    will also be updated.                                      */
-  __IOM uint32_t  MPU_RASR;                     /*!< (@ 0x0000EDA0) Use the MPU Region Attribute and Size Register
-                                                                    to define the size, access behaviour and
-                                                                    memory type of the region identified by
-                                                                    MPU_RNR, and enable that region.                           */
+  __IOM uint32_t  MPU_TYPE;                     /*!< Read the MPU Type Register to determine if the processor implements
+                                                     an MPU, and how many regions the MPU supports.                            */
+  __IOM uint32_t  MPU_CTRL;                     /*!< Use the MPU Control Register to enable and disable the MPU,
+                                                     and to control whether the default memory map is enabled
+                                                     as a background region for privileged accesses, and whether
+                                                     the MPU is enabled for HardFaults and NMIs.                               */
+  __IOM uint32_t  MPU_RNR;                      /*!< Use the MPU Region Number Register to select the region currently
+                                                     accessed by MPU_RBAR and MPU_RASR.                                        */
+  __IOM uint32_t  MPU_RBAR;                     /*!< Read the MPU Region Base Address Register to determine the base
+                                                     address of the region identified by MPU_RNR. Write to update
+                                                     the base address of said region or that of a specified
+                                                     region, with whose number MPU_RNR will also be updated.                   */
+  __IOM uint32_t  MPU_RASR;                     /*!< Use the MPU Region Attribute and Size Register to define the
+                                                     size, access behaviour and memory type of the region identified
+                                                     by MPU_RNR, and enable that region.                                       */
 } PPB_Type;                                     /*!< Size = 60836 (0xeda4)                                                     */
 
 
@@ -3116,6 +3219,7 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define VREG_AND_CHIP_RESET_BASE    0x40064000UL
 #define TBMAN_BASE                  0x4006C000UL
 #define DMA_BASE                    0x50000000UL
+#define USBCTRL_DPRAM_BASE          0x50100000UL
 #define USBCTRL_REGS_BASE           0x50110000UL
 #define PIO0_BASE                   0x50200000UL
 #define PIO1_BASE                   0x50300000UL
@@ -3164,6 +3268,7 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define VREG_AND_CHIP_RESET         ((VREG_AND_CHIP_RESET_Type*)  VREG_AND_CHIP_RESET_BASE)
 #define TBMAN                       ((TBMAN_Type*)             TBMAN_BASE)
 #define DMA                         ((DMA_Type*)               DMA_BASE)
+#define USBCTRL_DPRAM               ((USBCTRL_DPRAM_Type*)     USBCTRL_DPRAM_BASE)
 #define USBCTRL_REGS                ((USBCTRL_REGS_Type*)      USBCTRL_REGS_BASE)
 #define PIO0                        ((PIO0_Type*)              PIO0_BASE)
 #define PIO1                        ((PIO0_Type*)              PIO1_BASE)
@@ -9310,8 +9415,6 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define I2C0_IC_FS_SCL_LCNT_IC_FS_SCL_LCNT_Pos (0UL)                /*!< IC_FS_SCL_LCNT (Bit 0)                                */
 #define I2C0_IC_FS_SCL_LCNT_IC_FS_SCL_LCNT_Msk (0xffffUL)           /*!< IC_FS_SCL_LCNT (Bitfield-Mask: 0xffff)                */
 /* =====================================================  IC_INTR_STAT  ====================================================== */
-#define I2C0_IC_INTR_STAT_R_MASTER_ON_HOLD_Pos (13UL)               /*!< R_MASTER_ON_HOLD (Bit 13)                             */
-#define I2C0_IC_INTR_STAT_R_MASTER_ON_HOLD_Msk (0x2000UL)           /*!< R_MASTER_ON_HOLD (Bitfield-Mask: 0x01)                */
 #define I2C0_IC_INTR_STAT_R_RESTART_DET_Pos (12UL)                  /*!< R_RESTART_DET (Bit 12)                                */
 #define I2C0_IC_INTR_STAT_R_RESTART_DET_Msk (0x1000UL)              /*!< R_RESTART_DET (Bitfield-Mask: 0x01)                   */
 #define I2C0_IC_INTR_STAT_R_GEN_CALL_Pos  (11UL)                    /*!< R_GEN_CALL (Bit 11)                                   */
@@ -9339,8 +9442,6 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define I2C0_IC_INTR_STAT_R_RX_UNDER_Pos  (0UL)                     /*!< R_RX_UNDER (Bit 0)                                    */
 #define I2C0_IC_INTR_STAT_R_RX_UNDER_Msk  (0x1UL)                   /*!< R_RX_UNDER (Bitfield-Mask: 0x01)                      */
 /* =====================================================  IC_INTR_MASK  ====================================================== */
-#define I2C0_IC_INTR_MASK_M_MASTER_ON_HOLD_READ_ONLY_Pos (13UL)     /*!< M_MASTER_ON_HOLD_READ_ONLY (Bit 13)                   */
-#define I2C0_IC_INTR_MASK_M_MASTER_ON_HOLD_READ_ONLY_Msk (0x2000UL) /*!< M_MASTER_ON_HOLD_READ_ONLY (Bitfield-Mask: 0x01)      */
 #define I2C0_IC_INTR_MASK_M_RESTART_DET_Pos (12UL)                  /*!< M_RESTART_DET (Bit 12)                                */
 #define I2C0_IC_INTR_MASK_M_RESTART_DET_Msk (0x1000UL)              /*!< M_RESTART_DET (Bitfield-Mask: 0x01)                   */
 #define I2C0_IC_INTR_MASK_M_GEN_CALL_Pos  (11UL)                    /*!< M_GEN_CALL (Bit 11)                                   */
@@ -9368,8 +9469,6 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define I2C0_IC_INTR_MASK_M_RX_UNDER_Pos  (0UL)                     /*!< M_RX_UNDER (Bit 0)                                    */
 #define I2C0_IC_INTR_MASK_M_RX_UNDER_Msk  (0x1UL)                   /*!< M_RX_UNDER (Bitfield-Mask: 0x01)                      */
 /* ===================================================  IC_RAW_INTR_STAT  ==================================================== */
-#define I2C0_IC_RAW_INTR_STAT_MASTER_ON_HOLD_Pos (13UL)             /*!< MASTER_ON_HOLD (Bit 13)                               */
-#define I2C0_IC_RAW_INTR_STAT_MASTER_ON_HOLD_Msk (0x2000UL)         /*!< MASTER_ON_HOLD (Bitfield-Mask: 0x01)                  */
 #define I2C0_IC_RAW_INTR_STAT_RESTART_DET_Pos (12UL)                /*!< RESTART_DET (Bit 12)                                  */
 #define I2C0_IC_RAW_INTR_STAT_RESTART_DET_Msk (0x1000UL)            /*!< RESTART_DET (Bitfield-Mask: 0x01)                     */
 #define I2C0_IC_RAW_INTR_STAT_GEN_CALL_Pos (11UL)                   /*!< GEN_CALL (Bit 11)                                     */
@@ -10888,6 +10987,16 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define DMA_TIMER1_X_Msk                  (0xffff0000UL)            /*!< X (Bitfield-Mask: 0xffff)                             */
 #define DMA_TIMER1_Y_Pos                  (0UL)                     /*!< Y (Bit 0)                                             */
 #define DMA_TIMER1_Y_Msk                  (0xffffUL)                /*!< Y (Bitfield-Mask: 0xffff)                             */
+/* ========================================================  TIMER2  ========================================================= */
+#define DMA_TIMER2_X_Pos                  (16UL)                    /*!< X (Bit 16)                                            */
+#define DMA_TIMER2_X_Msk                  (0xffff0000UL)            /*!< X (Bitfield-Mask: 0xffff)                             */
+#define DMA_TIMER2_Y_Pos                  (0UL)                     /*!< Y (Bit 0)                                             */
+#define DMA_TIMER2_Y_Msk                  (0xffffUL)                /*!< Y (Bitfield-Mask: 0xffff)                             */
+/* ========================================================  TIMER3  ========================================================= */
+#define DMA_TIMER3_X_Pos                  (16UL)                    /*!< X (Bit 16)                                            */
+#define DMA_TIMER3_X_Msk                  (0xffff0000UL)            /*!< X (Bitfield-Mask: 0xffff)                             */
+#define DMA_TIMER3_Y_Pos                  (0UL)                     /*!< Y (Bit 0)                                             */
+#define DMA_TIMER3_Y_Msk                  (0xffffUL)                /*!< Y (Bitfield-Mask: 0xffff)                             */
 /* ==================================================  MULTI_CHAN_TRIGGER  =================================================== */
 #define DMA_MULTI_CHAN_TRIGGER_MULTI_CHAN_TRIGGER_Pos (0UL)         /*!< MULTI_CHAN_TRIGGER (Bit 0)                            */
 #define DMA_MULTI_CHAN_TRIGGER_MULTI_CHAN_TRIGGER_Msk (0xffffUL)    /*!< MULTI_CHAN_TRIGGER (Bitfield-Mask: 0xffff)            */
@@ -10966,6 +11075,1398 @@ typedef struct {                                /*!< (@ 0xE0000000) PPB Structur
 #define DMA_CH11_DBG_CTDREQ_CH11_DBG_CTDREQ_Pos (0UL)               /*!< CH11_DBG_CTDREQ (Bit 0)                               */
 #define DMA_CH11_DBG_CTDREQ_CH11_DBG_CTDREQ_Msk (0x3fUL)            /*!< CH11_DBG_CTDREQ (Bitfield-Mask: 0x3f)                 */
 /* =====================================================  CH11_DBG_TCR  ====================================================== */
+
+
+/* =========================================================================================================================== */
+/* ================                                       USBCTRL_DPRAM                                       ================ */
+/* =========================================================================================================================== */
+
+/* ===================================================  SETUP_PACKET_LOW  ==================================================== */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_WVALUE_Pos (16UL)            /*!< WVALUE (Bit 16)                                       */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_WVALUE_Msk (0xffff0000UL)    /*!< WVALUE (Bitfield-Mask: 0xffff)                        */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_BREQUEST_Pos (8UL)           /*!< BREQUEST (Bit 8)                                      */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_BREQUEST_Msk (0xff00UL)      /*!< BREQUEST (Bitfield-Mask: 0xff)                        */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_BMREQUESTTYPE_Pos (0UL)      /*!< BMREQUESTTYPE (Bit 0)                                 */
+#define USBCTRL_DPRAM_SETUP_PACKET_LOW_BMREQUESTTYPE_Msk (0xffUL)   /*!< BMREQUESTTYPE (Bitfield-Mask: 0xff)                   */
+/* ===================================================  SETUP_PACKET_HIGH  =================================================== */
+#define USBCTRL_DPRAM_SETUP_PACKET_HIGH_WLENGTH_Pos (16UL)          /*!< WLENGTH (Bit 16)                                      */
+#define USBCTRL_DPRAM_SETUP_PACKET_HIGH_WLENGTH_Msk (0xffff0000UL)  /*!< WLENGTH (Bitfield-Mask: 0xffff)                       */
+#define USBCTRL_DPRAM_SETUP_PACKET_HIGH_WINDEX_Pos (0UL)            /*!< WINDEX (Bit 0)                                        */
+#define USBCTRL_DPRAM_SETUP_PACKET_HIGH_WINDEX_Msk (0xffffUL)       /*!< WINDEX (Bitfield-Mask: 0xffff)                        */
+/* ====================================================  EP1_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP1_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP1_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP1_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP2_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP2_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP2_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP2_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP3_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP3_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP3_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP3_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP4_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP4_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP4_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP4_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP5_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP5_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP5_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP5_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP6_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP6_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP6_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP6_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP7_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP7_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP7_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP7_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP8_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP8_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP8_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP8_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP9_IN_CONTROL  ===================================================== */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_ENABLE_Pos (31UL)              /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_ENABLE_Msk (0x80000000UL)      /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)     /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL)  /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)       */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)              */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)       /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                  */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL)  /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)          */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)    /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)       /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP9_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL)  /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP9_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP9_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ====================================================  EP10_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP10_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP10_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP10_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* ====================================================  EP11_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP11_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP11_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP11_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* ====================================================  EP12_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP12_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP12_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP12_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* ====================================================  EP13_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP13_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP13_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP13_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* ====================================================  EP14_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP14_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP14_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP14_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* ====================================================  EP15_IN_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_ENABLE_Pos (31UL)             /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_ENABLE_Msk (0x80000000UL)     /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_DOUBLE_BUFFERED_Pos (30UL)    /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                           */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)      */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)             */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_ENDPOINT_TYPE_Pos (26UL)      /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                 */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                           */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)         */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)   /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_BUFFER_ADDRESS_Pos (0UL)      /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP15_IN_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)                */
+/* ===================================================  EP15_OUT_CONTROL  ==================================================== */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_ENABLE_Pos (31UL)            /*!< ENABLE (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_ENABLE_Msk (0x80000000UL)    /*!< ENABLE (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_DOUBLE_BUFFERED_Pos (30UL)   /*!< DOUBLE_BUFFERED (Bit 30)                              */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_DOUBLE_BUFFERED_Msk (0x40000000UL) /*!< DOUBLE_BUFFERED (Bitfield-Mask: 0x01)           */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_PER_BUFF_Pos (29UL) /*!< INTERRUPT_PER_BUFF (Bit 29)                          */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_PER_BUFF_Msk (0x20000000UL) /*!< INTERRUPT_PER_BUFF (Bitfield-Mask: 0x01)     */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Pos (28UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bit 28)            */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_PER_DOUBLE_BUFF_Msk (0x10000000UL) /*!< INTERRUPT_PER_DOUBLE_BUFF (Bitfield-Mask: 0x01) */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_ENDPOINT_TYPE_Pos (26UL)     /*!< ENDPOINT_TYPE (Bit 26)                                */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_ENDPOINT_TYPE_Msk (0xc000000UL) /*!< ENDPOINT_TYPE (Bitfield-Mask: 0x03)                */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_ON_STALL_Pos (17UL) /*!< INTERRUPT_ON_STALL (Bit 17)                          */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_ON_STALL_Msk (0x20000UL) /*!< INTERRUPT_ON_STALL (Bitfield-Mask: 0x01)        */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_ON_NAK_Pos (16UL)  /*!< INTERRUPT_ON_NAK (Bit 16)                             */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_INTERRUPT_ON_NAK_Msk (0x10000UL) /*!< INTERRUPT_ON_NAK (Bitfield-Mask: 0x01)            */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_BUFFER_ADDRESS_Pos (0UL)     /*!< BUFFER_ADDRESS (Bit 0)                                */
+#define USBCTRL_DPRAM_EP15_OUT_CONTROL_BUFFER_ADDRESS_Msk (0xffffUL) /*!< BUFFER_ADDRESS (Bitfield-Mask: 0xffff)               */
+/* =================================================  EP0_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP0_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP0_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP0_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP1_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP1_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP1_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP1_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP2_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP2_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP2_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP2_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP3_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP3_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP3_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP3_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP4_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP4_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP4_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP4_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP5_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP5_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP5_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP5_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP6_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP6_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP6_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP6_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP7_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP7_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP7_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP7_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP8_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP8_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP8_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP8_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* =================================================  EP9_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)       /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)       /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_PID_1_Pos (29UL)        /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)         */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL)  /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)               */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)     /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                    */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)       /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)   /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)       /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)   /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_PID_0_Pos (13UL)        /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)    /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_RESET_Pos (12UL)        /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)    /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_STALL_Pos (11UL)        /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)     /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL)  /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                   */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)      /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP9_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL)  /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP9_OUT_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP9_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP10_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP10_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP10_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP10_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
+/* ================================================  EP11_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP11_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP11_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP11_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
+/* ================================================  EP12_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP12_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP12_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP12_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
+/* ================================================  EP13_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP13_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP13_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP13_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
+/* ================================================  EP14_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP14_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP14_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP14_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
+/* ================================================  EP15_IN_BUFFER_CONTROL  ================================================= */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_FULL_1_Pos (31UL)      /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LAST_1_Pos (30UL)      /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_PID_1_Pos (29UL)       /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                         */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)        */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                  */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)              */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LENGTH_1_Pos (16UL)    /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                   */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_FULL_0_Pos (15UL)      /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_FULL_0_Msk (0x8000UL)  /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LAST_0_Pos (14UL)      /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LAST_0_Msk (0x4000UL)  /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_PID_0_Pos (13UL)       /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_PID_0_Msk (0x2000UL)   /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_RESET_Pos (12UL)       /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_RESET_Msk (0x1000UL)   /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_STALL_Pos (11UL)       /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_STALL_Msk (0x800UL)    /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                  */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                  */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LENGTH_0_Pos (0UL)     /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP15_IN_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                       */
+/* ================================================  EP15_OUT_BUFFER_CONTROL  ================================================ */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_FULL_1_Pos (31UL)     /*!< FULL_1 (Bit 31)                                       */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_FULL_1_Msk (0x80000000UL) /*!< FULL_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LAST_1_Pos (30UL)     /*!< LAST_1 (Bit 30)                                       */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LAST_1_Msk (0x40000000UL) /*!< LAST_1 (Bitfield-Mask: 0x01)                      */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_PID_1_Pos (29UL)      /*!< PID_1 (Bit 29)                                        */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_PID_1_Msk (0x20000000UL) /*!< PID_1 (Bitfield-Mask: 0x01)                        */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Pos (27UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bit 27)       */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_DOUBLE_BUFFER_ISO_OFFSET_Msk (0x18000000UL) /*!< DOUBLE_BUFFER_ISO_OFFSET (Bitfield-Mask: 0x03) */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_AVAILABLE_1_Pos (26UL) /*!< AVAILABLE_1 (Bit 26)                                 */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_AVAILABLE_1_Msk (0x4000000UL) /*!< AVAILABLE_1 (Bitfield-Mask: 0x01)             */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LENGTH_1_Pos (16UL)   /*!< LENGTH_1 (Bit 16)                                     */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LENGTH_1_Msk (0x3ff0000UL) /*!< LENGTH_1 (Bitfield-Mask: 0x3ff)                  */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_FULL_0_Pos (15UL)     /*!< FULL_0 (Bit 15)                                       */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_FULL_0_Msk (0x8000UL) /*!< FULL_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LAST_0_Pos (14UL)     /*!< LAST_0 (Bit 14)                                       */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LAST_0_Msk (0x4000UL) /*!< LAST_0 (Bitfield-Mask: 0x01)                          */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_PID_0_Pos (13UL)      /*!< PID_0 (Bit 13)                                        */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_PID_0_Msk (0x2000UL)  /*!< PID_0 (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_RESET_Pos (12UL)      /*!< RESET (Bit 12)                                        */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_RESET_Msk (0x1000UL)  /*!< RESET (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_STALL_Pos (11UL)      /*!< STALL (Bit 11)                                        */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_STALL_Msk (0x800UL)   /*!< STALL (Bitfield-Mask: 0x01)                           */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_AVAILABLE_0_Pos (10UL) /*!< AVAILABLE_0 (Bit 10)                                 */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_AVAILABLE_0_Msk (0x400UL) /*!< AVAILABLE_0 (Bitfield-Mask: 0x01)                 */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LENGTH_0_Pos (0UL)    /*!< LENGTH_0 (Bit 0)                                      */
+#define USBCTRL_DPRAM_EP15_OUT_BUFFER_CONTROL_LENGTH_0_Msk (0x3ffUL) /*!< LENGTH_0 (Bitfield-Mask: 0x3ff)                      */
 
 
 /* =========================================================================================================================== */
